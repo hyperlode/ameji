@@ -1,0 +1,32 @@
+.sentence_field{
+	border: 2px solid black;
+	overflow: hidden; /* will contain if #first is longer than #second */
+}
+
+.symbol{
+	/* height: 100px; */
+	float:left;
+	border: 2px solid red;
+	height:76px;
+	width:56px;
+	overflow:hidden; /* */
+}
+.symbol_image{
+	border: 2px solid black;	
+	height: 52px;
+	width: 52px;
+	float:left;
+}
+.symbol_diacritic{
+	height: 8px;
+	width:54px;
+	border: 1px solid blue;	
+	float:left;
+}
+
+.punctuation{
+	min-height: 1px; /*needed to enforce width if empty*/
+	width:30px;
+	float:left;
+	
+}

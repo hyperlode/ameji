@@ -1,0 +1,20 @@
+INTEGRATION (detailed guide at commentics.org/wiki)
+
+Add the following to the very top of your page:
+
+<?php
+session_start();
+?>
+
+Add the following inside the head tag of your page:
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+Add the following inside the body tag of your page:
+
+<?php
+$cmtx_identifier = '1';
+$cmtx_reference = 'Page One';
+$cmtx_path = 'upload/';
+require $cmtx_path . 'includes/commentics.php'; //don't edit this line
+?>
