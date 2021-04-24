@@ -1,32 +1,82 @@
-.sentence_field{
-	border: 2px solid black;
-	overflow: hidden; /* will contain if #first is longer than #second */
+/* css naming conventions https://www.freecodecamp.org/news/css-naming-conventions-that-will-save-you-hours-of-debugging-35cea737d849/ */
+.sentence-builder{
+	display: block;
 }
 
-.symbol{
-	/* height: 100px; */
-	float:left;
-	border: 2px solid red;
-	height:76px;
-	width:56px;
-	overflow:hidden; /* */
+.sentence-builder__controls{
+	display: block;
+	overflow: hidden; /*works with float: left*/
 }
-.symbol_image{
-	border: 2px solid black;	
-	height: 52px;
-	width: 52px;
-	float:left;
+
+.sentence-builder__sentence{
+	display: block;
+	border: 2px solid black;
+	overflow: hidden; /*works with float: left*/
 }
-.symbol_diacritic{
-	height: 8px;
-	width:54px;
-	border: 1px solid blue;	
-	float:left;
+
+.sentence-builder__controls__noun-picker{
+	overflow: hidden; /*works with float: left*/
+}
+.sentence-builder__controls__punctuation-picker{
+	overflow: hidden; /*works with float: left*/
+}
+.sentence-builder__controls__diacritics-picker{
+	overflow: hidden; /*works with float: left*/
+}
+.sentence-builder__controls__proper-nouns-picker{
+	overflow: hidden; /*works with float: left*/
 }
 
 .punctuation{
 	min-height: 1px; /*needed to enforce width if empty*/
 	width:30px;
 	float:left;
+	border: 2px solid red;
+	height:76px;
+	width:26px;
+	overflow:hidden; /* */
+}
+
+.diacritic-independent{
+	overflow:hidden; /* */
+	width:54px;
+	float:left;
 	
 }
+
+.diacritic_image{
+	border: 1px solid blue;	
+	float:left;
+	height: 8px;
+	width:54px;
+}
+
+.punctuation_image{
+	border: 2px solid black;	
+	height: 52px;
+	width: 22px;
+	float:left;
+}
+
+.noun{
+	float:left;
+	border: 2px solid red;
+	height:76px;
+	width:56px;
+	overflow:hidden; /* */
+}
+
+.noun_image{
+	border: 2px solid black;	
+	height: 52px;
+	width: 52px;
+	float:left;
+}
+
+.noun_diacritic{
+	height: 8px;
+	width:54px;
+	border: 1px solid blue;	
+	float:left;
+}
+
