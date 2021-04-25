@@ -31,52 +31,55 @@
 	min-height: 1px; /*needed to enforce width if empty*/
 	width:30px;
 	float:left;
-	border: 2px solid red;
-	height:76px;
-	width:26px;
+	border: 0px solid red;
+	height:80px;
+	
 	overflow:hidden; /* */
 }
 
 .diacritic-independent{
 	overflow:hidden; /* */
-	width:54px;
+	width:60px;
 	float:left;
 	
 }
 
 .diacritic_image{
-	border: 1px solid blue;	
+	border: 0px solid blue;	
 	float:left;
-	height: 8px;
-	width:54px;
+	height: 10px;
+	width:60px;
 }
 
 .punctuation_image{
-	border: 2px solid black;	
-	height: 52px;
-	width: 22px;
+	border: 0px solid black;	
+	height: 60px;
+	width: 30px;
 	float:left;
 }
 
 .noun{
 	float:left;
-	border: 2px solid red;
-	height:76px;
-	width:56px;
+	border: 0px solid red;
+	height:80px;
+	width:60px;
 	overflow:hidden; /* */
 }
 
 .noun_image{
-	border: 2px solid black;	
-	height: 52px;
-	width: 52px;
+	border: 0px solid black;	
+	height: 60px;
+	width: 60px;
 	float:left;
 }
 
-.noun_diacritic{
-	height: 8px;
-	width:54px;
-	border: 1px solid blue;	
+.noun_diacritic_top, .noun_diacritic_bottom{
+	height: 10px;
+	width:60px;
+	border: 0px solid blue;	
 	float:left;
 }
 
+.symbol-selected{
+	border: 2px solid red;	
+}
