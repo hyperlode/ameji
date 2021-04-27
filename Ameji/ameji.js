@@ -34,36 +34,132 @@
 // "lit" = literal
 // "sym" = symbolic
 // "gen" = generalized
-
+var diacritics_to_file = {
+    "gen": "dot.png",
+    "gen2": "dot-dot.png",
+    "verb": "arrow-right.png",
+    "verb2": "double-headed-arrow.png",
+    "sym": "squiggle.png",
+    "lit": "line.png",
+    "-": "diacritic_empty.png"
+}
 var nouns_JSON = `[
         {"file":"time_relative-time_hourglass.png",
          "meaning":{
                 "time relative":{
                     "synonyms":[],
-                    "value":"-", 
-                    "dia_top":"-",
-                    "dia_bot":"-"},
+                    "value":"-", "dia_top":"-", "dia_bot":"-"},
                 "hourglass":{
                     "synonyms":["sandglass","clepsydra","clock","timepiece","timer", "chronometer", "timekeeper"],
-                    "value":"-",
-                    "dia_top":"lit",
-                    "dia_bot":"-"},
+                    "value":"-", "dia_top":"lit", "dia_bot":"-"}
         }},
-        {"file":"luciebox.png",
-        "meaning":{
+        {"file":"luciebox.png", "meaning":{
             "luciebox":{
                 "synonyms":["pretbak","busybox"],
-                "value":"-",
-                "dia_top":"-",
-                "dia_bot":"-"},
+                "value":"-", "dia_top":"-", "dia_bot":"-"},
             "electronic toy":{
                 "synonyms":["toy", "electronic device"],
-                "value":"-",
-                "dia_top":"gen",
-                "dia_bot":"-"},
+                "value":"-", "dia_top":"gen", "dia_bot":"-"}
+        }},
+        {"file":"meter_relative_0.png", "meaning":{
+            "value 0":{
+                "synonyms":["zero","null","none"],
+                "value":"-", "dia_top":"-", "dia_bot":"-"}
+        }},
+        {"file":"meter_relative_1.png", "meaning":{
+            "value 1":{
+                "synonyms":["low"],
+                "value":"-", "dia_top":"-", "dia_bot":"-"}
+        }},
+        {"file":"meter_relative_2.png", "meaning":{
+            "value 2":{
+                "synonyms":["average"],
+                "value":"-", "dia_top":"-", "dia_bot":"-"}
+        }},
+        {"file":"meter_relative_3.png", "meaning":{
+            "value 3":{
+                "synonyms":["high"],
+                "value":"-", "dia_top":"-", "dia_bot":"-"}
+        }},
+        {"file":"meter_relative_4.png", "meaning":{
+            "value 4":{
+                "synonyms":["extreme"],
+                "value":"-", "dia_top":"-", "dia_bot":"-"}
+        }},
+        {"file":"head_profile_mouth_closed.png", "meaning":{
+            "you":{
+                "synonyms":["listener"],
+                "value":"-", "dia_top":"-", "dia_bot":"-"},
+            "head closed mouth":{
+                "synonyms":["head profile person mouth closed"],
+                "value":"-", "dia_top":"lit", "dia_bot":"-"}
+        }},
+        {"file":"circle_horizonal_strikethrough.png", "meaning":{
+            "you":{
+                "synonyms":["listener"],
+                "value":"-", "dia_top":"-", "dia_bot":"-"},
+            "head closed mouth":{
+                "synonyms":["head profile person mouth closed"],
+                "value":"-", "dia_top":"lit", "dia_bot":"-"}
+        }},
+        {"file":"heart.png", "meaning":{
+            "love":{
+                "synonyms":["like"],
+                "value":"-", "dia_top":"-", "dia_bot":"-"},
+            "heart":{
+                "synonyms":[],
+                "value":"-", "dia_top":"lit", "dia_bot":"-"},
+            "to love":{
+                "synonyms":["loving to like liking "],
+                "value":"-", "dia_top":"verb", "dia_bot":"-"}
+        }},
+        {"file":"circle_with_piece_out.png", "meaning":{
+            "I":{
+                "synonyms":["me","narrator", "head profile person"],
+                "value":"-", "dia_top":"-", "dia_bot":"-"}
+        }},
+        {"file":"circle_horizontal_strikethrough.png", "meaning":{
+            "you":{
+                "synonyms":["you", "listener"],
+                "value":"-", "dia_top":"-", "dia_bot":"-"}
+        }},
+        {"file":"circle_vertical_strikethrough.png", "meaning":{
+            "he":{
+                "synonyms":["he","her","his","hers","it"],
+                "value":"-", "dia_top":"-", "dia_bot":"-"}
+        }},
+        {"file":"circle_horizontal_double_strikethrough.png", "meaning":{
+            "you":{
+                "synonyms":["you"],
+                "value":"-", "dia_top":"-", "dia_bot":"-"}
+        }},
+        {"file":"circle_vertical_double_strikethrough.png", "meaning":{
+            "he":{
+                "synonyms":["they","their","theirs"],
+                "value":"-", "dia_top":"-", "dia_bot":"-"}
+        }},
+        {"file":"pin on map.png", "meaning":{
+            "location":{
+                "synonyms":["position","place","here"],
+                "value":"-", "dia_top":"-", "dia_bot":"-"}
+        }},
+        {"file":"clock.png", "meaning":{
+            "time":{
+                "synonyms":["absolute time"],
+                "value":"-", "dia_top":"-", "dia_bot":"-"},
+            "two oclock":{
+                    "synonyms":["two o clock"],
+                    "value":"-", "dia_top":"lit", "dia_bot":"-"}
+        }},
+        {"file":"head_profile_mouth_open.png", "meaning":{
+            "I":{
+                "synonyms":["me","narrator", "head profile person"],
+                "value":"-", "dia_top":"-", "dia_bot":"-"},
+            "head open mouth":{
+                "synonyms":["head profile person"],
+                "value":"-", "dia_top":"lit", "dia_bot":"-"}
         }}
     ]`;
-
 
 var punctuation = [
     "backward-slash.png",
@@ -72,20 +168,40 @@ var punctuation = [
     "colon.png",
     "comma.png",
     "comma_left.png",
+    "dirlist.txt",
     "double-backward-slash.png",
     "double-forward-slash.png",
+    "equals.png",
+    "files_to_dirlist.bat",
     "forward-slash.png",
     "is_backward.png",
     "is_forward.png",
-    "parentheses.png",
+    "not.png",
+    "noun_Equal_1808544.png",
+    "noun_question mark_193141.png",
+    "noun_Question_727763.png",
     "parentheses_open_left.png",
     "parentheses_open_right.png",
     "period.png",
     "possesive_backward.png",
     "possesive_forward.png",
+    "question_mark_thick.png",
+    "question_mark_thin.png",
+    "question_mark_upside_down_thick.png",
+    "question_mark_upside_down_thin.png",
     "semicolon.png",
     "semi_colon.png",
-    "not.png"
+    "svg",
+    "value_posneg_relative_-1.png",
+    "value_posneg_relative_-2.png",
+    "value_posneg_relative_-3.png",
+    "value_posneg_relative_-4.png",
+    "value_posneg_relative_0.png",
+    "value_relative_0.png",
+    "value_relative_1.png",
+    "value_relative_2.png",
+    "value_relative_3.png",
+    "value_relative_4.png"
 ]
 
 var diacritics_top = [
@@ -122,19 +238,13 @@ var diacritics_bottom = [
     "squiggle.png"
 ]
 
-var diacritics_to_file = {
-    "gen": "dot.png",
-    "gen2": "dot-dot.png",
-    "verb": "double-headed-arrow.png",
-    "sym": "squiggle.png",
-    "lit": "line.png",
-    "-": "diacritic_empty.png"
-}
+
 
 class Ameji {
     constructor() {
         console.log("Ameji loaded");
         this.nouns_library = JSON.parse(nouns_JSON);
+        console.log(this.nouns_library);
 
         this.baseDiv = document.getElementById("base");
         this.controlsDiv = addDiv(this.baseDiv, "controls", "sentence-builder__controls");
@@ -165,6 +275,15 @@ class Ameji {
         this.noun_count = 0;
         this.selected_symbol_id = null;
 
+        this.load_local_file("file:///C:/temp/test.txt");
+    }
+
+
+    load_local_file(file_path){
+        async function loadFile(file_path) {
+            let text = await file.text();
+            console.log(text);
+          }
     }
 
     add_search_at_type_event(elementToAttachTo) {
@@ -175,18 +294,9 @@ class Ameji {
 
             }.bind(this)
         );
-
     }
 
-    deleteSelectedFromSentence() {
-        if (this.selected_symbol_id !== null) {
-            document.getElementById(this.selected_symbol_id).remove();
-            console.log(this.selected_symbol_id + " removed.");
-        }
-        this.selected_symbol_id = null;
-
-    }
-
+  
     populate_diacritics_top_picker() {
         for (let i = 0; i < diacritics_top.length; i++) {
             let name = diacritics_top[i];
@@ -194,6 +304,7 @@ class Ameji {
             this.add_diacritic_click_event(symbolElement);
         }
     }
+
     populate_diacritics_bottom_picker() {
         for (let i = 0; i < diacritics_bottom.length; i++) {
             let name = diacritics_bottom[i];
@@ -201,7 +312,6 @@ class Ameji {
             this.add_diacritic_click_event(symbolElement);
         }
     }
-
 
     populate_punctuation_picker() {
         for (let i = 0; i < punctuation.length; i++) {
@@ -212,9 +322,7 @@ class Ameji {
     }
 
     populate_noun_picker() {
-
         this.nounPickerField.innerHTML = "";
-        console.log(this.nouns_library);
         let search_string = this.searchField.value;
 
         for (let symbol_index = 0; symbol_index < this.nouns_library.length; symbol_index++) {
@@ -222,16 +330,18 @@ class Ameji {
             let symbol_file_name = symbol["file"];
 
             for (var meaning in symbol["meaning"]) {
+                let synonyms = symbol["meaning"][meaning]["synonyms"];
+                let all_meanings = meaning + " " + synonyms.join(" ");
 
-                if (meaning.includes(search_string) || this.searchField.value === "") {
+                if (all_meanings.includes(search_string) || this.searchField.value === "") {
 
                     let diacritic_top = symbol["meaning"][meaning]["dia_top"];
                     let diacritic_bottom = symbol["meaning"][meaning]["dia_bot"];
                     let value = symbol["meaning"][meaning]["value"];
-                    console.log(value);
+                    let id = meaning + ", " + synonyms.join(", ");
 
                     let symbolElement = this.add_noun(
-                        this.nounPickerField, "noun_" + symbol_index + "_" + meaning,
+                        this.nounPickerField, id,
                         symbol_file_name,
                         diacritic_top,
                         diacritic_bottom
@@ -244,29 +354,42 @@ class Ameji {
 
     add_noun_to_sentence(noun_name, diacritic_top, diacritic_bottom) {
 
-        let sentence_element = this.add_noun(
-            this.sentenceDiv,
+        let sentence_element = this.create_noun(
             this.sentence_element_count,
             noun_name,
             diacritic_top,
             diacritic_bottom
         );
-
-        sentence_element.classList.add("sentence-element");
-        this.add_sentence_element_click_event(sentence_element);
-
-        this.sentence_element_count += 1;
+        this.add_symbol_to_sentence(sentence_element);
     }
 
     add_punctuation_to_sentence(punctuation_name) {
-        let sentence_element = this.add_punctuation(
-            this.sentenceDiv,
+        let sentence_element = this.create_punctuation(
             this.sentence_element_count,
             punctuation_name
         );
+
+        this.add_symbol_to_sentence(sentence_element);
+       
+    }
+    
+    add_symbol_to_sentence(sentence_element){
+
+
+        let selected_element = this.get_selected_element();
+
+        if (selected_element === null){
+            this.sentenceDiv.appendChild(sentence_element);
+            
+        }else{
+            
+            this.sentenceDiv.insertBefore(sentence_element, selected_element);
+        }
+
         sentence_element.classList.add("sentence-element");
         this.add_sentence_element_click_event(sentence_element);
         this.sentence_element_count += 1;
+        // get_selected_element
     }
 
     add_diacritic_click_event(elementToAttachTo) {
@@ -274,13 +397,15 @@ class Ameji {
             "click",
             function (event) {
 
-                if (this.selected_symbol_id === null) {
+                
+                let selected_sentence_symbol = this.get_selected_element();
+                
+                if (selected_sentence_symbol === null) {
                     alert("Select a symbol in the sentence.");
                     return;
-                }
-                let selected_sentence_symbol = document.getElementById(this.selected_symbol_id);
+                }       
+                
                 let selected_class_names = selected_sentence_symbol.classList;
-
                 let symbol_is_noun = false;
                 for (let i = 0; i < selected_class_names.length; i++) {
                     if (selected_class_names[i] == "noun") {
@@ -367,6 +492,24 @@ class Ameji {
         );
     }
 
+    get_selected_element(){
+        if (this.selected_symbol_id === null) {
+            return null ;
+        }
+        return document.getElementById(this.selected_symbol_id);
+    }
+
+    deleteSelectedFromSentence() {
+        let selected_element = this.get_selected_element();
+
+        if (selected_element !== null){
+            selected_element.remove();
+            console.log(this.selected_symbol_id + " removed.");
+        }
+        this.selected_symbol_id = null;
+    }
+
+
     add_diacricit_independent(divToAttachTo, id, image_name) {
         let symbol = addDiv(divToAttachTo, id, "diacritic-independent");
         let img = document.createElement("Img");
@@ -376,9 +519,19 @@ class Ameji {
         symbol.appendChild(img);
         return symbol;
     }
-
+    
     add_punctuation(divToAttachTo, id, image_name) {
-        let symbol = addDiv(divToAttachTo, id, "punctuation");
+        let punctuation = this.create_punctuation(id, image_name);
+        divToAttachTo.appendChild(punctuation);
+        return punctuation;
+    }
+
+    create_punctuation(id, image_name){
+        var symbol = document.createElement("div");
+		symbol.id = id;
+		symbol.className = "punctuation";
+    
+        // let symbol = addDiv(divToAttachTo, id, "punctuation");
         let img = document.createElement("Img");
         img.src = "symbols/punctuation/" + image_name;
         img.id = image_name;
@@ -388,11 +541,20 @@ class Ameji {
     }
 
     add_noun(divToAttachTo, id, image_name, diacritic_top, diacritic_bottom) {
+        let noun = this.create_noun(id, image_name, diacritic_top, diacritic_bottom);
+        divToAttachTo.appendChild(noun);
+        return noun;
+    }
+    
+    create_noun(id, image_name, diacritic_top, diacritic_bottom){
+        var noun = document.createElement("div");
+		noun.id = id;
+		noun.className = "noun";
 
         let diacritic_top_name = diacritics_to_file[diacritic_top];
         let diacritic_bottom_name = diacritics_to_file[diacritic_bottom];
 
-        let noun = addDiv(divToAttachTo, id, "noun");
+        // let noun = addDiv(divToAttachTo, id, "noun");
 
         noun.setAttribute("data-tooltip", id);
         // noun.setAttribute("data-tooltip-persistent","");
