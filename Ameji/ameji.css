@@ -1,9 +1,10 @@
 /* css naming conventions https://www.freecodecamp.org/news/css-naming-conventions-that-will-save-you-hours-of-debugging-35cea737d849/ */
 .sentence-builder{
 	display: block;
+	margin:50px;
 }
 
-.sentence-builder__controls{
+.sentence-builder__symbol-picker{
 	display: block;
 	overflow: hidden; /*works with float: left*/
 }
@@ -14,16 +15,18 @@
 	overflow: hidden; /*works with float: left*/
 }
 
-.sentence-builder__controls__noun-picker{
+.sentence-builder__symbol-picker__noun-picker{
+	overflow: hidden; /*works with float: left*/
+	margin-bottom: 50px;
+}
+.sentence-builder__symbol-picker__punctuation-picker{
+	overflow: hidden; /*works with float: left*/
+	margin-bottom: 50px;
+}
+.sentence-builder__symbol-picker__diacritics-picker{
 	overflow: hidden; /*works with float: left*/
 }
-.sentence-builder__controls__punctuation-picker{
-	overflow: hidden; /*works with float: left*/
-}
-.sentence-builder__controls__diacritics-picker{
-	overflow: hidden; /*works with float: left*/
-}
-.sentence-builder__controls__proper-nouns-picker{
+.sentence-builder__symbol-picker__proper-nouns-picker{
 	overflow: hidden; /*works with float: left*/
 }
 
