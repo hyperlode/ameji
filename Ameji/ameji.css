@@ -30,6 +30,13 @@
 	overflow: hidden; /*works with float: left*/
 }
 
+.sentence-builder__newline{
+	float:none;
+	clear:both;
+	min-height: 1px; /*needed to enforce width if empty*/
+	width:30px;
+}
+
 .punctuation{
 	min-height: 1px; /*needed to enforce width if empty*/
 	width:30px;
