@@ -12,23 +12,68 @@
 // "gen" = generalized
 var diacritics_to_file = {
     "gen": "dot.png",
-    "gen2": "dot-dot.png",
+    "gen2": "dot-double.png",
     "verb": "arrow-right.png",
-    "verb2": "double-headed-arrow.png",
+    "verb2": "arrow-double.png",
     "sym": "squiggle.png",
     "lit": "line.png",
-    "-": "diacritic_empty.png"
+    "-": "empty.png"
 }
 
 var nouns_JSON = `[
     {"file":"hourglass.png",
      "meaning":{
-            "time relative":{
-                "synonyms":[],
+            "time value":{
+                "synonyms":["period","amound of time"],
                 "value":"-", "dia_top":"-", "dia_bot":"-"},
             "hourglass":{
                 "synonyms":["sandglass","clepsydra","clock","timepiece","timer", "chronometer", "timekeeper"],
                 "value":"-", "dia_top":"lit", "dia_bot":"-"}
+    }},
+    {"file":"clock-face.png", "meaning":{
+        "time stamp":{
+            "synonyms":["timestamp", "time marker", "point in time", "absolute time"],
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+   
+    {"file":"earth-encircles-sun.png", "meaning":{
+        "year":{
+            "synonyms":["12 months","annus"],
+            "value":"-", "dia_top":"-", "dia_bot":"-"},
+        "earth around sun":{
+            "synonyms":[],
+            "value":"-", "dia_top":"lit", "dia_bot":"-"}
+    }},
+    {"file":"moon-encircles-earth.png", "meaning":{
+        "month":{
+            "synonyms":[],
+            "value":"-", "dia_top":"-", "dia_bot":"-"},
+        "moon around earth":{
+            "synonyms":[],
+            "value":"-", "dia_top":"lit", "dia_bot":"-"}
+    }},
+    {"file":"earth-spin.png", "meaning":{
+        "day":{
+            "synonyms":["24 hours","days"],
+            "value":"-", "dia_top":"-", "dia_bot":"-"},
+        "earth spin":{
+            "synonyms":[],
+            "value":"-", "dia_top":"lit", "dia_bot":"-"}
+    }},
+    {"file":"clock-hour-one.png", "meaning":{
+        "hour":{
+            "synonyms":["1 hour","60 minutes"],
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    {"file":"clock-minute-one.png", "meaning":{
+        "minute":{
+            "synonyms":["1 minute","60 seconds"],
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    {"file":"clock-second-one.png", "meaning":{
+        "minute":{
+            "synonyms":["1 second"],
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
     }},
     {"file":"luciebox.png", "meaning":{
         "luciebox":{
@@ -38,6 +83,37 @@ var nouns_JSON = `[
             "synonyms":["toy", "electronic device"],
             "value":"-", "dia_top":"gen", "dia_bot":"-"}
     }},
+    {"file":"circle-full.png", "meaning":{
+        "full":{
+            "synonyms":["circle","quarters","eights","everything"],
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    {"file":"circle-quarters-three.png", "meaning":{
+        "three-quarters":{
+            "synonyms":["circle","quarter","4","3"],
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    {"file":"circle-half.png", "meaning":{
+        "half":{
+            "synonyms":["circle","half","2","medium"],
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    {"file":"circle-eights-three.png", "meaning":{
+        "three-eights":{
+            "synonyms":["circle","eights","8","3"],
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    {"file":"circle-quarters-one.png", "meaning":{
+        "quarter":{
+            "synonyms":["circle","quarter","4","1"],
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    {"file":"circle-eights-one.png", "meaning":{
+        "one-eight":{
+            "synonyms":["circle","eights","8","1"],
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    
     {"file":"meter_relative_0.png", "meaning":{
         "value 0":{
             "synonyms":["zero","null","none"],
@@ -114,14 +190,9 @@ var nouns_JSON = `[
             "synonyms":["they","their","theirs"],
             "value":"-", "dia_top":"-", "dia_bot":"-"}
     }},
-    {"file":"clock-face.png", "meaning":{
-        "time":{
-            "synonyms":["absolute time"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
     {"file":"dot-space.png", "meaning":{
         "period":{
-            "synonyms":["dot period end of senctence"],
+            "synonyms":["dot period with space for end of senctence"],
             "value":"-", "dia_top":"-", "dia_bot":"-"}
     }},
     {"file":"head_profile_mouth_open.png", "meaning":{
@@ -136,19 +207,24 @@ var nouns_JSON = `[
 
 var punctuation = [
     
-    "colon.png",
+    "period.png",
     "comma.png",
-    "comma_left.png",
+    "colon.png",
+    "semicolon.png",
+    "equals.png",
+    "dash.png",
     "slash-backward.png",
     "slash-forward.png",
     "double-slash-forward.png",
     "double-slash-backward.png",
-    "equals.png",
+    "vertical-line.png",
+    "vertical-line-dashed.png",
     "cross-diagonal.png",
     "checkmark.png",
-    "bracket-open-right.png",
-    "bracket-open-left.png",
-    "dot.png",
+    "bracket-left.png",
+    "bracket-square-left.png",
+    "bracket-square-right.png",
+    "bracket-right.png",
     "questionmark-open-left.png",
     "questionmark-upside-down-open-right.png",
 
@@ -162,8 +238,6 @@ var punctuation = [
     
     "exclamation-mark-hollow.png",
     "exclamation-mark-hollow-upside-down.png",
-    "exclamation-mark-hollow-top.png",
-    "exclamation-mark-hollow-top-upside-down.png",
     "exclamation-mark-lightbulb-top.png",
     "exclamation-mark-lightbulb-top-upside-down.png",
     
@@ -180,8 +254,6 @@ var punctuation = [
     "exclamation-mark-upside-down.png",
     "exclamation-mark-upside-down-bracket-right.png",
     "exclamation-mark-upside-down-bracket-left.png",
-    "semicolon.png",
-    "semi_colon.png",
 
     "digit-0.png",
     "digit-1.png",
@@ -194,18 +266,23 @@ var punctuation = [
     "digit-8.png",
     "digit-9.png",
 
-    "value_posneg_relative_-1.png",
-    "value_posneg_relative_-2.png",
-    "value_posneg_relative_-3.png",
-    "value_posneg_relative_-4.png",
-    "value_posneg_relative_0.png",
-    "value_relative_0.png",
-    "value_relative_1.png",
-    "value_relative_2.png",
-    "value_relative_3.png",
-    "value_relative_4.png",
-    "bar-zero-bottom-empty.png",
-    "newline.png",
+    "value-relative-posneg-neg4.png",
+    "value-relative-posneg-neg3.png",
+    "value-relative-posneg-neg2.png",
+    "value-relative-posneg-neg1.png",
+    "value-relative-posneg-0.png",
+    "value-relative-posneg-1.png",
+    "value-relative-posneg-2.png",
+    "value-relative-posneg-3.png",
+    "value-relative-posneg-4.png",
+    
+    "value-relative-0.png",
+    "value-relative-1.png",
+    "value-relative-2.png",
+    "value-relative-3.png",
+    "value-relative-4.png",
+  
+    
     "v-right.png",
     "v-right-double.png",
     "v-right-triple.png",
@@ -220,40 +297,31 @@ var punctuation = [
 ]
 
 var diacritics_top = [
+    "empty.png",
     "arrow-left.png",
     "arrow-right.png",
-    "diacritic_empty.png",
-    "diacritic_squiggle.png",
-    "diacritic_verb.png",
-    "dirlist.txt",
-    "dot-dot.png",
-    "dot.png",
-    "double-headed-arrow.png",
+    "arrow-double.png",
     "line.png",
-    "noun_Arrow_3044619.png",
-    "noun_bump_37451.png",
-    "noun_flex_195062.png",
-    "noun_line_2668102.png",
-    "squiggle.png"
+    "line-full-width.png",
+    "dot.png",
+    "dot-double.png",
+    "squiggle.png",
+    "cross-diagonal.png",
+    "checkmark.png"
 ]
 var diacritics_bottom = [
+    "empty.png",
     "arrow-left.png",
     "arrow-right.png",
-    "diacritic_empty.png",
-    "diacritic_squiggle.png",
-    "diacritic_verb.png",
-    "dot-dot.png",
-    "dot.png",
-    "double-headed-arrow.png",
+    "arrow-double.png",
     "line.png",
-    "noun_Arrow_3044619.png",
-    "noun_bump_37451.png",
-    "noun_flex_195062.png",
-    "noun_line_2668102.png",
-    "squiggle.png"
+    "line-full-width.png",
+    "dot.png",
+    "dot-double.png",
+    "squiggle.png",
+    "cross-diagonal.png",
+    "checkmark.png"
 ]
-
-
 
 class Ameji {
     constructor() {
@@ -383,7 +451,7 @@ class Ameji {
 
     populate_noun_picker() {
         
-        this.populate_basic_symbol_picker(this.nounPickerField, this.nouns_library, "nouns", this.searchField_nouns);
+        this.populate_basic_symbol_picker(this.nounPickerField, this.nouns_library, "ameji_basic_618x618", this.searchField_nouns);
         // this.populate_basic_symbol_picker(this.nounPickerField, this.nouns_library, "ameji_basic_618x618", this.searchField_nouns);
     }
     
@@ -500,12 +568,17 @@ class Ameji {
         elementToAttachTo.addEventListener(
             "click",
             function (event) {
-
-                
-                if (this.sentence_selected_index === -1) {
-                    alert("Select a symbol in the sentence.");
+                // if (this.sentence_selected_index === -1) {
+                //     // alert("Select a symbol in the sentence.");
+                //     console.log("No symbol selected, will select the last one.");
+                //     return;
+                // }       
+                if (!this.sentence_select_last_if_none_selected()){
                     return;
-                }       
+                }
+        
+
+
                 let selected_id = this.sentence_symbol_sequence[this.sentence_selected_index];
                 let selected_sentence_symbol = document.getElementById(selected_id);
                 
@@ -537,7 +610,8 @@ class Ameji {
                 }
 
                 let diacritic_im = selected_sentence_symbol.querySelector(replace_class_name);
-                diacritic_im.src = "symbols/diacritics/" + el.id;
+
+                diacritic_im.src = "symbols/ameji_diacritics_618x102/" + el.id;
             }.bind(this)
         );
     }
@@ -641,17 +715,27 @@ class Ameji {
         this.add_newline_to_sentence();
     }
 
-    sentence_delete_selected() {
-
+    sentence_select_last_if_none_selected(){
+        // will select last element in sentence if none were selected
+        // return true if possible, false if empty sentence
         if (this.sentence_selected_index == -1){
             if (this.sentence_symbol_sequence.length > 0){
                 this.select_element_in_sentence(this.sentence_symbol_sequence.length-1);
+                console.log("No symbol selected, will select the last one.");
             }else{
-                return ;
+                return false;
             }
         }
+        return true;
+    }
 
-        console.log(this.sentence_selected_index);
+    sentence_delete_selected() {
+        
+        if (!this.sentence_select_last_if_none_selected()){
+            return;
+        }
+
+        // console.log(this.sentence_selected_index);
 
         let id  = this.sentence_symbol_sequence[this.sentence_selected_index];
         
@@ -678,7 +762,7 @@ class Ameji {
     add_diacricit_independent(divToAttachTo, id, image_name) {
         let symbol = addDiv(divToAttachTo, id, "diacritic-independent");
         let img = document.createElement("Img");
-        img.src = "symbols/diacritics/" + image_name;
+        img.src = "symbols/ameji_diacritics_618x102/" + image_name;
         img.id = image_name;
         img.classList.add("diacritic_image");
         symbol.appendChild(img);
@@ -700,7 +784,7 @@ class Ameji {
 		symbol.className = "punctuation";
     
         let img = document.createElement("Img");
-        img.src = "symbols/ameji_punctuation_308x618/" + image_name;
+        img.src = "symbols/ameji_punctuation_309x618/" + image_name;
         img.id = image_name;
         img.classList.add("punctuation_image");
         // img.crossOrigin  = "Anonymous";  // local files will not work with CORS policy.
@@ -729,21 +813,19 @@ class Ameji {
 
         let img = document.createElement("Img");
 
-        // img.src = "symbols/nouns/" + image_name;
-        // img.src = "symbols/emoji/" + image_name;
         img.src = "symbols/" + image_name;
         img.id = image_name;
         img.classList.add("noun_image");
         // img.crossOrigin  = "Anonymous"; // local files will not work with CORS policy.
 
         let diacritic_1 = document.createElement("Img");
-        diacritic_1.src = "symbols/diacritics/" + diacritic_top_name;
+        diacritic_1.src = "symbols/ameji_diacritics_618x102/" + diacritic_top_name;
         diacritic_1.id = diacritic_top;
         diacritic_1.classList.add("noun_diacritic_top");
         // diacritic_1.crossOrigin  = "Anonymous";
 
         let diacritic_2 = document.createElement("Img");
-        diacritic_2.src = "symbols/diacritics/" + diacritic_bottom_name;
+        diacritic_2.src = "symbols/ameji_diacritics_618x102/" + diacritic_bottom_name;
         diacritic_2.id = diacritic_bottom;
         diacritic_2.classList.add("noun_diacritic_bottom");
         // diacritic_2.crossOrigin  = "Anonymous";
