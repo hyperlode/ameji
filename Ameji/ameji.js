@@ -339,9 +339,11 @@ class Ameji {
 
         this.baseDiv.className = "sentence-builder";
 
+        addButton(this.sentenceControlsButtonsDiv, "Deselect all", "btnDeselectAll", "btnDeselectAll", this.deselect_all.bind(this));
         addButton(this.sentenceControlsButtonsDiv, "delete selected", "btnDelete", "btnDelete", this.sentence_delete_selected.bind(this));
         addButton(this.sentenceControlsButtonsDiv, "new line", "btnNewLine", "btnNewLine", this.add_new_line_symbol.bind(this));
         addButton(this.sentenceControlsButtonsDiv, "Save sentence as picture.png", "btnSaveToPng", "btnSaveToPng", this.save_sentence_to_picture.bind(this));
+        addButton(this.sentenceControlsButtonsDiv, "Debug", "btnDebug", "btnDebug", this.do_debug.bind(this));
         // addButton(this.sentenceControlsButtonsDiv, "Download as picture.png", "btnSaveToPng", "btnSaveToPng", this.download_sentence.bind(this));
 
         // var button = document.createElement("input");
@@ -376,8 +378,8 @@ class Ameji {
         this.punctuation_count = 0;
         this.noun_count = 0;
         this.sentence_selected_index = -1;
+        this.sentence_selected_symbol_indeces = [];
 
-        this.selected_symbol_index = null;
         this.sentence_symbol_sequence = [];
 
         this.newline_symbol = "newline.png"; 
@@ -390,7 +392,9 @@ class Ameji {
     //     console.log(document.getElementById("capture_test"));
 
     // }
-
+    do_debug(){
+        console.log(this.sentence_selected_symbol_indeces);
+    }
     save_sentence_to_picture(){
         let sentence_element = document.getElementById("sentence");
 
@@ -522,7 +526,7 @@ class Ameji {
         let sentence_element = this.create_punctuation(
             this.sentence_element_count + "_newline",
             this.newline_symbol
-        );
+            );
         this.add_symbol_to_sentence(sentence_element, "sentence-element");
 
         var symbol = document.createElement("div");
@@ -534,84 +538,98 @@ class Ameji {
     
     add_symbol_to_sentence(sentence_element, classname){
         
-        if (this.sentence_selected_index === -1){
+        if (this.sentence_selected_symbol_indeces.length === 0){
             this.sentenceDiv.appendChild(sentence_element);
             this.sentence_symbol_sequence.push(sentence_element.id);
+            // this.add_symbol_after_sentence_index(sentence_element, classname, index )
+
+            sentence_element.classList.add(classname);
+            this.add_sentence_element_click_event(sentence_element);
+            this.sentence_element_count += 1;
 
         }else{
-            let insert_index = this.sentence_selected_index
-            this.deselect_selected_element_in_sentence();
+            // for (let i=0; i<this.sentence_selected_symbol_indeces.length; i++){
+            
+            // let insert_index = this.sentence_selected_symbol_indeces[this.sentence_selected_symbol_indeces.length - 1];
+            let insert_index = Math.max.apply(null, this.sentence_selected_symbol_indeces); //[this.sentence_selected_symbol_indeces.length - 1];
+            
+            this.deselect_selected_element_in_sentence(insert_index);
 
             let selected_element_id = this.sentence_symbol_sequence[insert_index];
             let selected_element = document.getElementById(selected_element_id);
             this.sentenceDiv.insertBefore(sentence_element, selected_element.nextSibling);
             this.sentence_symbol_sequence.splice(insert_index + 1,0,sentence_element.id);
+            
             this.select_element_in_sentence(insert_index + 1);
 
+            
             // INSERT BEFORE:
             // let insert_index = this.sentence_selected_index
             // this.deselect_selected_element_in_sentence();
-
+            
             // let selected_element_id = this.sentence_symbol_sequence[insert_index];
             // let selected_element = document.getElementById(selected_element_id);
             // this.sentenceDiv.insertBefore(sentence_element, selected_element);
             // this.sentence_symbol_sequence.splice(insert_index,0,sentence_element.id);
             // this.select_element_in_sentence(insert_index);
+            
+            sentence_element.classList.add(classname);
+            this.add_sentence_element_click_event(sentence_element);
+            this.sentence_element_count += 1;
+    
+            // }
         }
-
-        sentence_element.classList.add(classname);
-        this.add_sentence_element_click_event(sentence_element);
-        this.sentence_element_count += 1;
     }
 
     add_diacritic_click_event(elementToAttachTo) {
         elementToAttachTo.addEventListener(
             "click",
             function (event) {
-                // if (this.sentence_selected_index === -1) {
-                //     // alert("Select a symbol in the sentence.");
-                //     console.log("No symbol selected, will select the last one.");
-                //     return;
-                // }       
                 if (!this.sentence_select_last_if_none_selected()){
                     return;
                 }
-        
-
-
-                let selected_id = this.sentence_symbol_sequence[this.sentence_selected_index];
-                let selected_sentence_symbol = document.getElementById(selected_id);
                 
-                
-                let selected_class_names = selected_sentence_symbol.classList;
-                let symbol_is_noun = false;
-                for (let i = 0; i < selected_class_names.length; i++) {
-                    if (selected_class_names[i] == "noun") {
-                        symbol_is_noun = true;
+                for (let i=0; i<this.sentence_selected_symbol_indeces.length; i++){
+                    // if multiple symbols are selected, add to each selected symbol
+
+                    let symbol_index = this.sentence_selected_symbol_indeces[i];
+
+                    let selected_id = this.sentence_symbol_sequence[symbol_index];
+                    
+                    
+                    let selected_sentence_symbol = document.getElementById(selected_id);
+                    
+                    let selected_class_names = selected_sentence_symbol.classList;
+                    let symbol_is_noun = false;
+                    for (let i = 0; i < selected_class_names.length; i++) {
+                        if (selected_class_names[i] == "noun") {
+                            symbol_is_noun = true;
+                        }
+                    }
+                    if (symbol_is_noun) {
+
+                        let el = event.currentTarget.querySelector('.diacritic_image');
+
+                        let diacritic_field_id = event.currentTarget.id;
+                        let diacritic_position_is_top = true;
+
+                        if (diacritic_field_id.includes("bottom")) {
+                            diacritic_position_is_top = false;
+
+                        } else if (!diacritic_field_id.includes("top")) {
+                            console.log("ASSERT ERROR: diacritic in field id should contain bottom or top to determine position in symbol.");
+                        }
+
+                        let replace_class_name = ".noun_diacritic_bottom";
+                        if (diacritic_position_is_top) {
+                            replace_class_name = ".noun_diacritic_top";
+                        }
+
+                        let diacritic_im = selected_sentence_symbol.querySelector(replace_class_name);
+
+                        diacritic_im.src = "symbols/ameji_diacritics_618x102/" + el.id;
                     }
                 }
-                if (!symbol_is_noun) {
-                    return;
-                }
-
-                let el = event.currentTarget.querySelector('.diacritic_image');
-
-                let diacritic_field_id = event.currentTarget.id;
-                let diacritic_position_is_top = true;
-                if (diacritic_field_id.includes("bottom")) {
-                    diacritic_position_is_top = false;
-                } else if (!diacritic_field_id.includes("top")) {
-                    console.log("ASSERT ERROR: diacritic in field id should contain bottom or top to determine position in symbol.");
-                }
-
-                let replace_class_name = ".noun_diacritic_bottom";
-                if (diacritic_position_is_top) {
-                    replace_class_name = ".noun_diacritic_top";
-                }
-
-                let diacritic_im = selected_sentence_symbol.querySelector(replace_class_name);
-
-                diacritic_im.src = "symbols/ameji_diacritics_618x102/" + el.id;
             }.bind(this)
         );
     }
@@ -655,46 +673,49 @@ class Ameji {
             function (event) {
                 // current target = element where the eventtrigger was attached to
                 let id = event.currentTarget.id;
-                console.log("id:" + id);
 
                 let selected_element_index = this.sentence_symbol_sequence.indexOf(id);
                 
-                // if a selected element is clicked, leave deselected
-                console.log(selected_element_index);
-                console.log(this.sentence_selected_index);
-                
-                if (selected_element_index === this.sentence_selected_index) {
-                    // first deselect selected symbols.
-                    this.deselect_selected_element_in_sentence();
-                    return;
+            
+                // if clicked element selected, deselect.
+                if (this.sentence_selected_symbol_indeces.includes(selected_element_index)){
+                    this.deselect_selected_element_in_sentence(selected_element_index);
+                }else{
+                    this.select_element_in_sentence(selected_element_index);
+
                 }
                 
-                this.deselect_selected_element_in_sentence();
-
-                // let selected_element = event.currentTarget
-                this.select_element_in_sentence(selected_element_index);
-
-                console.log(this.sentence_selected_index);
+                console.log(this.sentence_selected_symbol_indeces);
             }.bind(this)
-            );
+        );
+    }
+    
+    deselect_all(){
+        let done = false;
+        while (!done){
+            if (this.sentence_selected_symbol_indeces.length === 0){
+                done = true;
+            }else{
+                this.deselect_selected_element_in_sentence(this.sentence_selected_symbol_indeces[0]);   
+            }
         }
-        
-    deselect_selected_element_in_sentence(){
-        if (this.sentence_selected_index !== -1) {
-            let id = this.sentence_symbol_sequence[this.sentence_selected_index];
+
+    }
+
+    deselect_selected_element_in_sentence(index){
+        if (this.sentence_selected_symbol_indeces.includes(index)){
+            let id = this.sentence_symbol_sequence[index];
             document.getElementById(id).classList.remove('symbol-selected');
+            this.sentence_selected_symbol_indeces.splice(this.sentence_selected_symbol_indeces.indexOf(index),1); 
         }
-        this.sentence_selected_index = -1;
-        
     }
         
     select_element_in_sentence(index){
-
+        // index of element in the symbols array of the sentence 
         if (this.sentence_symbol_sequence.length === 0){
-            this.sentence_selected_index = -1;
+            this.sentence_selected_symbol_indeces = [];
             return ;
         }
-
         if (index >= this.sentence_symbol_sequence.length){
             index = this.sentence_symbol_sequence.length -1;
         }
@@ -705,10 +726,9 @@ class Ameji {
 
         let id = this.sentence_symbol_sequence[index];
         let selected_element = document.getElementById(id);
-
         selected_element.classList.add('symbol-selected');
-        this.sentence_selected_index = index;
 
+        this.sentence_selected_symbol_indeces.push(index);
     }
 
     add_new_line_symbol() {
@@ -718,7 +738,7 @@ class Ameji {
     sentence_select_last_if_none_selected(){
         // will select last element in sentence if none were selected
         // return true if possible, false if empty sentence
-        if (this.sentence_selected_index == -1){
+        if (this.sentence_selected_symbol_indeces.length === 0){
             if (this.sentence_symbol_sequence.length > 0){
                 this.select_element_in_sentence(this.sentence_symbol_sequence.length-1);
                 console.log("No symbol selected, will select the last one.");
@@ -735,29 +755,44 @@ class Ameji {
             return;
         }
 
-        // console.log(this.sentence_selected_index);
+        let first_deleted_symbol_index = -1 ;
+        for (let i=0; i<this.sentence_selected_symbol_indeces.length; i++){
+            let sentence_index = this.sentence_selected_symbol_indeces[i];
 
-        let id  = this.sentence_symbol_sequence[this.sentence_selected_index];
-        
-        let remove_next = false;
-        if (id.includes("newline")){
-            remove_next = true;
-            console.log("newline deletion");
+            if (first_deleted_symbol_index === -1){
+                // let selected_id = this.sentence_symbol_sequence[sentence_index];
+                // first_deleted_symbol_index = this.sentence_symbol_sequence.indexOf(selected_id);;
+                first_deleted_symbol_index = sentence_index ;
+                
+            }
+
+            let id  = this.sentence_symbol_sequence[sentence_index];
+
+            if (id.includes("newline")){
+                this.sentence_selected_symbol_indeces.push(sentence_index + 1);
+                console.log("Newline deletion, as this is a double symbol, it will remove the second invisible part too.");
+            }
+
+            let element_to_remove = document.getElementById(id);
+            element_to_remove.remove();
         }
-        let element_to_remove = document.getElementById(id);
 
-        element_to_remove.remove();
-        
-
-        this.sentence_symbol_sequence.splice(this.sentence_selected_index,1);
-
-        this.select_element_in_sentence(this.sentence_selected_index );
-
-        if (remove_next){
-            this.sentence_delete_selected();
+        // build up new sentence sequence. We don't want to interfere with it during deletion.
+        let new_sentence_sequence = [];
+        for (let i=0; i<this.sentence_symbol_sequence.length; i++){
+            let symbol_id = this.sentence_symbol_sequence[i];
+            if (! (this.sentence_selected_symbol_indeces.includes(i))){
+                new_sentence_sequence.push(symbol_id);
+            }
         }
+
+        this.sentence_symbol_sequence = new_sentence_sequence;
+
+
+        this.sentence_selected_symbol_indeces = [];
+        console.log(first_deleted_symbol_index);
+        this.select_element_in_sentence(first_deleted_symbol_index);
     }
-
 
     add_diacricit_independent(divToAttachTo, id, image_name) {
         let symbol = addDiv(divToAttachTo, id, "diacritic-independent");
@@ -774,9 +809,6 @@ class Ameji {
         divToAttachTo.appendChild(punctuation);
         return punctuation;
     }
-
-
-
     
     create_punctuation(id, image_name){
         var symbol = document.createElement("div");
