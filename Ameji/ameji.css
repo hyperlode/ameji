@@ -15,6 +15,12 @@
 	overflow: hidden; /*works with float: left*/
 }
 
+.symbol-recent__display{
+	display: block;
+	border: 2px solid black;
+	overflow: hidden; /*works with float: left*/
+}
+
 .sentence-builder__symbol-picker__noun-picker{
 	overflow: hidden; /*works with float: left*/
 	margin-bottom: 50px;

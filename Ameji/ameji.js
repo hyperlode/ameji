@@ -36,6 +36,107 @@ var nouns_JSON = `[
             "value":"-", "dia_top":"-", "dia_bot":"-"}
     }},
    
+    {"file":"loop.png", "meaning":{
+        "periodicity":{
+            "synonyms":["frequency", 
+                "continuously", "all the time", "once", "a few times", "when used with absolute or relative quantity", 
+                "never", "often", "sometimes", "always", "when used with probability"], 
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+   
+    {"file":"dice_pips_9.png", "meaning":{
+        "9":{
+            "synonyms":["number", "nine", "dice", "die", "pips"], 
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+   
+    {"file":"dice_pips_8.png", "meaning":{
+        "8":{
+            "synonyms":["number", "dice", "die", "pips","eight"], 
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    {"file":"dice_pips_7.png", "meaning":{
+        "7":{
+            "synonyms":["number", "dice", "die", "pips","seven"], 
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    {"file":"dice_pips_6.png", "meaning":{
+        "6":{
+            "synonyms":["number", "dice", "die", "pips","six"], 
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    {"file":"dice_pips_5.png", "meaning":{
+        "5":{
+            "synonyms":["number", "dice", "die", "pips","five"], 
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    {"file":"dice_pips_4.png", "meaning":{
+        "4":{
+            "synonyms":["number", "dice", "die", "pips","four"], 
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    {"file":"dice_pips_3.png", "meaning":{
+        "3":{
+            "synonyms":["number", "dice", "die", "pips","three"], 
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    {"file":"dice_pips_2.png", "meaning":{
+        "2":{
+            "synonyms":["number", "dice", "die", "pips","two"], 
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    {"file":"dice_pips_1.png", "meaning":{
+        "1":{
+            "synonyms":["number", "dice", "die", "pips","one"], 
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    {"file":"dice_pips_0.png", "meaning":{
+        "0":{
+            "synonyms":["number", "dice", "die", "pips","zero"], 
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+
+    {"file":"set-0-in-7-out.png", "meaning":{
+        "0 in set":{
+            "synonyms":["set", "quantitative determininer", "none", "empty", "all outside"], 
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    {"file":"set-1-in-6-out.png", "meaning":{
+        "1 in set":{
+            "synonyms":["set", "quantitative determininer","one", "solo", "rare", "curiosity", "rarity", "almost empty", "almost none"], 
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    {"file":"set-2-in-5-out.png", "meaning":{
+        "2 in set":{
+            "synonyms":["set", "quantitative determininer", "two", "some", "a few", "a couple"], 
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    {"file":"set-3-in-4-out.png", "meaning":{
+        "3 in set":{
+            "synonyms":["set", "quantitative determininer","three", "quite a bit", "a few", "not insignificant"], 
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    {"file":"set-4-in-3-out.png", "meaning":{
+        "4 in set":{
+            "synonyms":["set", "quantitative determininer", "four", "more than half", "half", "quite a lot", "over half", "significant", "quite a few"], 
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    {"file":"set-5-in-2-out.png", "meaning":{
+        "5 in set":{
+            "synonyms":["set", "quantitative determininer", "five", "a lot", "many", "significant"], 
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    {"file":"set-6-in-1-out.png", "meaning":{
+        "6 in set":{
+            "synonyms":["set", "quantitative determininer", "six", "a lot", "many", "almost all", "almost full"], 
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    {"file":"set-7-in-0-out.png", "meaning":{
+        "7 in set":{
+            "synonyms":["set", "quantitative determininer", "seven", "all", "full", "everything"], 
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+   
     {"file":"earth-encircles-sun.png", "meaning":{
         "year":{
             "synonyms":["12 months","annus"],
@@ -195,6 +296,35 @@ var nouns_JSON = `[
             "synonyms":["dot period with space for end of senctence"],
             "value":"-", "dia_top":"-", "dia_bot":"-"}
     }},
+    {"file":"star-lines.png", "meaning":{
+       
+        "this":{
+            "synonyms":["the","it","that"],
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    {"file":"cube.png", "meaning":{
+       
+        "cube":{
+            "synonyms":[""],
+            "value":"-", "dia_top":"lit", "dia_bot":"-"},
+        "thing":{
+            "synonyms":["object"],
+            "value":"-", "dia_top":"gen", "dia_bot":"-"},
+        "materialistic":{
+            "synonyms":["3D","real world", "tangible", "square", "blocky"],
+            "value":"-", "dia_top":"sym", "dia_bot":"-"}
+    }},
+    {"file":"sphere.png", "meaning":{
+        "sphere":{
+            "synonyms":["ball", "globe"],
+            "value":"-", "dia_top":"-", "dia_bot":"-"},
+        "thing":{
+            "synonyms":["object"],
+            "value":"-", "dia_top":"gen", "dia_bot":"-"},
+        "materialistic":{
+            "synonyms":["3D","real world", "tangible", "round", "spherical", "circle"],
+            "value":"-", "dia_top":"sym", "dia_bot":"-"}
+    }},
     {"file":"head_profile_mouth_open.png", "meaning":{
         "I":{
             "synonyms":["me","narrator", "head profile person"],
@@ -334,14 +464,21 @@ class Ameji {
         this.sentenceControlsButtonsDiv = addDiv(this.baseDiv, "sentenceControls", "sentence-builder__controls");
         addBr(this.baseDiv);
 
+        this.recentDiv = addDiv(this.baseDiv, "recent", "symbol-recent__display");
+        // this.sentenceControlsButtonsDiv = addDiv(this.baseDiv, "recentControls", "symbol_recent__controls");
+        this.recentDiv.style.display = "none";
+        addBr(this.baseDiv);
+
         this.symbolPickerDiv = addDiv(this.baseDiv, "symbolPicker", "sentence-builder__symbol-picker");
         addBr(this.baseDiv);
 
         this.baseDiv.className = "sentence-builder";
 
         addButton(this.sentenceControlsButtonsDiv, "Deselect all", "btnDeselectAll", "btnDeselectAll", this.deselect_all.bind(this));
-        addButton(this.sentenceControlsButtonsDiv, "delete selected", "btnDelete", "btnDelete", this.sentence_delete_selected.bind(this));
-        addButton(this.sentenceControlsButtonsDiv, "new line", "btnNewLine", "btnNewLine", this.add_new_line_symbol.bind(this));
+        addButton(this.sentenceControlsButtonsDiv, "Select all", "btnSelectAll", "btnSelectAll", this.select_all.bind(this));
+        addButton(this.sentenceControlsButtonsDiv, "Delete selected", "btnDelete", "btnDelete", this.sentence_delete_selected.bind(this));
+        addButton(this.sentenceControlsButtonsDiv, "Insert New line", "btnNewLine", "btnNewLine", this.add_new_line_symbol.bind(this));
+        addButton(this.sentenceControlsButtonsDiv, "Recently used symbols", "btnToggleRecent", "btnToggleRecent", this.toggle_recent_visibility.bind(this));
         addButton(this.sentenceControlsButtonsDiv, "Save sentence as picture.png", "btnSaveToPng", "btnSaveToPng", this.save_sentence_to_picture.bind(this));
         addButton(this.sentenceControlsButtonsDiv, "Debug", "btnDebug", "btnDebug", this.do_debug.bind(this));
         // addButton(this.sentenceControlsButtonsDiv, "Download as picture.png", "btnSaveToPng", "btnSaveToPng", this.download_sentence.bind(this));
@@ -381,20 +518,27 @@ class Ameji {
         this.sentence_selected_symbol_indeces = [];
 
         this.sentence_symbol_sequence = [];
+        
+        // this.recent_symbols_sequence = [];
+        this.recent_symbols_sequence_ids = [];
 
         this.newline_symbol = "newline.png"; 
 
         this.load_local_file("file:///C:/temp/test.txt");
     }
 
-    // download_sentence(){
-    //     this.save_sentence_to_picture();
-    //     console.log(document.getElementById("capture_test"));
+    toggle_recent_visibility(){
+        if (this.recentDiv.style.display === "none") {
+            this.recentDiv.style.display = "block";
+        } else {
+            this.recentDiv.style.display = "none";
+        }
+    }
 
-    // }
     do_debug(){
         console.log(this.sentence_selected_symbol_indeces);
     }
+
     save_sentence_to_picture(){
         let sentence_element = document.getElementById("sentence");
 
@@ -492,6 +636,7 @@ class Ameji {
                         diacritic_top,
                         diacritic_bottom
                     )
+
                     this.add_noun_click_event(symbolElement);
                 }
             }
@@ -514,9 +659,7 @@ class Ameji {
             this.sentence_element_count,
             punctuation_name
         );
-
         this.add_symbol_to_sentence(sentence_element, "sentence-element");
-       
     }
 
     add_newline_to_sentence(){
@@ -536,7 +679,30 @@ class Ameji {
         this.add_symbol_to_sentence(symbol, "sentence-builder__newline");
     }
     
+    add_symbol_to_recent( symbol_id ){
+
+        if (this.recent_symbols_sequence_ids.indexOf(symbol_id) !== -1){
+            // symbol already added
+            return; 
+        }
+
+        let symbol_element = this.create_noun(symbol_id, symbol_id,"-","-");
+
+        symbol_element.id = this.recent_symbols_sequence_ids.length;
+        this.recentDiv.appendChild(symbol_element);
+        
+        this.add_recent_symbols_click_event(symbol_element);
+
+        // this.recent_symbols_sequence.push(symbol_element);
+        this.recent_symbols_sequence_ids.push(symbol_id);
+        console.log(symbol_element.id);
+        symbol_element.id = this.recent_symbols_sequence_ids.length - 1;
+
+    }
+  
     add_symbol_to_sentence(sentence_element, classname){
+        sentence_element.id = this.sentence_element_count;
+        // sentence_element.id = 666;
         
         if (this.sentence_selected_symbol_indeces.length === 0){
             this.sentenceDiv.appendChild(sentence_element);
@@ -579,6 +745,7 @@ class Ameji {
     
             // }
         }
+        
     }
 
     add_diacritic_click_event(elementToAttachTo) {
@@ -662,6 +829,21 @@ class Ameji {
                 let diacritic_bottom = diacricit_bottom_element.id;
 
                 this.add_noun_to_sentence(noun_image_name, diacritic_top, diacritic_bottom);
+                
+                this.add_symbol_to_recent(noun_image_name);
+            }.bind(this)
+        );
+    }
+    
+    add_recent_symbols_click_event(elementToAttachTo){
+        elementToAttachTo.addEventListener(
+            "click",
+            function (event) {
+                let recent_id = event.currentTarget.id;
+                let index = parseInt(recent_id)
+                let symbol_id = this.recent_symbols_sequence_ids[index];
+                let symbol_element = this.create_noun(symbol_id, symbol_id, "-","-");
+                this.add_symbol_to_sentence(symbol_element, "sentence-element");
 
             }.bind(this)
         );
@@ -675,14 +857,12 @@ class Ameji {
                 let id = event.currentTarget.id;
 
                 let selected_element_index = this.sentence_symbol_sequence.indexOf(id);
-                
             
                 // if clicked element selected, deselect.
                 if (this.sentence_selected_symbol_indeces.includes(selected_element_index)){
                     this.deselect_selected_element_in_sentence(selected_element_index);
                 }else{
                     this.select_element_in_sentence(selected_element_index);
-
                 }
                 
                 console.log(this.sentence_selected_symbol_indeces);
@@ -690,6 +870,13 @@ class Ameji {
         );
     }
     
+    select_all(){
+        this.deselect_all();
+        for (let i=0;i<this.sentence_symbol_sequence.length;i++){
+            this.select_element_in_sentence(i);
+        }
+    }
+
     deselect_all(){
         let done = false;
         while (!done){
@@ -699,7 +886,6 @@ class Ameji {
                 this.deselect_selected_element_in_sentence(this.sentence_selected_symbol_indeces[0]);   
             }
         }
-
     }
 
     deselect_selected_element_in_sentence(index){
@@ -838,10 +1024,7 @@ class Ameji {
         let diacritic_top_name = diacritics_to_file[diacritic_top];
         let diacritic_bottom_name = diacritics_to_file[diacritic_bottom];
 
-        // let noun = addDiv(divToAttachTo, id, "noun");
-
-        noun.setAttribute("data-tooltip", id);
-        // noun.setAttribute("data-tooltip-persistent","");
+        noun.setAttribute("data-tooltip",  id + " " + image_name);
 
         let img = document.createElement("Img");
 
