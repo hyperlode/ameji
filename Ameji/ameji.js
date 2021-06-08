@@ -38,12 +38,47 @@ var nouns_JSON = `[
    
     {"file":"loop.png", "meaning":{
         "periodicity":{
-            "synonyms":["frequency", 
+            "synonyms":["frequency", "recurrence", 
                 "continuously", "all the time", "once", "a few times", "when used with absolute or relative quantity", 
                 "never", "often", "sometimes", "always", "when used with probability"], 
             "value":"-", "dia_top":"-", "dia_bot":"-"}
     }},
    
+    {"file":"podium.png", "meaning":{
+        "position":{
+            "synonyms":["ordinal number","place","winner", "first", "second", "third"], 
+            "value":"-", "dia_top":"gen", "dia_bot":"-"}
+    }},
+    {"file":"brain.png", "meaning":{
+        "reason":{
+            "synonyms":["why","meaning","what for"], 
+            "value":"-", "dia_top":"sym", "dia_bot":"-"}
+    }},
+    {"file":"mask.png", "meaning":{
+        "mask":{
+            "synonyms":["who", "whose", "unknown person", "party", "Venice"], 
+            "value":"-", "dia_top":"sym", "dia_bot":"-"}
+    }},
+    {"file":"marbles_slope.png", "meaning":{
+        "position":{
+            "synonyms":["order", "rank"], 
+            "value":"-", "dia_top":"gen", "dia_bot":"-"}
+    }},
+    {"file":"people_queue.png", "meaning":{
+        "queue":{
+            "synonyms":["first","last", "before", "behind", "in front of", "next", "between"], 
+            "value":"-", "dia_top":"gen", "dia_bot":"-"}
+    }},
+    {"file":"people_queue_in_front.png", "meaning":{
+        "in front":{
+            "synonyms":["before"], 
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    {"file":"people_queue_behind.png", "meaning":{
+        "behind":{
+            "synonyms":["next"], 
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
     {"file":"dice_pips_9.png", "meaning":{
         "9":{
             "synonyms":["number", "nine", "dice", "die", "pips"], 
@@ -93,6 +128,11 @@ var nouns_JSON = `[
     {"file":"dice_pips_0.png", "meaning":{
         "0":{
             "synonyms":["number", "dice", "die", "pips","zero"], 
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    {"file":"gauss-empty.png", "meaning":{
+        "probability":{
+            "synonyms":["likelyhood","chance","gauss","bell curve"], 
             "value":"-", "dia_top":"-", "dia_bot":"-"}
     }},
 
@@ -184,6 +224,11 @@ var nouns_JSON = `[
             "synonyms":["toy", "electronic device"],
             "value":"-", "dia_top":"gen", "dia_bot":"-"}
     }},
+    {"file":"abacus.png", "meaning":{
+        "abacus":{
+            "synonyms":["calculate", "calculator"],
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
     {"file":"circle-full.png", "meaning":{
         "full":{
             "synonyms":["circle","quarters","eights","everything"],
@@ -253,14 +298,6 @@ var nouns_JSON = `[
             "synonyms":["head profile person mouth closed"],
             "value":"-", "dia_top":"lit", "dia_bot":"-"}
     }},
-    {"file":"circle-half-strikethrough-horizontal.png", "meaning":{
-        "you":{
-            "synonyms":["listener"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"},
-        "head closed mouth":{
-            "synonyms":["head profile person mouth closed"],
-            "value":"-", "dia_top":"lit", "dia_bot":"-"}
-    }},
     {"file":"circle-60degrees-cutout.png", "meaning":{
         "I":{
             "synonyms":["me","narrator", "head profile person"],
@@ -269,11 +306,6 @@ var nouns_JSON = `[
     {"file":"circle-half-strikethrough-horizontal.png", "meaning":{
         "you":{
             "synonyms":["you", "listener"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"circle-60degrees-cutout-with-half-strikethrough-horizontal.png", "meaning":{
-        "we":{
-            "synonyms":["we", "talker and listener  "],
             "value":"-", "dia_top":"-", "dia_bot":"-"}
     }},
     {"file":"circle-half-strikethrough-vertical.png", "meaning":{
@@ -291,15 +323,50 @@ var nouns_JSON = `[
             "synonyms":["they","their","theirs"],
             "value":"-", "dia_top":"-", "dia_bot":"-"}
     }},
+    {"file":"circle-60degrees-cutout-with-half-strikethrough-horizontal.png", "meaning":{
+        "we_inclusive":{
+            "synonyms":["we inclusive", "talker and listener", "us", "ours"],
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    {"file":"circle-60degrees-cutout-strikethrough-horizontal-double.png", "meaning":{
+        "we inclusive plural":{
+            "synonyms":["we all","us","ours", "me and all of you"],
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    {"file":"circle-60degrees-cutout-with-vertical.png", "meaning":{
+        "we_exclusive":{
+            "synonyms":["we exclusive", "me and him her but not you", "us", "ours"],
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    {"file":"circle-60degrees-cutout-strikethrough-vertical-double.png", "meaning":{
+        "we exclusive plural":{
+            "synonyms":["we","us","ours", "me and them but not you"],
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    {"file":"circle-60degrees-cutout-with-vertical-and-horizontal.png", "meaning":{
+        "all of us":{
+            "synonyms":["we","all of us", "everybody", "everybodies'", "ours"],
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    {"file":"circle-60degrees-cutout-with-vertical-and-horizontal-double.png", "meaning":{
+        "all of us plural":{
+            "synonyms":["we","all of us", "everybody", "everybodies'", "ours"],
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
     {"file":"dot-space.png", "meaning":{
         "period":{
             "synonyms":["dot period with space for end of senctence"],
             "value":"-", "dia_top":"-", "dia_bot":"-"}
     }},
-    {"file":"star-lines.png", "meaning":{
+    {"file":"hash.png", "meaning":{
+       "hash":{
+            "synonyms":["pound","count","number", "quantity", "amount", "0023 emoji"],
+            "value":"-", "dia_top":"-", "dia_bot":"-"}
+    }},
+    {"file":"asterisk.png", "meaning":{
        
         "this":{
-            "synonyms":["the","it","that"],
+            "synonyms":["the","it","that", "asterisk", "002a emoji"],
             "value":"-", "dia_top":"-", "dia_bot":"-"}
     }},
     {"file":"cube.png", "meaning":{
