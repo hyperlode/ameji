@@ -17,390 +17,9 @@ var diacritics_to_file = {
     "verb2": "arrow-double.png",
     "sym": "squiggle.png",
     "lit": "line.png",
-    "-": "empty.png"
+    "-": "empty.png",
+    "name":"line-full-width.png"
 }
-
-var nouns_JSON = `[
-    {"file":"hourglass.png",
-     "meaning":{
-            "time value":{
-                "synonyms":["period","amound of time"],
-                "value":"-", "dia_top":"-", "dia_bot":"-"},
-            "hourglass":{
-                "synonyms":["sandglass","clepsydra","clock","timepiece","timer", "chronometer", "timekeeper"],
-                "value":"-", "dia_top":"lit", "dia_bot":"-"}
-    }},
-    {"file":"clock-face.png", "meaning":{
-        "time stamp":{
-            "synonyms":["timestamp", "time marker", "point in time", "absolute time"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-   
-    {"file":"loop.png", "meaning":{
-        "periodicity":{
-            "synonyms":["frequency", "recurrence", 
-                "continuously", "all the time", "once", "a few times", "when used with absolute or relative quantity", 
-                "never", "often", "sometimes", "always", "when used with probability"], 
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-   
-    {"file":"podium.png", "meaning":{
-        "position":{
-            "synonyms":["ordinal number","place","winner", "first", "second", "third"], 
-            "value":"-", "dia_top":"gen", "dia_bot":"-"}
-    }},
-    {"file":"brain.png", "meaning":{
-        "reason":{
-            "synonyms":["why","meaning","what for"], 
-            "value":"-", "dia_top":"sym", "dia_bot":"-"}
-    }},
-    {"file":"mask.png", "meaning":{
-        "mask":{
-            "synonyms":["who", "whose", "unknown person", "party", "Venice"], 
-            "value":"-", "dia_top":"sym", "dia_bot":"-"}
-    }},
-    {"file":"marbles_slope.png", "meaning":{
-        "position":{
-            "synonyms":["order", "rank"], 
-            "value":"-", "dia_top":"gen", "dia_bot":"-"}
-    }},
-    {"file":"people_queue.png", "meaning":{
-        "queue":{
-            "synonyms":["first","last", "before", "behind", "in front of", "next", "between"], 
-            "value":"-", "dia_top":"gen", "dia_bot":"-"}
-    }},
-    {"file":"people_queue_in_front.png", "meaning":{
-        "in front":{
-            "synonyms":["before"], 
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"people_queue_behind.png", "meaning":{
-        "behind":{
-            "synonyms":["next"], 
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"dice_pips_9.png", "meaning":{
-        "9":{
-            "synonyms":["number", "nine", "dice", "die", "pips"], 
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-   
-    {"file":"dice_pips_8.png", "meaning":{
-        "8":{
-            "synonyms":["number", "dice", "die", "pips","eight"], 
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"dice_pips_7.png", "meaning":{
-        "7":{
-            "synonyms":["number", "dice", "die", "pips","seven"], 
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"dice_pips_6.png", "meaning":{
-        "6":{
-            "synonyms":["number", "dice", "die", "pips","six"], 
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"dice_pips_5.png", "meaning":{
-        "5":{
-            "synonyms":["number", "dice", "die", "pips","five"], 
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"dice_pips_4.png", "meaning":{
-        "4":{
-            "synonyms":["number", "dice", "die", "pips","four"], 
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"dice_pips_3.png", "meaning":{
-        "3":{
-            "synonyms":["number", "dice", "die", "pips","three"], 
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"dice_pips_2.png", "meaning":{
-        "2":{
-            "synonyms":["number", "dice", "die", "pips","two"], 
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"dice_pips_1.png", "meaning":{
-        "1":{
-            "synonyms":["number", "dice", "die", "pips","one"], 
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"dice_pips_0.png", "meaning":{
-        "0":{
-            "synonyms":["number", "dice", "die", "pips","zero"], 
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"gauss-empty.png", "meaning":{
-        "probability":{
-            "synonyms":["likelyhood","chance","gauss","bell curve"], 
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-
-    {"file":"set-0-in-7-out.png", "meaning":{
-        "0 in set":{
-            "synonyms":["set", "quantitative determininer", "none", "empty", "all outside"], 
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"set-1-in-6-out.png", "meaning":{
-        "1 in set":{
-            "synonyms":["set", "quantitative determininer","one", "solo", "rare", "curiosity", "rarity", "almost empty", "almost none"], 
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"set-2-in-5-out.png", "meaning":{
-        "2 in set":{
-            "synonyms":["set", "quantitative determininer", "two", "some", "a few", "a couple"], 
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"set-3-in-4-out.png", "meaning":{
-        "3 in set":{
-            "synonyms":["set", "quantitative determininer","three", "quite a bit", "a few", "not insignificant"], 
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"set-4-in-3-out.png", "meaning":{
-        "4 in set":{
-            "synonyms":["set", "quantitative determininer", "four", "more than half", "half", "quite a lot", "over half", "significant", "quite a few"], 
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"set-5-in-2-out.png", "meaning":{
-        "5 in set":{
-            "synonyms":["set", "quantitative determininer", "five", "a lot", "many", "significant"], 
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"set-6-in-1-out.png", "meaning":{
-        "6 in set":{
-            "synonyms":["set", "quantitative determininer", "six", "a lot", "many", "almost all", "almost full"], 
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"set-7-in-0-out.png", "meaning":{
-        "7 in set":{
-            "synonyms":["set", "quantitative determininer", "seven", "all", "full", "everything"], 
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-   
-    {"file":"earth-encircles-sun.png", "meaning":{
-        "year":{
-            "synonyms":["12 months","annus"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"},
-        "earth around sun":{
-            "synonyms":[],
-            "value":"-", "dia_top":"lit", "dia_bot":"-"}
-    }},
-    {"file":"moon-encircles-earth.png", "meaning":{
-        "month":{
-            "synonyms":[],
-            "value":"-", "dia_top":"-", "dia_bot":"-"},
-        "moon around earth":{
-            "synonyms":[],
-            "value":"-", "dia_top":"lit", "dia_bot":"-"}
-    }},
-    {"file":"earth-spin.png", "meaning":{
-        "day":{
-            "synonyms":["24 hours","days"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"},
-        "earth spin":{
-            "synonyms":[],
-            "value":"-", "dia_top":"lit", "dia_bot":"-"}
-    }},
-    {"file":"clock-hour-one.png", "meaning":{
-        "hour":{
-            "synonyms":["1 hour","60 minutes"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"clock-minute-one.png", "meaning":{
-        "minute":{
-            "synonyms":["1 minute","60 seconds"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"clock-second-one.png", "meaning":{
-        "minute":{
-            "synonyms":["1 second"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"luciebox.png", "meaning":{
-        "luciebox":{
-            "synonyms":["pretbak","busybox"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"},
-        "electronic toy":{
-            "synonyms":["toy", "electronic device"],
-            "value":"-", "dia_top":"gen", "dia_bot":"-"}
-    }},
-    {"file":"abacus.png", "meaning":{
-        "abacus":{
-            "synonyms":["calculate", "calculator"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"circle-full.png", "meaning":{
-        "full":{
-            "synonyms":["circle","quarters","eights","everything"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"circle-quarters-three.png", "meaning":{
-        "three-quarters":{
-            "synonyms":["circle","quarter","4","3"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"circle-half.png", "meaning":{
-        "half":{
-            "synonyms":["circle","half","2","medium"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"circle-eights-three.png", "meaning":{
-        "three-eights":{
-            "synonyms":["circle","eights","8","3"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"circle-quarters-one.png", "meaning":{
-        "quarter":{
-            "synonyms":["circle","quarter","4","1"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"circle-eights-one.png", "meaning":{
-        "one-eight":{
-            "synonyms":["circle","eights","8","1"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    
-    {"file":"meter_relative_0.png", "meaning":{
-        "value 0":{
-            "synonyms":["zero","null","none"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"meter_relative_1.png", "meaning":{
-        "value 1":{
-            "synonyms":["low"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"meter_relative_2.png", "meaning":{
-        "value 2":{
-            "synonyms":["average"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"meter_relative_3.png", "meaning":{
-        "value 3":{
-            "synonyms":["high"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"meter_relative_4.png", "meaning":{
-        "value 4":{
-            "synonyms":["extreme"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"pin-on-map.png", "meaning":{
-        "location":{
-            "synonyms":["position"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"head_profile_mouth_closed.png", "meaning":{
-        "you":{
-            "synonyms":["listener"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"},
-        "head closed mouth":{
-            "synonyms":["head profile person mouth closed"],
-            "value":"-", "dia_top":"lit", "dia_bot":"-"}
-    }},
-    {"file":"circle-60degrees-cutout.png", "meaning":{
-        "I":{
-            "synonyms":["me","narrator", "head profile person"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"circle-half-strikethrough-horizontal.png", "meaning":{
-        "you":{
-            "synonyms":["you", "listener"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"circle-half-strikethrough-vertical.png", "meaning":{
-        "he":{
-            "synonyms":["he","her","his","hers","it"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"circle-double-strikethrough-horizontal.png", "meaning":{
-        "you":{
-            "synonyms":["you"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"circle-double-strikethrough-vertical.png", "meaning":{
-        "he":{
-            "synonyms":["they","their","theirs"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"circle-60degrees-cutout-with-half-strikethrough-horizontal.png", "meaning":{
-        "we_inclusive":{
-            "synonyms":["we inclusive", "talker and listener", "us", "ours"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"circle-60degrees-cutout-strikethrough-horizontal-double.png", "meaning":{
-        "we inclusive plural":{
-            "synonyms":["we all","us","ours", "me and all of you"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"circle-60degrees-cutout-with-vertical.png", "meaning":{
-        "we_exclusive":{
-            "synonyms":["we exclusive", "me and him her but not you", "us", "ours"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"circle-60degrees-cutout-strikethrough-vertical-double.png", "meaning":{
-        "we exclusive plural":{
-            "synonyms":["we","us","ours", "me and them but not you"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"circle-60degrees-cutout-with-vertical-and-horizontal.png", "meaning":{
-        "all of us":{
-            "synonyms":["we","all of us", "everybody", "everybodies'", "ours"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"circle-60degrees-cutout-with-vertical-and-horizontal-double.png", "meaning":{
-        "all of us plural":{
-            "synonyms":["we","all of us", "everybody", "everybodies'", "ours"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"dot-space.png", "meaning":{
-        "period":{
-            "synonyms":["dot period with space for end of senctence"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"hash.png", "meaning":{
-       "hash":{
-            "synonyms":["pound","count","number", "quantity", "amount", "0023 emoji"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"asterisk.png", "meaning":{
-       
-        "this":{
-            "synonyms":["the","it","that", "asterisk", "002a emoji"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"}
-    }},
-    {"file":"cube.png", "meaning":{
-       
-        "cube":{
-            "synonyms":[""],
-            "value":"-", "dia_top":"lit", "dia_bot":"-"},
-        "thing":{
-            "synonyms":["object"],
-            "value":"-", "dia_top":"gen", "dia_bot":"-"},
-        "materialistic":{
-            "synonyms":["3D","real world", "tangible", "square", "blocky"],
-            "value":"-", "dia_top":"sym", "dia_bot":"-"}
-    }},
-    {"file":"sphere.png", "meaning":{
-        "sphere":{
-            "synonyms":["ball", "globe"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"},
-        "thing":{
-            "synonyms":["object"],
-            "value":"-", "dia_top":"gen", "dia_bot":"-"},
-        "materialistic":{
-            "synonyms":["3D","real world", "tangible", "round", "spherical", "circle"],
-            "value":"-", "dia_top":"sym", "dia_bot":"-"}
-    }},
-    {"file":"head_profile_mouth_open.png", "meaning":{
-        "I":{
-            "synonyms":["me","narrator", "head profile person"],
-            "value":"-", "dia_top":"-", "dia_bot":"-"},
-        "head open mouth":{
-            "synonyms":["head profile person"],
-            "value":"-", "dia_top":"lit", "dia_bot":"-"}
-    }}
-]`;
 
 var punctuation = [
     
@@ -408,6 +27,7 @@ var punctuation = [
     "comma.png",
     "colon.png",
     "semicolon.png",
+    "empty.png",
     "equals.png",
     "dash.png",
     "slash-backward.png",
@@ -525,6 +145,7 @@ class Ameji {
         console.log("Ameji loaded");
         this.nouns_library = JSON.parse(nouns_JSON);
         this.emoji_library = JSON.parse(emoji_JSON);
+        this.ameji_dictionary_library = JSON.parse(ameji_dictionary_JSON);
         
         this.baseDiv = document.getElementById("base");
         this.sentenceDiv = addDiv(this.baseDiv, "sentence", "sentence-builder__sentence");
@@ -570,10 +191,13 @@ class Ameji {
 
         this.searchField_emoji = addTextBox(this.symbolPickerDiv, "search", "txtBoxSearchEmoji", "txtBoxSearchEmoji", 30);
         this.add_search_at_type_event(this.searchField_emoji);
+        this.amejiDictionaryPickerField = addDiv(this.symbolPickerDiv, "amejiDictionary", "sentence-builder__symbol-picker__noun-picker");
         this.emojiPickerField = addDiv(this.symbolPickerDiv, "emojiPicker", "sentence-builder__symbol-picker__noun-picker");
         
         this.populate_noun_picker();
         this.populate_emoji_picker();
+        this.populate_ameji_dictionary_picker();
+
         this.populate_punctuation_picker();
         this.populate_diacritics_top_picker();
         this.populate_diacritics_bottom_picker();
@@ -675,6 +299,132 @@ class Ameji {
         this.populate_basic_symbol_picker(this.emojiPickerField, this.emoji_library, "emoji_blackwhite_72x72", this.searchField_emoji );
         // this.populate_basic_symbol_picker(this.emojiPickerField, this.emoji_library, "emoji_blackwhite_618x618  ", this.searchField_emoji );
 
+    }
+
+    populate_ameji_dictionary_picker(){
+        console.log("tesset");
+        this.populate_word_picker(this.amejiDictionaryPickerField,this.ameji_dictionary_library, {"ameji":"ameji_basic_618x618","openmoji":"emoji_blackwhite_72x72"});
+
+    }
+
+    populate_word_picker(elementToPopulate, dictionary, symbol_folders){
+        elementToPopulate.innerHTML = "";
+        
+        for (let word_index = 0; word_index < dictionary.length; word_index++) {
+            // console.log(library[symbol_index]);
+            // console.log(symbol_folders["ameji"]);
+            let word = dictionary[word_index];
+            let word_symbols = this.word_to_symbols(word, symbol_folders);
+
+            if (word["type"] == "combo"){
+                console.log(word_symbols);
+                this.add_word(elementToPopulate, word["meaning"][0], word_symbols, "bracket-square-left.png", "colon.png", "bracket-square-right.png");
+                
+            }
+
+            else if (word["type"] == "proper noun"){
+                for(let i=0;i<word_symbols.length;i++){
+                    word_symbols[i]["diacritics"][1] = "name";
+                }
+                this.add_word(elementToPopulate, word["meaning"][0], word_symbols);
+            }
+
+            else if (word["type"] == "single"){
+                let symbol = word_symbols[0];
+
+                if (symbol["diacritics"].length > 2){
+                    console.log("ERROR: More diacritics than what's able to be handled.");
+                    console.log(symbol);
+                }
+                // let value = symbol["meaning"][meaning]["value"];
+                let symbolElement = this.add_noun(
+                    elementToPopulate,
+                    symbol["path"],
+                    symbol["path"],
+                    symbol["diacritics"][0],
+                    symbol["diacritics"][1]
+                    )
+
+                this.add_noun_click_event(symbolElement);
+            }
+
+
+
+            // separate every word with punctuation
+            this.add_punctuation(elementToPopulate,"divider","empty.png");
+        }
+    }
+
+    add_word(divToAttachTo, id, symbols, start_punctuation, divider_punctuation, stop_punctuation){
+
+        var wordDiv = document.createElement("div");
+		wordDiv.id = id;
+		wordDiv.className = "word";
+        console.log(symbols);
+
+        if (start_punctuation !== undefined){
+            this.add_punctuation(wordDiv, "Start", start_punctuation);
+        }
+        
+        for(var i=0;i<symbols.length;i++){
+            if (i!==0 && divider_punctuation !== undefined){
+                this.add_punctuation(wordDiv, "dividerr", divider_punctuation);
+            }
+
+            let symbol = symbols[i];
+            this.add_noun(
+                wordDiv,
+                symbol["path"],
+                symbol["path"],
+                symbol["diacritics"][0],
+                symbol["diacritics"][1]
+                )
+            
+
+        }
+
+        if (stop_punctuation !== undefined){
+            this.add_punctuation(wordDiv, "Stooop", stop_punctuation);
+        }
+
+        divToAttachTo.appendChild(wordDiv);
+
+    }
+
+    word_to_symbols(word, symbol_folders){
+
+        let files = word["files"];
+           
+
+        // console.log(files);
+        let symbols = []
+        // let paths = [];
+        // let diacritics = [];
+        for (let symbol_index=0;symbol_index<files.length;symbol_index++){
+            let symbol = {"path":"", "diacritics":[]};
+
+            let symbol_type = files[symbol_index][0];
+            symbol["path"] = symbol_folders[symbol_type] + "/" + files[symbol_index][1];
+            if (files[symbol_index][2] === undefined){
+                symbol["diacritics"] = ["-","-"];
+            }else{
+                symbol["diacritics"] = files[symbol_index][2];
+            }
+
+            // make sure there are at least two diacritics. (can both be empty, but they should be defined)
+            if (symbol["diacritics"].length < 2){
+                symbol["diacritics"].push("-");
+            }
+            if (symbol["diacritics"].length < 2){
+                console.log("ASSERT ERROR: by now, there should be two diacritics defined. ");
+                console.log(symbol["diacritics"]);
+            }
+
+            symbols.push(symbol);
+            
+        }
+        return symbols;
+        // return {"paths":paths, "diacritics":diacritics};
     }
 
     populate_basic_symbol_picker(elementToPopulate, library, symbol_folder, searchField){
@@ -1078,12 +828,20 @@ class Ameji {
     }
 
     add_noun(divToAttachTo, id, image_name, diacritic_top, diacritic_bottom) {
+        // diacritic_top, diacritic_bottom : can be undefined
         let noun = this.create_noun(id, image_name, diacritic_top, diacritic_bottom);
+
         divToAttachTo.appendChild(noun);
         return noun;
     }
     
     create_noun(id, image_name,  diacritic_top, diacritic_bottom){
+        if (diacritic_top === undefined){
+            diacritic_top = "-";
+        }
+        if (diacritic_bottom === undefined){
+            diacritic_bottom = "-";
+        }
         var noun = document.createElement("div");
 		noun.id = id;
 		noun.className = "noun";
