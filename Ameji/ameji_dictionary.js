@@ -6,17 +6,24 @@
 
 
 
-var ameji_dictionary_JSON = `[
-    {"type":"single",
+var ameji_dictionary_JSON = `{
+    "hour":{"type":"single",
     "files":[["ameji", "clock-hour-one.png"]],
     "meaning":["hour"]},
-    {"type":"combo",
+    
+    "sit":{"type":"compare",
+    "files":[["openmoji", "1fa91.png", ["yes"]], ["openmoji", "1f9cd.png", ["no"]]],
+    "meaning":["sit", "sitting"]},
+
+    "rose":{"type":"combo",
     "files":[["openmoji","1f339.png",["lit"]],["openmoji", "1f497.png", ["sym"]], ["openmoji","1f490.png",["sym"]],["openmoji", "1f33b.png",["gen"]]],
     "meaning":["rose"]},
-    {"type":"proper noun",
+    
+    "Belgium":{"type":"proper noun",
     "files":[["openmoji","1f36b.png"], ["openmoji","1f5fe.png"], ["openmoji","1f9c7.png"],["openmoji","1f37a.png"]],
     "meaning":["Belgium", "country", "Europe", "European Union", "Brussels"]},
-    {"type":"proper noun",
+    
+    "Lode":{"type":"proper noun",
     "files":[["openmoji","1F954.png"],["openmoji","1f6b2.png"],["ameji","luciebox.png"]],
     "meaning":["Lode"]}
-]`
+}`

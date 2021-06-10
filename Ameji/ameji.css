@@ -25,6 +25,10 @@
 	overflow: hidden; /*works with float: left*/
 	margin-bottom: 50px;
 }
+.sentence-builder__symbol-picker__word-picker{
+	overflow: hidden; /*works with float: left*/
+	margin-bottom: 50px;
+}
 .sentence-builder__symbol-picker__punctuation-picker{
 	overflow: hidden; /*works with float: left*/
 	margin-bottom: 50px;
@@ -34,6 +38,18 @@
 }
 .sentence-builder__symbol-picker__proper-nouns-picker{
 	overflow: hidden; /*works with float: left*/
+}
+.word{
+	float:left;
+	border: 0px solid red;
+	height:80px;
+	overflow:hidden; 
+	transition:0.5s;
+}
+.word:hover {
+	/* opacity: 1 */
+	/* border: 3px solid red; */
+	background-color: rgb(214, 214, 214);
 }
 
 .sentence-builder__newline{
@@ -80,6 +96,10 @@
 	height:80px;
 	width:60px;
 	overflow:hidden; /* */
+	transition:0.5s;
+}
+.noun:hover {
+	background-color: rgb(214, 214, 214);
 }
 
 .noun_image{
@@ -120,8 +140,8 @@
     
     /* customizable */
     background: yellow;
-    margin-top: -10px;
-    margin-left: 50px;    
+    margin-top: -40px;
+    margin-left: 60px;    
 }
 
 [data-tooltip]:not([data-tooltip-persistent]):before {
