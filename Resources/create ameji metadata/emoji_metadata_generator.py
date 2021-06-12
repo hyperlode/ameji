@@ -134,16 +134,11 @@ def ummoji_metadata_to_tags(ummoji_metadata_path):
 def create_ameji_metadata_from_emoji(folder, unicode_to_tags):
 
     '''
-    FORMAT, list of:
-    {"file":"time_relative-time_hourglass.png",
-            "meaning":{
-                    "time relative":{
-                        "synonyms":[],
-                        "value":"-", "dia_top":"-", "dia_bot":"-"},
-                    "hourglass":{
-                        "synonyms":["sandglass","clepsydra","clock","timepiece","timer", "chronometer", "timekeeper"],
-                        "value":"-", "dia_top":"lit", "dia_bot":"-"}
-            }},
+    // layout: {
+    //  type: --. "proper noun", "synonyms" ("it IS (every given symbol IS it)"), "properties"("it HAS (all given symbols contribute towards the meaning. i.e. )"), "basic", "brand"
+    //  files: for every symbol: [type of file, name, [list with diacritics (if none, don't add a list)] diacritics: verb, gen, lit, sym]
+    //  meaning: [list of translations (english... )]
+    //  id: "word identifier"
     '''
 
     got_extra_tags = 0
@@ -158,6 +153,7 @@ def create_ameji_metadata_from_emoji(folder, unicode_to_tags):
 
         if ("skin-tone" in name):
             continue
+
         name_parts = re.split('-|_', name)  # https://stackoverflow.com/questions/4998629/split-string-with-multiple-delimiters-in-python
         
         main_name = name_parts[0]
@@ -177,7 +173,10 @@ def create_ameji_metadata_from_emoji(folder, unicode_to_tags):
 
         symbol_meta = {"file":filename, "meaning":{main_name : {"synonyms":tags, "value":"-", "dia_top":"-", "dia_bot":"-"}}}
         symbols.append(symbol_meta)
-    
+
+        symbol_meta = {"file":filename, "meaning":{main_name : {"synonyms":tags, "value":"-", "dia_top":"-", "dia_bot":"-"}}}
+        
+       
     print("got extra tags: {}".format(got_extra_tags))
     symbols_json = json.dumps(symbols)
     with open(Path(folder,"metadata.json"),"w") as f:
@@ -200,7 +199,7 @@ def create_ameji_from_emoji_files(output_folder, emoji_folder, unicode_to_tags, 
 
     files = sorted(Path(emoji_folder).glob('*.*'))
 
-    symbols = []
+    symbols = {}
     disregarded_files = []
     got_extra_tags = []
     got_extra_tags = set(got_extra_tags)
@@ -231,10 +230,21 @@ def create_ameji_from_emoji_files(output_folder, emoji_folder, unicode_to_tags, 
                 tags.extend(unicode_to_tags[unicode_to_test])
 
 
-        symbol_meta = {"file":filename, "meaning":{main_name : {"synonyms":tags, "value":"-", "dia_top":"-", "dia_bot":"-"}}}
+        # symbol_meta = {"file":filename, "meaning":{main_name : {"synonyms":tags, "value":"-", "dia_top":"-", "dia_bot":"-"}}}
+        # if ok_to_add:
+        #     symbols.append(symbol_meta)
         
+        symbol_meta = {
+            "id":filename,
+            "type":"single",
+            "files":[["openmoji", filename]],
+            "meaning":tags,
+        }
+
         if ok_to_add:
-            symbols.append(symbol_meta)
+            symbols[filename] = symbol_meta
+
+
     
     print("Got extra tags: {}\nDisregarded (because of modifiers): {}\nTotal emoji:{}\n".format(
         len(got_extra_tags),
