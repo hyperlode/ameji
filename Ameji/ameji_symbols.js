@@ -7,7 +7,7 @@ var nouns_JSON = `{
 		"meaning":["time value","period","amound of time"]
         },
 	"hourglass":{
-		"id":"hourglass.png",
+		"id":"hourglass",
 		"type":"single",
 		"files":[["ameji","hourglass.png",["lit"]]],
 		"meaning":["hourglass","sandglass","clepsydra","clock","timepiece","timer", "chronometer", "timekeeper"]
@@ -33,7 +33,7 @@ var nouns_JSON = `{
         "meaning":["position","ordinal number","place","winner", "first", "second", "third"]
         },
     "reason":{
-        "id":"brain",
+        "id":"reason",
         "type":"single",
         "files":[["ameji","brain.png",["sym"]]],
         "meaning":["reason","why","meaning","what for"]

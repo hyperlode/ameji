@@ -178,7 +178,6 @@
 	}
 	
 	function addTextArea(elementToAttachTo, id, name, rows, cols, text){
-		
 		var textArea = document.createElement("textarea");
 		textArea.id = id;
 		textArea.name = name;
@@ -192,8 +191,6 @@
 	}
 
 	function addTextBox(elementToAttachTo,text,name,id, size){
-	
-		
 		var input = document.createElement("input");
 		input.type = "text";
 		input.id = id;

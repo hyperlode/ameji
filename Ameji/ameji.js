@@ -24,98 +24,6 @@ var diacritics_to_file = {
     "no":"cross-diagonal.png"
 }
 
-var punctuation = [
-    
-    "period.png",
-    "comma.png",
-    "colon.png",
-    "semicolon.png",
-    "empty.png",
-    "equals.png",
-    "dash.png",
-    "slash-backward.png",
-    "slash-forward.png",
-    "double-slash-forward.png",
-    "double-slash-backward.png",
-    "vertical-line.png",
-    "vertical-line-dashed.png",
-    "cross-diagonal.png",
-    "checkmark.png",
-    "bracket-left.png",
-    "bracket-square-left.png",
-    "bracket-square-right.png",
-    "bracket-right.png",
-    "questionmark-open-left.png",
-    "questionmark-upside-down-open-right.png",
-
-    
-    "exclamation-mark-thin.png",
-    "exclamation-mark-thin-bracket-left.png",
-    "exclamation-mark-thin-bracket-right.png",
-    "exclamation-mark-thin-upside-down.png",
-    "exclamation-mark-thin-upside-down-bracket-right.png",
-    "exclamation-mark-thin-upside-down-bracket-left.png",
-    
-    "exclamation-mark-hollow.png",
-    "exclamation-mark-hollow-upside-down.png",
-    "exclamation-mark-lightbulb-top.png",
-    "exclamation-mark-lightbulb-top-upside-down.png",
-    
-    "exclamation-mark-circles.png",
-    "exclamation-mark-circles-bracket-left.png",
-    "exclamation-mark-circles-bracket-right.png",
-    "exclamation-mark-circles-upside-down.png",
-    "exclamation-mark-circles-upside-down-bracket-right.png",
-    "exclamation-mark-circles-upside-down-bracket-left.png",
-    
-    "exclamation-mark.png",
-    "exclamation-mark-bracket-left.png",
-    "exclamation-mark-bracket-right.png",
-    "exclamation-mark-upside-down.png",
-    "exclamation-mark-upside-down-bracket-right.png",
-    "exclamation-mark-upside-down-bracket-left.png",
-
-    "digit-0.png",
-    "digit-1.png",
-    "digit-2.png",
-    "digit-3.png",
-    "digit-4.png",
-    "digit-5.png",
-    "digit-6.png",
-    "digit-7.png",
-    "digit-8.png",
-    "digit-9.png",
-
-    "value-relative-posneg-neg4.png",
-    "value-relative-posneg-neg3.png",
-    "value-relative-posneg-neg2.png",
-    "value-relative-posneg-neg1.png",
-    "value-relative-posneg-0.png",
-    "value-relative-posneg-1.png",
-    "value-relative-posneg-2.png",
-    "value-relative-posneg-3.png",
-    "value-relative-posneg-4.png",
-    
-    "value-relative-0.png",
-    "value-relative-1.png",
-    "value-relative-2.png",
-    "value-relative-3.png",
-    "value-relative-4.png",
-  
-    
-    "v-right.png",
-    "v-right-double.png",
-    "v-right-triple.png",
-    "v-left.png",
-    "v-left-double.png",
-    "v-left-triple.png",
-    "v-up.png",
-    "v-down.png",
-    "arrow-left.png",
-    "arrow-right.png",
-    "arrow-double.png"
-]
-
 var diacritics_top = [
     "empty.png",
     "arrow-left.png",
@@ -150,9 +58,10 @@ class Ameji {
         console.log("Ameji loaded");
         this.nouns_library = JSON.parse(nouns_JSON);
         this.emoji_library = JSON.parse(emoji_JSON);
+        this.ameji_punctuation_library = JSON.parse(ameji_punctuation);
         this.ameji_dictionary_library = JSON.parse(ameji_dictionary_JSON);
         
-        this.symbol_folders = {"ameji":"ameji_basic_618x618","openmoji":"emoji_blackwhite_72x72"}
+        this.symbol_folders = {"ameji":"ameji_basic_618x618","openmoji":"emoji_blackwhite_72x72", "ameji-punctuation":"ameji_punctuation_309x618"};
         
         this.baseDiv = document.getElementById("base");
         this.sentenceDiv = addDiv(this.baseDiv, "sentence", "sentence-builder__sentence");
@@ -176,11 +85,13 @@ class Ameji {
         addButton(this.sentenceControlsButtonsDiv, "Recently used symbols", "btnToggleRecent", "btnToggleRecent", this.toggle_recent_visibility.bind(this));
         addButton(this.sentenceControlsButtonsDiv, "Save sentence as picture.png", "btnSaveToPng", "btnSaveToPng", this.save_sentence_to_picture.bind(this));
         addButton(this.sentenceControlsButtonsDiv, "Debug", "btnDebug", "btnDebug", this.do_debug.bind(this));
+        addBr(this.sentenceControlsButtonsDiv);
         
-        
-        this.jsonTextArea = addTextArea(this.symbolPickerDiv, "ameji-json", "ameji-json", 5, 100, "json here");
-        addButton(this.sentenceControlsButtonsDiv, "Sentence To Text", "btnToText", "btnToText", this.create_json_from_sentence.bind(this));
-        addButton(this.sentenceControlsButtonsDiv, "Text To Sentence", "btnToSentence", "btnToSentence", this.create_sentence_from_json.bind(this));
+        this.jsonTextArea = addTextArea(this.sentenceControlsButtonsDiv, "ameji-json", "ameji-json", 5, 100, "json here");
+        addBr(this.sentenceControlsButtonsDiv);
+        addButton(this.sentenceControlsButtonsDiv, "Sentence To Text", "btnToText", "btnToText", this.sentence_to_names.bind(this));
+        addButton(this.sentenceControlsButtonsDiv, "Text To Sentence", "btnToSentence", "btnToSentence", this.names_to_sentence.bind(this));
+        addButton(this.sentenceControlsButtonsDiv, "Sentence To JSON", "btnToJSON", "btnToJSON", this.sentence_to_json.bind(this));
 
         this.punctuationPickerField = addDiv(this.symbolPickerDiv, "punctuationPicker", "sentence-builder__symbol-picker__punctuation-picker");
         this.diacriticsTopPickerField = addDiv(this.symbolPickerDiv, "diacriticsTopPicker", "sentence-builder__symbol-picker__diacritics-picker");
@@ -203,13 +114,14 @@ class Ameji {
         this.add_search_at_type_event(this.searchField_emoji);
         this.emojiPickerField = addDiv(this.symbolPickerDiv, "emojiPicker", "sentence-builder__symbol-picker__noun-picker");
         
-        this.populate_noun_picker();
-        this.populate_emoji_picker();
-        this.populate_ameji_dictionary_picker();
-
+        
         this.populate_punctuation_picker();
         this.populate_diacritics_top_picker();
         this.populate_diacritics_bottom_picker();
+
+        this.populate_noun_picker();
+        this.populate_emoji_picker();
+        this.populate_ameji_dictionary_picker();
 
         this.sentence_element_count = 0;
         this.punctuation_count = 0;
@@ -227,7 +139,38 @@ class Ameji {
         this.load_local_file("file:///C:/temp/test.txt");
     }
 
-    create_json_from_sentence(){
+    sentence_to_names(){
+        console.log("to sentence");
+        this.jsonTextArea.value = "";
+        
+        let name_strings = [];
+        for(var i=0;i<this.sentence_symbol_sequence.length;i++){
+            let id = this.sentence_symbol_sequence[i];
+            let el = document.getElementById(id)
+            name_strings.push("\"" + el.name + "\"");
+        }
+        let json_string = "[" + name_strings.join(",") + "]";
+        this.jsonTextArea.value = json_string;
+    }
+
+    names_to_sentence(){
+        let json_string = this.jsonTextArea.value;
+        let ameji_elements = JSON.parse(json_string);
+        for (let element in ameji_elements){
+            console.log(ameji_elements[element]);
+            this.add_to_sentence_by_full_name(ameji_elements[element]);
+        }
+    }
+
+    json_to_sentence(){
+        let json_string = this.jsonTextArea.value;
+        let ameji_elements = JSON.parse(json_string);
+        for (let element in ameji_elements){
+            console.log(ameji_elements[element]);
+        }
+    }
+
+    sentence_to_json(){
         console.log("to sentence");
         this.jsonTextArea.value = "";
         
@@ -237,20 +180,11 @@ class Ameji {
             let el = document.getElementById(id)
             let element_data = this.symbol_name_to_data(el.name);
             let element_json = JSON.stringify(element_data);
-            console.log(element_json);
             json_elements_strings.push(element_json);
         }
 
-        let json_string = "[" + json_elements_strings.join(",") + "]";
+        let json_string = "[\n" + json_elements_strings.join(",\n") + "\n]";
         this.jsonTextArea.value = json_string;
-
-    }
-    create_sentence_from_json(){
-        let json_string = this.jsonTextArea.value;
-        let ameji_elements = JSON.parse(json_string);
-        for (let element in ameji_elements){
-            console.log(ameji_elements[element]);
-        }
 
     }
 
@@ -265,8 +199,6 @@ class Ameji {
     do_debug(){
         console.log(this.sentence_selected_symbol_indeces);
     }
-
- 
 
     save_sentence_to_picture(){
         let sentence_element = document.getElementById("sentence");
@@ -296,6 +228,7 @@ class Ameji {
             function (event) {
                 
                 this.populate_noun_picker();
+                this.populate_punctuation_picker();
                 this.populate_emoji_picker();
                 this.populate_ameji_dictionary_picker();
 
@@ -318,27 +251,16 @@ class Ameji {
             this.add_diacritic_click_event(symbolElement);
         }
     }
-
+    
     populate_punctuation_picker() {
-        for (let i = 0; i < punctuation.length; i++) {
-            let name = punctuation[i];
-            let symbolElement = this.add_punctuation(this.punctuationPickerField, "punctuation" + i, name, "diacritic_empty.png", "diacritic_empty.png")
+        for (var punctuation in  this.ameji_punctuation_library){
+            // console.log(this.ameji_punctuation_library[punctuation].id);
+            let full_name = "ameji-punctuation_" + punctuation;
+            let symbolElement = this.add_punctuation(this.punctuationPickerField, full_name, full_name);
             this.add_punctuation_click_event(symbolElement);
         }
     }
-
-    populate_noun_picker() {
-        this.populate_basic_symbol_picker(this.nounPickerField, "ameji", this.nouns_library, this.searchField_nouns);
-    }
     
-    populate_emoji_picker() {
-        this.populate_basic_symbol_picker(this.emojiPickerField, "openmoji", this.emoji_library, this.searchField_emoji );
-    }
-
-    populate_ameji_dictionary_picker(){
-        this.populate_word_picker(this.amejiDictionaryPickerField, this.searchField_dictionary );
-    }
-
     populate_word_picker(elementToPopulate, searchField){
         elementToPopulate.innerHTML = "";
         let search_string = searchField.value.toLowerCase();
@@ -359,17 +281,35 @@ class Ameji {
                 elementToPopulate.appendChild(wordDiv);
 
                 // separate every word with punctuation
-                this.add_punctuation(elementToPopulate,"divider","empty.png");
+                this.add_punctuation(elementToPopulate,"divider","ameji-punctuation_empty");
             }
         }
     }
     
-
+    populate_noun_picker() {
+        this.populate_basic_symbol_picker(this.nounPickerField, "ameji", this.nouns_library, this.searchField_nouns);
+    }
+    
+    populate_emoji_picker() {
+        this.populate_basic_symbol_picker(this.emojiPickerField, "openmoji", this.emoji_library, this.searchField_emoji );
+    }
+    
+    populate_ameji_dictionary_picker(){
+        this.populate_word_picker(this.amejiDictionaryPickerField, this.searchField_dictionary );
+    }
+    
+    
     populate_basic_symbol_picker(elementToPopulate, library_name, library, searchField){
+        
         elementToPopulate.innerHTML = "";
-        let search_string = searchField.value.toLowerCase();
-          
+        let search_string = undefined;
+        if (searchField !== undefined){
+            let search_string = searchField.value.toLowerCase();
+        }
+        console.log(library_name);
+        console.log(library);
         for (var symbol_id in library){
+            // console.log(library_name );
             let symbol = library[symbol_id];
             
             let name = library_name + "_" + symbol["id"];
@@ -382,7 +322,7 @@ class Ameji {
             let meanings = symbol["meaning"];
             let all_meanings = symbol["id"].toLowerCase() + " " + meanings.join(" ").toLowerCase();
 
-            if (all_meanings.includes(search_string) || searchField.value === "") {
+            if (searchField === undefined || all_meanings.includes(search_string) || searchField.value === "") {
 
                 let diacritic_top = undefined;
                 let diacritic_bottom = undefined;
@@ -445,16 +385,25 @@ class Ameji {
     }
     
     // ----------------SENTENCE ----------------------
+
+
+    // check_diacritics_changed(sentence_id){
+        
+    // }
+    
+
     add_to_sentence_by_library_and_name(library, name){
         // if( this.ameji_dictionary_library[name] !== undefined){
         let element = undefined;
+        let full_name = library + "_" + name;
+
         if (library === "ameji-word"){
             element = this.ameji_word_from_dict_to_wordDiv(name);
+
         }else if (library === "ameji-punctuation"){
-            console.log("nOTT YET IMPLREMENTED");
-        
+            element = this.create_punctuation(full_name, full_name);
+            
         }else{
-            let full_name = library + "_" + name;
             element = this.create_noun(full_name, full_name);
         }
 
@@ -469,17 +418,6 @@ class Ameji {
        
         this.add_to_sentence_by_library_and_name(split_name["library_name"], split_name["symbol_name"])
     }
-    
-    // add_noun_to_sentence(noun_name, diacritic_top, diacritic_bottom) {
-
-    //     let sentence_element = this.create_noun(
-    //         this.sentence_element_count,
-    //         noun_name,
-    //         diacritic_top,
-    //         diacritic_bottom
-    //     );
-    //     this.add_element_to_sentence(sentence_element, "sentence-element");
-    // }
 
     add_punctuation_to_sentence(punctuation_name) {
         let sentence_element = this.create_punctuation(
@@ -518,7 +456,7 @@ class Ameji {
             this.sentence_element_count += 1;
 
         }else{
-            
+            let insert_index = this.sentence_selected_symbol_indeces[this.sentence_selected_symbol_indeces.length-1];
             this.deselect_selected_element_in_sentence(insert_index);
 
             let selected_element_id = this.sentence_symbol_sequence[insert_index];
@@ -823,30 +761,46 @@ class Ameji {
         return noun;
     }
     
-    create_noun(id, name, diacritic_top, diacritic_bottom){
-        if (diacritic_top === undefined){
-            diacritic_top = "-";
-        }
-        if (diacritic_bottom === undefined){
-            diacritic_bottom = "-";
-        }
+    create_noun(id, name, diacritic_top_override, diacritic_bottom_override){
+        let diacritic_top = undefined;
+        let diacritic_bottom = undefined;
         
         let symbol_data = this.symbol_name_to_data(name);
-        console.log(symbol_data);
         let image_path = undefined;
         if (symbol_data !== undefined){
             let symbol_file_properties = symbol_data["files"][0];
             let symbol_folder = this.symbol_folders[symbol_file_properties[0]];
             let symbol_file_name = symbol_file_properties[1];
+            if (symbol_file_properties[2] !== undefined){
+                diacritic_top = symbol_file_properties[2][0];  // can be undefined
+                diacritic_bottom = symbol_file_properties[2][1]; // can be undefined
+            }
             image_path = symbol_folder + "/" + symbol_file_name;
+
         }else{
-            image_path = name;
+            // image_path = name;
+            console.log("ASSERT ERROR: symbol data needs to be present. All the rest is not available anymre..");
         }
         
         var noun = document.createElement("div");
         noun.id = id;
         noun.name = name;
         noun.className = "noun";
+
+        if (diacritic_top_override !== undefined){
+            diacritic_top = diacritic_top_override;
+        }
+        if (diacritic_bottom_override !== undefined){
+            diacritic_bottom = diacritic_bottom_override;
+        }
+
+        // if still undefined, but down nothing.
+        if (diacritic_top === undefined){
+            diacritic_top = "-";
+        }
+        if (diacritic_bottom === undefined){
+            diacritic_bottom = "-";
+        }
         
         let diacritic_top_name = diacritics_to_file[diacritic_top];
         let diacritic_bottom_name = diacritics_to_file[diacritic_bottom];
@@ -905,6 +859,9 @@ class Ameji {
         if (library_name === "ameji-word"){
             element_data = this.ameji_dictionary_library[symbol_name];
             
+        }else if (library_name === "ameji-punctuation"){
+            element_data = this.ameji_punctuation_library[symbol_name];
+
         }else if (library_name === "ameji"){
             element_data = this.nouns_library[symbol_name];
 
@@ -921,21 +878,27 @@ class Ameji {
     // -------------------- PUNCTUATION --------------------
 
     
-    add_punctuation(divToAttachTo, id, image_name) {
-        let punctuation = this.create_punctuation(id, image_name);
+    add_punctuation(divToAttachTo, id, full_name) {
+        let punctuation = this.create_punctuation(id, full_name);
         divToAttachTo.appendChild(punctuation);
         return punctuation;
     }
     
-    create_punctuation(id, image_name){
+    create_punctuation(id, full_name){
+        
+        let symbol_data = this.symbol_name_to_data(full_name);
+        let symbol_file_properties = symbol_data["files"][0];
+        let img = document.createElement("Img");
+        let img_path = this.symbol_folders[symbol_file_properties[0]] + "/" + symbol_file_properties[1];
+        img.src = "symbols/" + img_path;
+        img.id = img_path;
+        img.classList.add("punctuation_image");
+
         var symbol = document.createElement("div");
 		symbol.id = id;
+
+        symbol.name =  full_name;
 		symbol.className = "punctuation";
-        
-        let img = document.createElement("Img");
-        img.src = "symbols/ameji_punctuation_309x618/" + image_name;
-        img.id = image_name;
-        img.classList.add("punctuation_image");
         // img.crossOrigin  = "Anonymous";  // local files will not work with CORS policy.
         symbol.appendChild(img);
         return symbol;
@@ -945,11 +908,8 @@ class Ameji {
         elementToAttachTo.addEventListener(
             "click",
             function (event) {
-                let punctuation_image_element = event.currentTarget.querySelector('.punctuation_image');
-                let punctuation_image_name = punctuation_image_element.id;
-
-                this.add_punctuation_to_sentence(punctuation_image_name, "", "");
-
+                let punctuation_name = event.currentTarget.name;
+                this.add_punctuation_to_sentence(punctuation_name);
             }.bind(this)
         );
     }
@@ -1010,7 +970,6 @@ class Ameji {
         );
     }
 
-    
     add_diacricit_independent(divToAttachTo, id, image_name) {
         let symbol = addDiv(divToAttachTo, id, "diacritic-independent");
         let img = document.createElement("Img");
