@@ -11,26 +11,26 @@ var ameji_dictionary_JSON = `{
     "hour":{
         "id":"hour",
         "type":"single",
-        "files":[["ameji", "clock-hour-one.png"]],
+        "files":[["ameji", "hour"]],
         "meaning":["hour"]},
     "sit":{
         "id":"sit",
         "type":"compare",
-        "files":[["openmoji", "1fa91.png", ["yes"]], ["openmoji", "1f9cd.png", ["no"]]],
+        "files":[["openmoji", "1FA91.png", ["yes"]], ["openmoji", "1F9CD.png", ["no"]]],
         "meaning":["sit", "sitting"]},
     "rose":{
         "id":"rose",
         "type":"combo",
-        "files":[["openmoji","1f339.png",["lit"]],["openmoji", "1f497.png", ["sym"]], ["openmoji","1f490.png",["sym"]],["openmoji", "1f33b.png",["gen"]]],
+        "files":[["openmoji","1F339.png",["lit"]],["openmoji", "1F497.png", ["sym"]], ["openmoji","1F490.png",["sym"]],["openmoji", "1F33B.png",["gen"]]],
         "meaning":["rose"]},
     "Belgium":{
         "id":"Belgium",
         "type":"proper noun",
-        "files":[["openmoji","1f36b.png"], ["openmoji","1f5fe.png"], ["openmoji","1f9c7.png"],["openmoji","1f37a.png"]],
+        "files":[["openmoji","1F36B.png"], ["openmoji","1F5FE.png"], ["openmoji","1F9C7.png"],["openmoji","1F37A.png"]],
         "meaning":["Belgium", "country", "Europe", "European Union", "Brussels"]},
     "Lode":{
         "id":"Lode",
         "type":"proper noun",
-        "files":[["openmoji","1F954.png"],["openmoji","1f6b2.png"],["ameji","luciebox.png"]],
+        "files":[["openmoji","1F954.png"],["openmoji","1F6B2.png"],["ameji","luciebox"]],
         "meaning":["Lode"]}
 }`
