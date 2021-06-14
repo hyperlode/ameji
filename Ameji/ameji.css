@@ -44,7 +44,7 @@
 	border: 0px solid red;
 	height:80px;
 	overflow:hidden; 
-	transition:0.5s;
+	transition:0.2s;
 }
 .word:hover {
 	/* opacity: 1 */
@@ -96,7 +96,7 @@
 	height:80px;
 	width:60px;
 	overflow:hidden; /* */
-	transition:0.5s;
+	transition:0.2s;
 }
 .noun:hover {
 	background-color: rgb(214, 214, 214);

@@ -32,5 +32,10 @@ var ameji_dictionary_JSON = `{
         "id":"Lode",
         "type":"proper noun",
         "files":[["openmoji","1F954.png"],["openmoji","1F6B2.png"],["ameji","luciebox"]],
-        "meaning":["Lode"]}
+        "meaning":["Lode"]},
+    "Netherlands":{
+        "id":"Netherlands",
+        "type":"proper noun",
+        "files":[["openmoji","1F5FE.png",["gen"]],["openmoji","1F337.png"],["openmoji","1F6B4-200D-2642-FE0F.png"],["openmoji","1F3D4.png",["no"]],["openmoji","26F5.png",["yes"]]],
+        "meaning":["Netherlands", "country", "Europe", "European Union", "Holland","Hup", "Orange"]}
 }`
