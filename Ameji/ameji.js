@@ -83,7 +83,7 @@ class Ameji {
         
         this.recent_symbols_sequence_ids = [];
 
-        this.newline_symbol = "ameji-punctuation_newline"; 
+        // this.newline_symbol = "ameji-punctuation_newline"; 
 
         this.load_local_file("file:///C:/temp/test.txt");
     }
@@ -603,13 +603,12 @@ class Ameji {
         // two divs need to be added. As we can't state that it should do a linebrake AFTER the current element. 
         // So, first, there is a dummy, visual linebreak. Then, the real one as a zero size div.
         
-        this.sentence_select_last_if_none_selected(); // we NEED to work with selection for this maneuvre to work.
-        let sentence_element = this.create_punctuation(
-            this.sentence_element_count + "_newline",
-            this.newline_symbol
-            );
-        this.add_element_to_sentence(sentence_element, "sentence-element");
-        // this.select_next_element_in_sentence();
+        // this.sentence_select_last_if_none_selected(); // we NEED to work with selection for this maneuvre to work.
+        // let sentence_element = this.create_punctuation(
+        //     this.sentence_element_count + "_newline",
+        //     this.newline_symbol
+        //     );
+        // this.add_element_to_sentence(sentence_element, "sentence-element");
         
 
         var symbol = document.createElement("div");
@@ -708,7 +707,6 @@ class Ameji {
         
         for (let i=this.sentence_symbol_sequence.length - 2 ;i>=0;i--){
             // - 2 because if last element is selected, we can do anything. 
-            console.log(this.sentence_selected_ids);
             if (this.sentence_symbol_sequence[i] == this.sentence_selected_ids[this.sentence_selected_ids.length-1]){
                 this.deselect_element_in_sentence(this.sentence_symbol_sequence[i]);
                 this.select_element_in_sentence(this.sentence_symbol_sequence[i+1]);
@@ -763,46 +761,16 @@ class Ameji {
             return;
         }
 
-        while (this.sentence_selected_ids.length > 0){
+        if (this.sentence_selected_ids.length > 1){
+            while (this.sentence_selected_ids.length > 0){
+                this.sentence_delete_element(this.sentence_selected_ids[0]);
+            }
 
-            this.sentence_delete_element(this.sentence_selected_ids[0]);
+        }else if (this.sentence_selected_ids.length === 1){
+            let id_to_delete = this.sentence_selected_ids[0];
+            this.select_next_element_in_sentence();
+            this.sentence_delete_element(id_to_delete);
         }
-
-        // let first_deleted_symbol_index = -1 ;
-        // for (let i=0; i<this.sentence_selected_ids_indeces.length; i++){
-        //     let sentence_index = this.sentence_selected_ids_indeces[i];
-
-        //     if (first_deleted_symbol_index === -1){
-        //         first_deleted_symbol_index = sentence_index ;
-                
-        //     }
-
-        //     let id  = this.sentence_symbol_sequence[sentence_index];
-
-        //     if (id.includes("newline")){
-        //         this.sentence_selected_ids_indeces.push(sentence_index + 1);
-        //         console.log("Newline deletion, as this is a double symbol, it will remove the second invisible part too.");
-        //     }
-
-        //     let element_to_remove = document.getElementById(id);
-        //     element_to_remove.remove();
-        // }
-
-        // // build up new sentence sequence. We don't want to interfere with it during deletion.
-        // let new_sentence_sequence = [];
-        // for (let i=0; i<this.sentence_symbol_sequence.length; i++){
-        //     let symbol_id = this.sentence_symbol_sequence[i];
-        //     if (! (this.sentence_selected_ids_indeces.includes(i))){
-        //         new_sentence_sequence.push(symbol_id);
-        //     }
-        // }
-
-        // this.sentence_symbol_sequence = new_sentence_sequence;
-
-
-        // this.sentence_selected_ids_indeces = [];
-        // console.log(first_deleted_symbol_index);
-        // this.select_element_in_sentence(first_deleted_symbol_index);
     }
 
     sentence_delete_element(sentence_element_id){
@@ -819,11 +787,11 @@ class Ameji {
         
         this.sentence_symbol_sequence.splice(index, 1);
         element.remove();
-        if (full_name.includes("newline")){
-            // this.sentence_selected_ids_indeces.push(sentence_index + 1);
-            console.log("Newline deletion, as this is a double symbol, it will remove the second invisible part too.");
-            this.sentence_delete_element(this.sentence_symbol_sequence[index]);
-        }
+        // if (full_name.includes("newline")){
+        //     // this.sentence_selected_ids_indeces.push(sentence_index + 1);
+        //     console.log("Newline deletion, as this is a double symbol, it will remove the second invisible part too.");
+        //     this.sentence_delete_element(this.sentence_symbol_sequence[index]);
+        // }
     }
 
     // -------------------- WORDS ----------------------
