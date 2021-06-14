@@ -4,55 +4,6 @@
 // iconji.com . same idea, from 2011, but, catered towards english (e.a. at = @ )
 // emojione --> git repo with emoji tools
 //openmoji -> open source emoji drawings .
-
-
-// // "-" = none
-// // "lit" = literal
-// // "sym" = symbolic
-// // "gen" = generalized
-// var diacritics_to_file = {
-//     "gen": "dot.png",
-//     "gen2": "dot-double.png",
-//     "verb": "arrow-right.png",
-//     "verb2": "arrow-double.png",
-//     "sym": "squiggle.png",
-//     "lit": "line.png",
-//     "-": "empty.png",
-//     "name":"line-full-width.png",
-//     "combo":"line-dashed-full-width.png",
-//     "yes":"checkmark.png",
-//     "no":"cross-diagonal.png"
-// }
-
-// var diacritics_top = [
-//     "empty.png",
-//     "arrow-left.png",
-//     "arrow-right.png",
-//     "arrow-double.png",
-//     "line.png",
-//     "line-full-width.png",
-//     "line-dashed-full-width.png",
-//     "dot.png",
-//     "dot-double.png",
-//     "squiggle.png",
-//     "cross-diagonal.png",
-//     "checkmark.png"
-// ]
-// var diacritics_bottom = [
-//     "empty.png",
-//     "arrow-left.png",
-//     "arrow-right.png",
-//     "arrow-double.png",
-//     "line.png",
-//     "line-full-width.png",
-//     "line-dashed-full-width.png",
-//     "dot.png",
-//     "dot-double.png",
-//     "squiggle.png",
-//     "cross-diagonal.png",
-//     "checkmark.png"
-// ]
-
 class Ameji {
     constructor() {
         console.log("Ameji loaded");
@@ -109,9 +60,6 @@ class Ameji {
         this.add_search_at_type_event(this.searchField_dictionary);
         this.amejiDictionaryPickerField = addDiv(this.symbolPickerDiv, "amejiDictionary", "sentence-builder__symbol-picker__word-picker");
 
-        // function addTextArea(elementToAttachTo, id, name, rows, cols, text){
-        
-
         this.searchField_emoji = addTextBox(this.symbolPickerDiv, "search", "txtBoxSearchEmoji", "txtBoxSearchEmoji", 30);
         this.add_search_at_type_event(this.searchField_emoji);
         this.emojiPickerField = addDiv(this.symbolPickerDiv, "emojiPicker", "sentence-builder__symbol-picker__noun-picker");
@@ -129,13 +77,13 @@ class Ameji {
         this.punctuation_count = 0;
         this.noun_count = 0;
         
-        this.sentence_selected_symbol_indeces = [];
+        this.sentence_selected_ids = [];
 
         this.sentence_symbol_sequence = [];
         
         this.recent_symbols_sequence_ids = [];
 
-        this.newline_symbol = "newline.png"; 
+        this.newline_symbol = "ameji-punctuation_newline"; 
 
         this.load_local_file("file:///C:/temp/test.txt");
     }
@@ -203,15 +151,8 @@ class Ameji {
     }
 
     do_debug(){
-        // console.log(this.sentence_selected_symbol_indeces);
-        
-        // let id = this.sentence_symbol_sequence[this.sentence_selected_symbol_indeces[0]];
-        // let isAltered = this.is_sentence_element_altered(id);
-        // let isAltered = this.is_sentence_altered();
-        // console.log(isAltered);
-
-       this.get_components_for_all_sentence_elements();
-
+    //    this.get_components_for_all_sentence_elements();
+        this.select_next_element_in_sentence();
     }
 
 
@@ -462,12 +403,12 @@ class Ameji {
     }
     
     explode_word(){
-        if (this.sentence_selected_symbol_indeces.length == 0){
+        if (this.sentence_selected_ids.length == 0){
             alert("Please select words to explode.");
         };
 
-        for (let element_index=0; element_index < this.sentence_selected_symbol_indeces.length;element_index++){
-            let element_in_sentence_id = this.sentence_symbol_sequence[this.sentence_selected_symbol_indeces[element_index]];
+        for (let i=0; i < this.sentence_selected_ids.length;i++){
+            let element_in_sentence_id = this.sentence_selected_ids[i];
             let element = document.getElementById(element_in_sentence_id);
             let full_name = element.name;
             let name_data = this.symbol_name_to_library_and_name(full_name);
@@ -661,44 +602,51 @@ class Ameji {
 
         // two divs need to be added. As we can't state that it should do a linebrake AFTER the current element. 
         // So, first, there is a dummy, visual linebreak. Then, the real one as a zero size div.
+        
+        this.sentence_select_last_if_none_selected(); // we NEED to work with selection for this maneuvre to work.
         let sentence_element = this.create_punctuation(
             this.sentence_element_count + "_newline",
             this.newline_symbol
             );
         this.add_element_to_sentence(sentence_element, "sentence-element");
+        // this.select_next_element_in_sentence();
+        
 
         var symbol = document.createElement("div");
         symbol.id =  this.sentence_element_count;
         symbol.className = "sentence-builder__newline";
+        symbol.name = symbol.id;
 
         this.add_element_to_sentence(symbol, "sentence-builder__newline");
     }
     
     add_element_to_sentence(element_to_add, classname){
         element_to_add.id = "sentence_element_" + this.sentence_element_count;
-        
-        if (this.sentence_selected_symbol_indeces.length === 0){
+        let id = element_to_add.id;
+        if (this.sentence_selected_ids.length === 0){
             this.sentenceDiv.appendChild(element_to_add);
-            this.sentence_symbol_sequence.push(element_to_add.id);
+            this.sentence_symbol_sequence.push(id);
 
             element_to_add.classList.add(classname);
             this.add_sentence_element_click_event(element_to_add);
             this.sentence_element_count += 1;
 
         }else{
-            let insert_index = this.sentence_selected_symbol_indeces[this.sentence_selected_symbol_indeces.length-1];
-            this.deselect_selected_element_in_sentence(insert_index);
 
-            let selected_element_id = this.sentence_symbol_sequence[insert_index];
-            let selected_element = document.getElementById(selected_element_id);
-            this.sentenceDiv.insertBefore(element_to_add, selected_element.nextSibling);
-            this.sentence_symbol_sequence.splice(insert_index + 1,0,element_to_add.id);
+            let selected_element_id = this.sentence_selected_ids[this.sentence_selected_ids.length - 1];
+            let insert_index = this.sentence_symbol_sequence.indexOf(selected_element_id);
+            this.deselect_element_in_sentence(selected_element_id);
             
-            this.select_element_in_sentence(insert_index + 1);
+            let selected_element = document.getElementById(selected_element_id);
+            
+            this.sentenceDiv.insertBefore(element_to_add, selected_element.nextSibling);
+            this.sentence_symbol_sequence.splice(insert_index + 1,0,id);
+            
+            this.select_element_in_sentence(id);
             
             // INSERT BEFORE:
             // let insert_index = this.sentence_selected_index
-            // this.deselect_selected_element_in_sentence();
+            // this.deselect_element_in_sentence();
             
             // let selected_element_id = this.sentence_symbol_sequence[insert_index];
             // let selected_element = document.getElementById(selected_element_id);
@@ -718,14 +666,11 @@ class Ameji {
             function (event) {
                 // current target = element where the eventtrigger was attached to
                 let id = event.currentTarget.id;
-
-                let selected_element_index = this.sentence_symbol_sequence.indexOf(id);
-            
-                // if clicked element selected, deselect.
-                if (this.sentence_selected_symbol_indeces.includes(selected_element_index)){
-                    this.deselect_selected_element_in_sentence(selected_element_index);
+                // if clicked element already selected, deselect.
+                if (this.sentence_selected_ids.includes(id)){
+                    this.deselect_element_in_sentence(id);
                 }else{
-                    this.select_element_in_sentence(selected_element_index);
+                    this.select_element_in_sentence(id);
                 }
             }.bind(this)
         );
@@ -734,48 +679,61 @@ class Ameji {
     select_all(){
         this.deselect_all();
         for (let i=0;i<this.sentence_symbol_sequence.length;i++){
-            this.select_element_in_sentence(i);
+            this.select_element_in_sentence(this.sentence_symbol_sequence[i]);
         }
     }
 
     deselect_all(){
         let done = false;
         while (!done){
-            if (this.sentence_selected_symbol_indeces.length === 0){
+            if (this.sentence_selected_ids.length === 0){
                 done = true;
             }else{
-                this.deselect_selected_element_in_sentence(this.sentence_selected_symbol_indeces[0]);   
+                this.deselect_element_in_sentence(this.sentence_selected_ids[0]);   
             }
         }
     }
 
-    deselect_selected_element_in_sentence(index){
-        if (this.sentence_selected_symbol_indeces.includes(index)){
-            let id = this.sentence_symbol_sequence[index];
+    deselect_element_in_sentence(id){
+       
+        if (this.sentence_selected_ids.includes(id)){
             document.getElementById(id).classList.remove('symbol-selected');
-            this.sentence_selected_symbol_indeces.splice(this.sentence_selected_symbol_indeces.indexOf(index),1); 
+            this.sentence_selected_ids.splice(this.sentence_selected_ids.indexOf(id),1); 
         }
     }
         
-    select_element_in_sentence(index){
+    select_next_element_in_sentence(){
+        // if one element is selected. 
+        let index = 0;
+        
+        for (let i=this.sentence_symbol_sequence.length - 2 ;i>=0;i--){
+            // - 2 because if last element is selected, we can do anything. 
+            console.log(this.sentence_selected_ids);
+            if (this.sentence_symbol_sequence[i] == this.sentence_selected_ids[this.sentence_selected_ids.length-1]){
+                this.deselect_element_in_sentence(this.sentence_symbol_sequence[i]);
+                this.select_element_in_sentence(this.sentence_symbol_sequence[i+1]);
+            }
+        } 
+    }
+
+    select_element_in_sentence(element_id){
         // index of element in the symbols array of the sentence 
         if (this.sentence_symbol_sequence.length === 0){
-            this.sentence_selected_symbol_indeces = [];
+            this.sentence_selected_ids = [];
             return ;
         }
-        if (index >= this.sentence_symbol_sequence.length){
-            index = this.sentence_symbol_sequence.length -1;
-        }
-
-        if (index < 0){
+        
+        if (this.sentence_selected_ids.includes(element_id)){
+            // already selected.
             return;
         }
-
-        let id = this.sentence_symbol_sequence[index];
-        let selected_element = document.getElementById(id);
+        let selected_element = document.getElementById(element_id);
+        
         selected_element.classList.add('symbol-selected');
-
-        this.sentence_selected_symbol_indeces.push(index);
+        
+        this.sentence_selected_ids.push(element_id);
+        
+       
     }
 
     add_new_line_symbol() {
@@ -785,15 +743,18 @@ class Ameji {
     sentence_select_last_if_none_selected(){
         // will select last element in sentence if none were selected
         // return true if possible, false if empty sentence
-        if (this.sentence_selected_symbol_indeces.length === 0){
+
+        if (this.sentence_selected_ids.length === 0){
             if (this.sentence_symbol_sequence.length > 0){
-                this.select_element_in_sentence(this.sentence_symbol_sequence.length-1);
+                let last_element_id = this.sentence_symbol_sequence[this.sentence_symbol_sequence.length - 1];
+                this.select_element_in_sentence(last_element_id);
                 console.log("No symbol selected, will select the last one.");
             }else{
                 return false;
             }
+
         }
-        return true;
+        return true
     }
 
     sentence_delete_selected() {
@@ -802,52 +763,67 @@ class Ameji {
             return;
         }
 
-        let first_deleted_symbol_index = -1 ;
-        for (let i=0; i<this.sentence_selected_symbol_indeces.length; i++){
-            let sentence_index = this.sentence_selected_symbol_indeces[i];
+        while (this.sentence_selected_ids.length > 0){
 
-            if (first_deleted_symbol_index === -1){
-                first_deleted_symbol_index = sentence_index ;
+            this.sentence_delete_element(this.sentence_selected_ids[0]);
+        }
+
+        // let first_deleted_symbol_index = -1 ;
+        // for (let i=0; i<this.sentence_selected_ids_indeces.length; i++){
+        //     let sentence_index = this.sentence_selected_ids_indeces[i];
+
+        //     if (first_deleted_symbol_index === -1){
+        //         first_deleted_symbol_index = sentence_index ;
                 
-            }
+        //     }
 
-            let id  = this.sentence_symbol_sequence[sentence_index];
+        //     let id  = this.sentence_symbol_sequence[sentence_index];
 
-            if (id.includes("newline")){
-                this.sentence_selected_symbol_indeces.push(sentence_index + 1);
-                console.log("Newline deletion, as this is a double symbol, it will remove the second invisible part too.");
-            }
+        //     if (id.includes("newline")){
+        //         this.sentence_selected_ids_indeces.push(sentence_index + 1);
+        //         console.log("Newline deletion, as this is a double symbol, it will remove the second invisible part too.");
+        //     }
 
-            let element_to_remove = document.getElementById(id);
-            element_to_remove.remove();
-        }
+        //     let element_to_remove = document.getElementById(id);
+        //     element_to_remove.remove();
+        // }
 
-        // build up new sentence sequence. We don't want to interfere with it during deletion.
-        let new_sentence_sequence = [];
-        for (let i=0; i<this.sentence_symbol_sequence.length; i++){
-            let symbol_id = this.sentence_symbol_sequence[i];
-            if (! (this.sentence_selected_symbol_indeces.includes(i))){
-                new_sentence_sequence.push(symbol_id);
-            }
-        }
+        // // build up new sentence sequence. We don't want to interfere with it during deletion.
+        // let new_sentence_sequence = [];
+        // for (let i=0; i<this.sentence_symbol_sequence.length; i++){
+        //     let symbol_id = this.sentence_symbol_sequence[i];
+        //     if (! (this.sentence_selected_ids_indeces.includes(i))){
+        //         new_sentence_sequence.push(symbol_id);
+        //     }
+        // }
 
-        this.sentence_symbol_sequence = new_sentence_sequence;
+        // this.sentence_symbol_sequence = new_sentence_sequence;
 
 
-        this.sentence_selected_symbol_indeces = [];
-        console.log(first_deleted_symbol_index);
-        this.select_element_in_sentence(first_deleted_symbol_index);
+        // this.sentence_selected_ids_indeces = [];
+        // console.log(first_deleted_symbol_index);
+        // this.select_element_in_sentence(first_deleted_symbol_index);
     }
 
     sentence_delete_element(sentence_element_id){
-        let element = document.getElementById(sentence_element_id);
-        element.remove();
-        const index = this.sentence_symbol_sequence.indexOf(sentence_element_id);
-        if (index > -1) {
-            this.sentence_symbol_sequence.splice(index, 1);
+
+        let index = this.sentence_symbol_sequence.indexOf(sentence_element_id);
+        if (index === -1) {
+            console.log("ASSERT ERROR: element not in sentence.");
         }
-
-
+        
+        // ok if not selected
+        this.deselect_element_in_sentence(sentence_element_id);
+        let element = document.getElementById(sentence_element_id);
+        let full_name = element.name;
+        
+        this.sentence_symbol_sequence.splice(index, 1);
+        element.remove();
+        if (full_name.includes("newline")){
+            // this.sentence_selected_ids_indeces.push(sentence_index + 1);
+            console.log("Newline deletion, as this is a double symbol, it will remove the second invisible part too.");
+            this.sentence_delete_element(this.sentence_symbol_sequence[index]);
+        }
     }
 
     // -------------------- WORDS ----------------------
@@ -1127,6 +1103,7 @@ class Ameji {
         
         let symbol_data = this.symbol_name_to_data(full_name);
         let symbol_file_properties = symbol_data["files"][0];
+
         let img = document.createElement("Img");
         let img_path = this.symbol_folders[symbol_file_properties[0]] + "/" + symbol_file_properties[1];
         img.src = "symbols/" + img_path;
@@ -1192,12 +1169,10 @@ class Ameji {
                     return;
                 }
                 
-                for (let i=0; i<this.sentence_selected_symbol_indeces.length; i++){
+                for (let i=0; i<this.sentence_selected_ids.length; i++){
                     // if multiple symbols are selected, add to each selected symbol
 
-                    let symbol_index = this.sentence_selected_symbol_indeces[i];
-
-                    let selected_id = this.sentence_symbol_sequence[symbol_index];
+                    let selected_id = this.sentence_selected_ids[i];
                     
                     let selected_sentence_symbol = document.getElementById(selected_id);
                     
