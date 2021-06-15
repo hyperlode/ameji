@@ -32,6 +32,7 @@ class Ameji {
         
         addButton(this.sentenceControlsButtonsDiv, "Deselect all", "btnDeselectAll", "btnDeselectAll", this.deselect_all.bind(this));
         addButton(this.sentenceControlsButtonsDiv, "Select all", "btnSelectAll", "btnSelectAll", this.select_all.bind(this));
+        addButton(this.sentenceControlsButtonsDiv, "Select Next", "btnSelectNext", "btnSelectNext", this.select_next_element_in_sentence.bind(this));
         addButton(this.sentenceControlsButtonsDiv, "Delete selected", "btnDelete", "btnDelete", this.sentence_delete_selected.bind(this));
         addButton(this.sentenceControlsButtonsDiv, "Insert New line", "btnNewLine", "btnNewLine", this.add_new_line_symbol.bind(this));
         addButton(this.sentenceControlsButtonsDiv, "Explode word", "btnExplode", "btnExplode", this.explode_word.bind(this));
@@ -45,6 +46,8 @@ class Ameji {
         addButton(this.sentenceControlsButtonsDiv, "Sentence To Text", "btnToText", "btnToText", this.sentence_to_names.bind(this));
         addButton(this.sentenceControlsButtonsDiv, "Text To Sentence", "btnToSentence", "btnToSentence", this.names_to_sentence.bind(this));
         addButton(this.sentenceControlsButtonsDiv, "Sentence To JSON", "btnToJSON", "btnToJSON", this.sentence_to_json.bind(this));
+        addButton(this.sentenceControlsButtonsDiv, "One Selected symbol to Ameji Standard ", "btnVisibleToAmejiStandard", "btnVisibleToAmejiStandard", this.selected_symbol_to_ameji_standard.bind(this));
+        addButton(this.sentenceControlsButtonsDiv, "Selected symbols to Ameji Standard Word ", "btnVisibleToAmejiStandard", "btnVisibleToAmejiStandard", this.selected_symbols_to_ameji_standard_word.bind(this));
 
         this.punctuationPickerField = addDiv(this.symbolPickerDiv, "punctuationPicker", "sentence-builder__symbol-picker__punctuation-picker");
         this.diacriticsTopPickerField = addDiv(this.symbolPickerDiv, "diacriticsTopPicker", "sentence-builder__symbol-picker__diacritics-picker");
@@ -86,6 +89,93 @@ class Ameji {
         // this.newline_symbol = "ameji-punctuation_newline"; 
 
         this.load_local_file("file:///C:/temp/test.txt");
+    }
+
+
+    selected_symbols_to_ameji_standard_word()
+    {
+
+        let word_data = {"id":"XXXXXXX", "meaning":[],"type":"combo"};
+        let all_symbols_files = [];
+        for (let i=0;i<this.sentence_selected_ids.length;i++){
+           
+            let id = this.sentence_selected_ids[i];
+            let full_name = document.getElementById(id).name;
+            let element_components = this.get_sentence_element_components(id);
+
+            let original_symbol_data = this.symbol_name_to_data(full_name);
+            let files_data = original_symbol_data["files"][0];
+
+            // replace original diacritics with sentence diacritics
+                        
+            let diacritics= this.get_diacritics_from_symbol_components(element_components);
+            if (diacritics.length>0){
+                files_data[2] = diacritics;
+            }
+            
+            all_symbols_files.push(files_data);
+        }
+        word_data["files"] = all_symbols_files;
+
+
+        let json_string = JSON.stringify(word_data);
+        this.jsonTextArea.value = json_string;
+
+    }
+
+    selected_symbol_to_ameji_standard()
+    {
+           
+        if (this.sentence_selected_ids.length !== 1){
+            alert("please select one and only one symbol");
+            return;
+        }
+        let id = this.sentence_selected_ids[0];
+        let full_name = document.getElementById(id).name;
+        let element_components = this.get_sentence_element_components(id);
+        
+        let library_name = this.get_sentence_element_library_name(id);
+        let standard = this.element_data_to_ameji_standard(library_name, full_name, element_components);
+        
+        let json_string = JSON.stringify(standard);
+        this.jsonTextArea.value = json_string;
+    }
+
+    element_data_to_ameji_standard (library_name, full_name, element_components){
+
+        let element_data = undefined;
+        let symbol_data = {};
+        
+        let temp_symbol_data = this.symbol_name_to_data(full_name);
+        symbol_data["id"] = temp_symbol_data["id"];
+        symbol_data["meaning"] = temp_symbol_data["meaning"];
+
+        // if (library_name === "ameji-word"){
+        //     element_data = this.get_sentence_word_to_symbols(sentence_element);
+        //     console.log("not applicable");
+            
+        // }else 
+        if (library_name === "ameji-punctuation"){
+            
+            // let d = this.symbol_name_to_library_and_name(full_name);
+
+            symbol_data["files"] = temp_symbol_data["files"];
+            symbol_data["type"] = "punctuation";
+            
+        }else if (["ameji", "openmoji"].includes(library_name)){
+            let diacritics= this.get_diacritics_from_symbol_components(element_components)
+            
+            symbol_data["files"] = temp_symbol_data["files"];
+            symbol_data["files"][0][2] = diacritics;
+
+            symbol_data["type"] = "single";
+            
+        }
+        // else if (library_name === "ameji-diacritics"){
+        //     console.log("not applicable");
+            
+        // }
+        return symbol_data;
     }
 
     sentence_to_names(){
@@ -466,6 +556,7 @@ class Ameji {
     }
 
     get_sentence_word_to_symbols(sentence_element){
+        // will take dictionary info from full_name.
         
         // let components = {"full_name": sentence_element.name};
         let word_component_elements = sentence_element.children;
@@ -486,15 +577,12 @@ class Ameji {
                 word_symbols_components.push(components);
             }
         }
-        // console.log(word_symbols_components);
         return word_symbols_components;
         
     }
 
     get_sentence_element_library_name(sentence_element_id){
-        console.log(sentence_element_id);
         let sentence_element = document.getElementById(sentence_element_id);
-        console.log(sentence_element.name);
         return this.symbol_name_to_library_and_name(sentence_element.name)["library_name"];
     }
 
@@ -508,7 +596,6 @@ class Ameji {
         // check type
         let library_name = this.get_sentence_element_library_name(sentence_element_id);
         
-        console.log(library_name);
         let element_data = undefined;
         if (library_name === "ameji-word"){
             element_data = this.get_sentence_word_to_symbols(sentence_element);
@@ -538,12 +625,6 @@ class Ameji {
         // for one symbol (or word)
         // components: object with full_name and (if applicable diacritics)
 
-
-        // for (let i=0; i<components.length; i++){
-
-        // }
-
-        
         let element = undefined;
         let full_name = element_components["full_name"];
         let library = this.symbol_name_to_library_and_name(full_name)["library_name"];
@@ -558,7 +639,6 @@ class Ameji {
             console.log(element_components);
             element = this.create_noun(full_name, full_name, element_components["diacritic_top_name"], element_components["diacritic_bottom_name"]);
         }
-
 
         this.add_element_to_sentence(element, "sentence-element");
     }
@@ -1100,6 +1180,25 @@ class Ameji {
 
     // -------------------- DIACRITICS --------------------
         
+
+    // get_diacritics_from_sentence_symbol(sentence_id){
+    get_diacritics_from_symbol_components(element_components){
+
+        // let full_name = document.getElementById(sentence_id).name;
+        // let sentence_element = document.getElementById(sentence_id);
+        // let element_components = this.get_noun_components(sentence_element);
+
+        let diacritics = [];
+        if (element_components["diacritic_top_name"]!== undefined){
+            let diacritic_name = this.symbol_name_to_library_and_name(element_components["diacritic_top_name"])["symbol_name"];
+            diacritics.push(diacritic_name);
+        }
+        if (element_components["diacritic_bottom_name"]!== undefined){
+            let diacritic_name = this.symbol_name_to_library_and_name(element_components["diacritic_bottom_name"])["symbol_name"];
+            diacritics.push(diacritic_name);
+        }
+        return diacritics;
+    }
 
     get_diacritics_from_dictionary_symbol(full_name){
         
