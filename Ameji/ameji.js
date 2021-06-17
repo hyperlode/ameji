@@ -13,9 +13,28 @@ class Ameji {
         this.ameji_dictionary_library = JSON.parse(ameji_dictionary_JSON);
         this.ameji_diacritics_library = JSON.parse(ameji_diacritics_JSON);
 
+        this.allowed_ameji_dictionary_types = ["combo", "proper noun", "name", "compare", "single", "sentence", "expression"];
+
         this.symbol_folders = {"ameji":"ameji_basic_618x618","openmoji":"emoji_blackwhite_72x72", "ameji-punctuation":"ameji_punctuation_309x618", "ameji-diacritics":"ameji_diacritics_618x102"};
         
         this.baseDiv = document.getElementById("base");
+        
+        this.saveLoadDiv = addDiv(this.baseDiv, "sentence", "sentence-builder__sentence");
+        // this.saveLoadDiv.style.display = "none";
+        
+        this.jsonTextArea = addTextArea(this.saveLoadDiv, "ameji-json", "ameji-json", 5, 100, "json here");
+        addBr(this.saveLoadDiv);
+        this.jsonIdTextBox = addTextBox(this.saveLoadDiv, "id", "jsonIdTextBox", "jsonIdTextBox", 20);
+        this.jsonTypeTextBox = addTextBox(this.saveLoadDiv, "type", "jsonTypeTextBox", "jsonTypeTextBox", 20);
+        this.jsonMeaningTextBox = addTextBox(this.saveLoadDiv, "meaning(csv)", "jsonMeaningTextBox", "jsonMeaningTextBox", 20);
+        addBr(this.saveLoadDiv);
+        addButton(this.saveLoadDiv, "Sentence To Text", "btnToText", "btnToText", this.sentence_to_minimal_json.bind(this));
+        addButton(this.saveLoadDiv, "Text To Sentence", "btnToSentence", "btnToSentence", this.minimal_json_to_sentence.bind(this));
+        addButton(this.saveLoadDiv, "Sentence To JSON", "btnToJSON", "btnToJSON", this.sentence_to_full_json.bind(this));
+        addButton(this.saveLoadDiv, "One Selected symbol to Ameji Standard ", "btnVisibleToAmejiStandard", "btnVisibleToAmejiStandard", this.selected_symbol_to_ameji_standard.bind(this));
+        addButton(this.saveLoadDiv, "Selected symbols to Ameji Standard Word ", "btnVisibleToAmejiStandard", "btnVisibleToAmejiStandard", this.selected_symbols_to_ameji_standard_word.bind(this));
+        
+        
         this.sentenceDiv = addDiv(this.baseDiv, "sentence", "sentence-builder__sentence");
         this.sentenceControlsButtonsDiv = addDiv(this.baseDiv, "sentenceControls", "sentence-builder__controls");
         addBr(this.baseDiv);
@@ -24,26 +43,16 @@ class Ameji {
         this.recentDiv.style.display = "none";
         addBr(this.baseDiv);
         
-        this.saveLoadDiv = addDiv(this.baseDiv, "sentence", "sentence-builder__sentence");
-        // this.saveLoadDiv.style.display = "none";
-        
-        this.jsonTextArea = addTextArea(this.saveLoadDiv, "ameji-json", "ameji-json", 5, 100, "json here");
-        addBr(this.saveLoadDiv);
-        addButton(this.saveLoadDiv, "Sentence To Text", "btnToText", "btnToText", this.sentence_to_minimal_json.bind(this));
-        addButton(this.saveLoadDiv, "Text To Sentence", "btnToSentence", "btnToSentence", this.minimal_json_to_sentence.bind(this));
-        addButton(this.saveLoadDiv, "Sentence To JSON", "btnToJSON", "btnToJSON", this.sentence_to_full_json.bind(this));
-        addButton(this.saveLoadDiv, "One Selected symbol to Ameji Standard ", "btnVisibleToAmejiStandard", "btnVisibleToAmejiStandard", this.selected_symbol_to_ameji_standard.bind(this));
-        addButton(this.saveLoadDiv, "Selected symbols to Ameji Standard Word ", "btnVisibleToAmejiStandard", "btnVisibleToAmejiStandard", this.selected_symbols_to_ameji_standard_word.bind(this));
         
         this.symbolPickerDiv = addDiv(this.baseDiv, "symbolPicker", "sentence-builder__symbol-picker");
         addBr(this.baseDiv);
         
         this.baseDiv.className = "sentence-builder";
         
-        addButton(this.sentenceControlsButtonsDiv, "Deselect all", "btnDeselectAll", "btnDeselectAll", this.deselect_all.bind(this));
         addButton(this.sentenceControlsButtonsDiv, "Select all", "btnSelectAll", "btnSelectAll", this.select_all.bind(this));
-        addButton(this.sentenceControlsButtonsDiv, "Select Next", "btnSelectNext", "btnSelectNext", this.select_next_element_in_sentence.bind(this));
         addButton(this.sentenceControlsButtonsDiv, "Delete selected", "btnDelete", "btnDelete", this.sentence_delete_selected.bind(this));
+        addButton(this.sentenceControlsButtonsDiv, "Deselect all", "btnDeselectAll", "btnDeselectAll", this.deselect_all.bind(this));
+        addButton(this.sentenceControlsButtonsDiv, "Select Next", "btnSelectNext", "btnSelectNext", this.select_next_element_in_sentence.bind(this));
         addButton(this.sentenceControlsButtonsDiv, "Insert New line", "btnNewLine", "btnNewLine", this.add_new_line_symbol.bind(this));
         addButton(this.sentenceControlsButtonsDiv, "Explode Selected Words", "btnExplode", "btnExplode", this.explode_selection.bind(this));
         addButton(this.sentenceControlsButtonsDiv, "Toggle Recently Used", "btnToggleRecent", "btnToggleRecent", this.toggle_recent_visibility.bind(this));
@@ -96,7 +105,17 @@ class Ameji {
 
     selected_symbols_to_ameji_standard_word(){
 
-        let word_data = {"id":"XXXXXXX", "meaning":[],"type":"combo"};
+        let word_data = {
+            "id":this.jsonIdTextBox.value,
+            "meaning":this.jsonMeaningTextBox.value.split(","),
+            "type":this.jsonTypeTextBox.value
+        };
+
+            
+        if (!this.allowed_ameji_dictionary_types.includes(word_data["type"])){
+            alert("type " +  + "not allowed. Choose from: " + this.allowed_ameji_dictionary_types.join(", "));
+        }
+        
         let all_symbols_files = [];
         for (let i=0;i<this.sentence_selected_ids.length;i++){
             
@@ -111,7 +130,8 @@ class Ameji {
 
             // replace original diacritics with sentence diacritics
             let diacritics= this.get_diacritcs_as_array_from_metadata(element_metadata);
-            if (diacritics.length>0){
+            
+            if (diacritics !== undefined){
                 files_data[2] = diacritics;
             }
             
@@ -178,7 +198,6 @@ class Ameji {
             
             symbol_data["files"] = temp_symbol_data["files"];
 
-            console.log(diacritics);
             if (diacritics !== undefined){
                 symbol_data["files"][0][2] = diacritics;
             }
@@ -443,7 +462,7 @@ class Ameji {
         // split fullname into components. library_symbolname-efijesf
         // splits at first _
         // if no underscore present, will only return "element_name"
-        
+
         let split_name = {};
         
         let [library_name, ...symbol_name] = name.split('_');
@@ -558,9 +577,11 @@ class Ameji {
             let element = document.getElementById(element_in_sentence_id);
             let full_name = element.name;
             let name_data = this.split_full_name_to_library_and_name(full_name);
-
+            
             if (name_data["library_name"] === "ameji-word"){
-                let word_components = this.get_sentence_element_metadata(element_in_sentence_id);
+                let element_data = this.get_sentence_element_metadata(element_in_sentence_id);
+                let word_data = element_data["word_data"];
+                let word_components = word_data["word_components"];
                 for (let i=0; i<word_components.length; i++){
                     let symbol_components = word_components[i];
                     this.add_to_sentence_by_element_components(symbol_components);
@@ -676,6 +697,11 @@ class Ameji {
         element_data["reference"] = [library_name, element_name];
         if (library_name === "ameji-word"){
 
+            // add all symbols (symbol + diacritics.)
+            
+            element_data["word_data"] = this.get_sentence_word_to_symbols(sentence_element);
+
+
         }else if (library_name === "ameji-punctuation"){
             
             
@@ -712,7 +738,6 @@ class Ameji {
             element = this.create_punctuation(full_name, full_name);
             
         }else{
-            console.log(element_metadata);
             element = this.create_noun(full_name, full_name, element_metadata["diacritic_top_name"], element_metadata["diacritic_bottom_name"]);
         }
 
@@ -1254,7 +1279,7 @@ class Ameji {
         // element_metadata = dict with all metadata
         
         // returns short names
-        console.log(element_metadata);
+        // console.log(element_metadata);
 
         let diacritics = [];
         if (element_metadata["diacritic_top_name"]!== undefined ){

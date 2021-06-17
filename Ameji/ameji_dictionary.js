@@ -39,6 +39,7 @@ var ameji_dictionary_JSON = `{
         "files":[["openmoji","1F5FE.png",["gen"]],["openmoji","1F337.png"],["openmoji","1F6B4-200D-2642-FE0F.png"],["openmoji","1F3D4.png",["no"]],["openmoji","26F5.png",["yes"]]],
         "meaning":["Netherlands", "country", "Europe", "European Union", "Holland","Hup", "Orange"]},
     "Canada":{"id":"Canada","meaning":["Canada", "Country"],"type":"proper noun","files":[["openmoji","1F5FE.png",["gen","name"]],["openmoji","1F341.png",["blank","name"]],["openmoji","1F43B-200D-2744-FE0F.png",["blank","name"]],["openmoji","1F3D2.png",["blank","name"]]]},
-    "Shane":{"id":"Shane","meaning":[],"type":"proper name","files":[["openmoji","1F436.png",["blank","name"]],["openmoji","1F436.png",["blank","name"]],["openmoji","1F469-200D-1F9B1.png",["blank","name"]]]}
+    "Shane":{"id":"Shane","meaning":[],"type":"proper noun","files":[["openmoji","1F436.png",["blank","name"]],["openmoji","1F436.png",["blank","name"]],["openmoji","1F469-200D-1F9B1.png",["blank","name"]]]},
+    "Andi":{"id":"Andi","meaning":["Andi", "Andrea", "Passmore"],"type":"proper noun","files":[["openmoji","1F469-200D-1F52C.png",["blank","name"]],["openmoji","1F3C6.png",["blank","name"]],["openmoji","1F3B9.png",["blank","name"]],["openmoji","1F469-200D-1F393.png",["combo","name"]],["openmoji","1F4AF.png",["combo","name"]],["openmoji","1F94F.png",["blank","name"]]]}
     
 }`
