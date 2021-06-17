@@ -26,7 +26,7 @@ var ameji_dictionary_JSON = `{
     "Belgium":{
         "id":"Belgium",
         "type":"proper noun",
-        "files":[["openmoji","1F36B.png"], ["openmoji","1F5FE.png"], ["openmoji","1F9C7.png"],["openmoji","1F37A.png"]],
+        "files":[["openmoji","1F5FE.png",["gen"]],["openmoji","1F36B.png"],  ["openmoji","1F9C7.png"],["openmoji","1F37A.png"]],
         "meaning":["Belgium", "country", "Europe", "European Union", "Brussels"]},
     "Lode":{
         "id":"Lode",
@@ -37,5 +37,8 @@ var ameji_dictionary_JSON = `{
         "id":"Netherlands",
         "type":"proper noun",
         "files":[["openmoji","1F5FE.png",["gen"]],["openmoji","1F337.png"],["openmoji","1F6B4-200D-2642-FE0F.png"],["openmoji","1F3D4.png",["no"]],["openmoji","26F5.png",["yes"]]],
-        "meaning":["Netherlands", "country", "Europe", "European Union", "Holland","Hup", "Orange"]}
+        "meaning":["Netherlands", "country", "Europe", "European Union", "Holland","Hup", "Orange"]},
+    "Canada":{"id":"Canada","meaning":["Canada", "Country"],"type":"proper noun","files":[["openmoji","1F5FE.png",["gen","name"]],["openmoji","1F341.png",["blank","name"]],["openmoji","1F43B-200D-2744-FE0F.png",["blank","name"]],["openmoji","1F3D2.png",["blank","name"]]]},
+    "Shane":{"id":"Shane","meaning":[],"type":"proper name","files":[["openmoji","1F436.png",["blank","name"]],["openmoji","1F436.png",["blank","name"]],["openmoji","1F469-200D-1F9B1.png",["blank","name"]]]}
+    
 }`
