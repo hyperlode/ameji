@@ -40,6 +40,8 @@ var ameji_dictionary_JSON = `{
         "meaning":["Netherlands", "country", "Europe", "European Union", "Holland","Hup", "Orange"]},
     "Canada":{"id":"Canada","meaning":["Canada", "Country"],"type":"proper noun","files":[["openmoji","1F5FE.png",["gen","name"]],["openmoji","1F341.png",["blank","name"]],["openmoji","1F43B-200D-2744-FE0F.png",["blank","name"]],["openmoji","1F3D2.png",["blank","name"]]]},
     "Shane":{"id":"Shane","meaning":[],"type":"proper noun","files":[["openmoji","1F436.png",["blank","name"]],["openmoji","1F436.png",["blank","name"]],["openmoji","1F469-200D-1F9B1.png",["blank","name"]]]},
+    "Sung":{"id":"Sung","meaning":[""],"type":"name","files":[["openmoji","1F468-200D-1F9B0.png",["blank","name"]],["openmoji","2797.png",["combo","name"]],["openmoji","2716.png",["combo","name"]],["openmoji","1F4D0.png",["combo","name"]],["openmoji","1F3AD.png",["blank","name"]],["openmoji","1F38D.png",["blank","name"]]]},
+    "id":{"id":"","meaning":[""],"type":"combo","files":[["ameji","circle-60degrees-cutout"],["openmoji","1F60A.png",["sym"]],["ameji-punctuation","value-relative-posneg-4"],["openmoji","1F91D.png"],["ameji","circle-half-strikethrough-horizontal"]]},
     "Andi":{"id":"Andi","meaning":["Andi", "Andrea", "Passmore"],"type":"proper noun","files":[["openmoji","1F469-200D-1F52C.png",["blank","name"]],["openmoji","1F3C6.png",["blank","name"]],["openmoji","1F3B9.png",["blank","name"]],["openmoji","1F469-200D-1F393.png",["combo","name"]],["openmoji","1F4AF.png",["combo","name"]],["openmoji","1F94F.png",["blank","name"]]]}
     
 }`

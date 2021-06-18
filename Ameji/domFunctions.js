@@ -200,9 +200,29 @@
 		elementToAttachTo.appendChild(input);
 		return input
 	}
+
+	function addTextBoxWithLabel(elementToAttachTo,text,name,id,size, labelCaption){
+		var input = document.createElement("input");
+		input.type = "text";
+		input.id = id;
+		input.name = name;
+		input.value  = text;
+		input.size  = size;
+		elementToAttachTo.appendChild(input);
+
+		var label = document.createElement('label');
+		label.setAttribute("for",input.id);
+		label.setAttribute ("id",id+"_label");
+		label.innerHTML = labelCaption;
+		elementToAttachTo.appendChild(label);
+		
+		return input
+	}
 	
 
 	function addCheckBox(elementToAttachTo,id, name, checked, caption){
+		// document.getElementById("myCheck").checked = false; --> to test for value.
+
 		var checkbox = document.createElement('input');
 		checkbox.type = "checkbox";
 		checkbox.name = name;
@@ -215,6 +235,7 @@
 		label.setAttribute ("id",id+"_label");
 		label.innerHTML = caption;
 		elementToAttachTo.appendChild(label);
+		return checkbox;
 	}
 	
 	function addButtonToExecuteGeneralFunction(elementToAttachTo,caption,name, id, func,arg, shortcut){

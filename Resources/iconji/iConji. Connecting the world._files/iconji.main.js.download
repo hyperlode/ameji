@@ -1,0 +1,65 @@
+$(document).ready(function(){
+// play intro video in modal
+if ($("a.play_demo")){
+	$("a.play_demo").fancybox({
+		padding: 10,
+		scrolling: 'no',
+		centerOnScroll: true
+	});
+}
+// play iConji Life video in modal
+if ($("a.play_iconji_life")){
+	$("a.play_iconji_life").fancybox({
+		padding: 10,
+		scrolling: 'no'
+	});
+}
+
+// open web app in new window
+$('.launch_web_app, #launch_iconji').popupWindow({ 
+	height:600, 
+	width:360,
+	centerScreen:1,
+	location: 0
+});
+$('.launch_social_app').popupWindow({ 
+	height:540, 
+	width:340,
+	centerScreen:1,
+	location: 0
+});
+// open FB app in new window
+$('.launch_fb_app').popupWindow({ 
+	height:688, 
+	width:360,
+	centerScreen:1,
+	location: 0
+});
+
+// For comparison tables, will set the cell class to 'yes' or 'no' if the text matches
+$('tbody tr td').each(function(){
+	if ($(this).text() == "Yes"){
+		$(this).attr("class", "yes");
+	} else if ($(this).text() == "No"){
+		$(this).attr("class", "no");
+	}
+});
+// Add class to current sub nav link
+window.$nav =
+{
+	mainNav: "#main_nav",
+	subNav: ".sub_nav",
+	currentNavClass: "current",
+	path1: window.location.pathname.split("/")[1],
+	path2: window.location.pathname.substring(1)
+}
+$(function(){
+	if ($nav.path1){
+		$($nav.mainNav + ' a[href*="' + $nav.path1 + '"]').attr("class", $nav.currentNavClass);
+	}
+	if ($nav.path2) {
+		$($nav.subNav + ' a[href$="' + $nav.path2 + '"]').attr("class", $nav.currentNavClass);
+	}
+});
+
+});

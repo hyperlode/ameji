@@ -131,56 +131,56 @@ def ummoji_metadata_to_tags(ummoji_metadata_path):
     # print("1f3cc" in list (filtered_tags))
     return filtered_tags
 
-def create_ameji_metadata_from_emoji(folder, unicode_to_tags):
+# def create_ameji_metadata_from_emoji(folder, unicode_to_tags):
 
-    '''
-    // layout: {
-    //  type: --. "proper noun", "synonyms" ("it IS (every given symbol IS it)"), "properties"("it HAS (all given symbols contribute towards the meaning. i.e. )"), "basic", "brand"
-    //  files: for every symbol: [type of file, name, [list with diacritics (if none, don't add a list)] diacritics: verb, gen, lit, sym]
-    //  meaning: [list of translations (english... )]
-    //  id: "word identifier"
-    '''
+#     '''
+#     // layout: {
+#     //  type: --. "proper noun", "synonyms" ("it IS (every given symbol IS it)"), "properties"("it HAS (all given symbols contribute towards the meaning. i.e. )"), "basic", "brand"
+#     //  files: for every symbol: [type of file, name, [list with diacritics (if none, don't add a list)] diacritics: verb, gen, lit, sym]
+#     //  meaning: [list of translations (english... )]
+#     //  id: "word identifier"
+#     '''
 
-    got_extra_tags = 0
+#     got_extra_tags = 0
 
-    files = sorted(Path(folder).glob('*.*'))
+#     files = sorted(Path(folder).glob('*.*'))
     
 
-    symbols = []
-    for file in files:
-        filename = Path(file).name
-        name = Path(file).stem
+#     symbols = []
+#     for file in files:
+#         filename = Path(file).name
+#         name = Path(file).stem
 
-        if ("skin-tone" in name):
-            continue
+#         if ("skin-tone" in name):
+#             continue
 
-        name_parts = re.split('-|_', name)  # https://stackoverflow.com/questions/4998629/split-string-with-multiple-delimiters-in-python
+#         name_parts = re.split('-|_', name)  # https://stackoverflow.com/questions/4998629/split-string-with-multiple-delimiters-in-python
         
-        main_name = name_parts[0]
+#         main_name = name_parts[0]
 
-        # unicode = name_parts[-1]
+#         # unicode = name_parts[-1]
 
-        tags = name_parts
+#         tags = name_parts
         
-        for unicode_to_test in name_parts:
-            # try each part as its unicode 
-            # if "1f436" == unicode_to_test:
-            #     print("ahola")
-            if unicode_to_test in list(unicode_to_tags):
-                got_extra_tags+=1
+#         for unicode_to_test in name_parts:
+#             # try each part as its unicode 
+#             # if "1f436" == unicode_to_test:
+#             #     print("ahola")
+#             if unicode_to_test in list(unicode_to_tags):
+#                 got_extra_tags+=1
 
-                tags.extend(unicode_to_tags[unicode_to_test])
+#                 tags.extend(unicode_to_tags[unicode_to_test])
 
-        symbol_meta = {"file":filename, "meaning":{main_name : {"synonyms":tags, "value":"-", "dia_top":"-", "dia_bot":"-"}}}
-        symbols.append(symbol_meta)
+#         symbol_meta = {"file":filename, "meaning":{main_name : {"synonyms":tags, "value":"-", "dia_top":"-", "dia_bot":"-"}}}
+#         symbols.append(symbol_meta)
 
-        symbol_meta = {"file":filename, "meaning":{main_name : {"synonyms":tags, "value":"-", "dia_top":"-", "dia_bot":"-"}}}
+#         symbol_meta = {"file":filename, "meaning":{main_name : {"synonyms":tags, "value":"-", "dia_top":"-", "dia_bot":"-"}}}
         
        
-    print("got extra tags: {}".format(got_extra_tags))
-    symbols_json = json.dumps(symbols)
-    with open(Path(folder,"metadata.json"),"w") as f:
-        f.write(symbols_json)
+#     print("got extra tags: {}".format(got_extra_tags))
+#     symbols_json = json.dumps(symbols)
+#     with open(Path(folder,"metadata.json"),"w") as f:
+#         f.write(symbols_json)
 
 def create_ameji_from_emoji_files(output_folder, emoji_folder, unicode_to_tags, disregard_modifiers=True):
 
