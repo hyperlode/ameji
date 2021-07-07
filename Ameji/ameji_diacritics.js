@@ -1,15 +1,19 @@
 
 
 var ameji_diacritics_JSON = `{
-    "gen":{"id":"gen","type":"diacritic","files":[["ameji-diacritics","dot.png"]],"meaning":["generalized"]},
-    "gen2":{"id":"gen2","type":"diacritic","files":[["ameji-diacritics","dot-double.png"]],"meaning":["super generalized"]},
+    "sym":{"id":"gen","type":"diacritic","files":[["ameji-diacritics","dot.png"]],"meaning":["symbolic meaning"]},
+    "sym2":{"id":"sym2","type":"diacritic","files":[["ameji-diacritics","dot-double.png"]],"meaning":["super symbolic"]},
     "verb":{"id":"verb","type":"diacritic","files":[["ameji-diacritics","arrow-right.png"]],"meaning":["verb", "transitive verb"]},
     "verb2":{"id":"verb2","type":"diacritic","files":[["ameji-diacritics","arrow-double.png"]],"meaning":["verb", "intransitive verb"]},
-    "sym":{"id":"sym","type":"diacritic","files":[["ameji-diacritics","squiggle.png"]],"meaning":["symbolic meaning"]},
+    "gen":{"id":"gen","type":"diacritic","files":[["ameji-diacritics","squiggle.png"]],"meaning":["valuge", "related to", "has something to do with"]},
     "lit":{"id":"lit","type":"diacritic","files":[["ameji-diacritics","line.png"]],"meaning":["literal meaning"]},
     "blank":{"id":"blank","type":"diacritic","files":[["ameji-diacritics","empty.png"]],"meaning":["no diacritic"]},
     "name":{"id":"name","type":"diacritic","files":[["ameji-diacritics","line-full-width.png"]],"meaning":["proper noun"]},
     "combo":{"id":"combo","type":"diacritic","files":[["ameji-diacritics","line-dashed-full-width.png"]],"meaning":["combination of symbols"]},
+    "has2":{"id":"has","type":"diacritic","files":[["ameji-diacritics","arrow-compact-down.png"]],"meaning":["has as part"]},
+    "has":{"id":"has2","type":"diacritic","files":[["ameji-diacritics","arrow-down.png"]],"meaning":["has as part"]},
+    "is2":{"id":"is","type":"diacritic","files":[["ameji-diacritics","arrow-compact-up.png"]],"meaning":["is part of"]},
+    "is":{"id":"is2","type":"diacritic","files":[["ameji-diacritics","arrow-up.png"]],"meaning":["is part of"]},
     "yes":{"id":"yes","type":"diacritic","files":[["ameji-diacritics","checkmark.png"]],"meaning":["yes", "affirmitive", "positive", "right"]},
     "no":{"id":"no","type":"diacritic","files":[["ameji-diacritics","cross-diagonal.png"]],"meaning":["no", "negative", "wrong"]}
 }`;

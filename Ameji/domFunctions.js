@@ -238,6 +238,13 @@
 		return checkbox;
 	}
 	
+	function addLabel(elementToAttachTo, id, caption){
+		var label = document.createElement('label');
+		label.setAttribute ("id",id);
+		label.innerHTML = caption;
+		elementToAttachTo.appendChild(label);
+	}
+
 	function addButtonToExecuteGeneralFunction(elementToAttachTo,caption,name, id, func,arg, shortcut){
 		// shortcut: this should be a keyboard letter (no special ones...), the shortcut works then as ALT + [letter]
 	    var button = document.createElement("input");
