@@ -44,8 +44,8 @@ class Ameji {
         
         this.jsonTextArea = addTextArea(this.saveLoadDiv, "ameji-json", "ameji-json", 5, 100, "json here");
         addBr(this.saveLoadDiv);
-        addButton(this.saveLoadDiv, "Sentence To Text", "btnToText", "btnToText", this.sentence_to_minimal_json_textbox.bind(this));
-        addButton(this.saveLoadDiv, "Text To Sentence", "btnToSentence", "btnToSentence", this.textbox_minimal_json_to_sentence.bind(this));
+        addButton(this.saveLoadDiv, "Save as Text", "btnToText", "btnToText", this.sentence_to_minimal_json_textbox.bind(this));
+        addButton(this.saveLoadDiv, "Load from Text", "btnToSentence", "btnToSentence", this.textbox_minimal_json_to_sentence.bind(this));
         addBr(this.saveLoadDiv);
         this.jsonIdTextBox = addTextBoxWithLabel(this.saveLoadDiv, "", "jsonIdTextBox", "jsonIdTextBox", 20, "Id");
         this.jsonTypeTextBox = addTextBoxWithLabel(this.saveLoadDiv, "combo", "jsonTypeTextBox", "jsonTypeTextBox", 20, "type");
@@ -68,14 +68,14 @@ class Ameji {
         
         this.baseDiv.className = "sentence-builder";
         
-        addButton(this.sentenceControlsButtonsDiv, "Select all", "btnSelectAll", "btnSelectAll", this.select_all.bind(this));
-        addButton(this.sentenceControlsButtonsDiv, "Delete selected", "btnDelete", "btnDelete", this.sentence_delete_selected.bind(this));
-        addButton(this.sentenceControlsButtonsDiv, "Deselect all", "btnDeselectAll", "btnDeselectAll", this.deselect_all.bind(this));
+        addButton(this.sentenceControlsButtonsDiv, "Select all [x]", "btnSelectAll", "btnSelectAll", this.select_all.bind(this),"x");
+        addButton(this.sentenceControlsButtonsDiv, "Delete selected [z]", "btnDelete", "btnDelete", this.sentence_delete_selected.bind(this),"z");
+        addButton(this.sentenceControlsButtonsDiv, "Unselect all [c]", "btnDeselectAll", "btnDeselectAll", this.deselect_all.bind(this),"c");
         
-        addButton(this.sentenceControlsButtonsDiv, "Move <", "btnMoveBackward", "btnMoveBackward", this.move_element_in_sentence_backward.bind(this));
-        addButton(this.sentenceControlsButtonsDiv, "<", "btnSelectPrevious", "btnSelectPrevious", this.select_previous_element_in_sentence.bind(this));
-        addButton(this.sentenceControlsButtonsDiv, ">", "btnSelectNext", "btnSelectNext", this.select_next_element_in_sentence.bind(this));
-        addButton(this.sentenceControlsButtonsDiv, "Move >", "btnMoveForward", "btnMoveForward", this.move_element_in_sentence_forward.bind(this));
+        addButton(this.sentenceControlsButtonsDiv, "Move < [a]", "btnMoveBackward", "btnMoveBackward", this.move_element_in_sentence_backward.bind(this),"a");
+        addButton(this.sentenceControlsButtonsDiv, "< [h]", "btnSelectPrevious", "btnSelectPrevious", this.select_previous_element_in_sentence.bind(this),"h");
+        addButton(this.sentenceControlsButtonsDiv, "> [l]", "btnSelectNext", "btnSelectNext", this.select_next_element_in_sentence.bind(this),"l");
+        addButton(this.sentenceControlsButtonsDiv, "Move > [r]", "btnMoveForward", "btnMoveForward", this.move_element_in_sentence_forward.bind(this),"r");
         
 
         addButton(this.sentenceControlsButtonsDiv, "Insert New line", "btnNewLine", "btnNewLine", this.add_new_line_symbol.bind(this));
@@ -87,14 +87,22 @@ class Ameji {
         addBr(this.sentenceControlsButtonsDiv);
 
 
-
-
+        
         this.diacriticsTopPickerField = addDiv(this.symbolPickerDiv, "diacriticsTopPicker", "sentence-builder__symbol-picker__diacritics-picker");
         this.diacriticsBottomPickerField = addDiv(this.symbolPickerDiv, "diacriticsBottomPicker", "sentence-builder__symbol-picker__diacritics-picker");
         addBr(this.baseDiv);
-        this.punctuationPickerField = addDiv(this.symbolPickerDiv, "punctuationPicker", "sentence-builder__symbol-picker__punctuation-picker");
         
-        this.properNounsPickerField = addDiv(this.symbolPickerDiv, "properNounsPicker", "sentence-builder__symbol-picker__proper-nouns-picker");        
+        this.searchField_quickpick = addTextBox(this.symbolPickerDiv, "", "txtBoxSearchQuickPick", "txtBoxSearchQuickPick", 30);
+        this.add_search_at_type_event(this.searchField_quickpick);
+        this.quickPickField = addDiv(this.symbolPickerDiv, "quickPicker", "sentence-builder__symbol-picker__quick-picker");
+        addBr(this.baseDiv);
+        
+        this.searchField_punctuation = addTextBox(this.symbolPickerDiv, "", "txtBoxSearchPunctuation", "txtBoxSearchPunctuation", 30);
+        this.add_search_at_type_event(this.searchField_punctuation);
+        this.punctuationPickerField = addDiv(this.symbolPickerDiv, "punctuationPicker", "sentence-builder__symbol-picker__punctuation-picker");
+        addBr(this.baseDiv);
+       
+        // this.properNounsPickerField = addDiv(this.symbolPickerDiv, "properNounsPicker", "sentence-builder__symbol-picker__proper-nouns-picker");        
         this.searchField_nouns = addTextBox(this.symbolPickerDiv, "", "txtBoxSearchNouns", "txtBoxSearchNouns", 30);
         this.add_search_at_type_event(this.searchField_nouns);
         this.nounPickerField = addDiv(this.symbolPickerDiv, "nounPicker", "sentence-builder__symbol-picker__noun-picker");
@@ -111,20 +119,15 @@ class Ameji {
         this.populate_diacritics_top_picker();
         this.populate_diacritics_bottom_picker();
 
+        this.populate_quick_picker()
         this.populate_noun_picker();
         this.populate_emoji_picker();
         this.populate_ameji_dictionary_picker();
 
         this.sentence_element_count = 0;
-        this.punctuation_count = 0;
-        this.noun_count = 0;
-        
         this.sentence_selected_ids = [];
-
         this.sentence_symbol_sequence = [];
-        
         this.recent_symbols_sequence_ids = [];
-
         this.saved_sentences_count = 0;
 
         this.load_local_file("file:///C:/temp/test.txt");
@@ -147,8 +150,6 @@ class Ameji {
             ]`
         this.minimal_json_to_sentence(example_sentence_json);
         this.save_sentence_to_picture();
-        
-
     }
 
     selected_symbols_to_ameji_standard(){
@@ -222,6 +223,7 @@ class Ameji {
         for(var i=0;i<this.sentence_symbol_sequence.length;i++){
             let id = this.sentence_symbol_sequence[i];
             let element_metadata = this.get_sentence_element_metadata(id);
+            // console.log(element_metadata);
             let files_data_json = this.metadata_to_minimal_json(element_metadata);
             json_strings.push(files_data_json);
         }
@@ -399,7 +401,7 @@ class Ameji {
         this.minimal_json_to_sentence(minimal_json);
     }
 
-    // ------------------------------
+    // ---------------- SYMBOL PICKER ------------------------------
 
     load_local_file(file_path){
         async function loadFile(file_path) {
@@ -412,6 +414,7 @@ class Ameji {
         elementToAttachTo.addEventListener("change",
             function (event) {
                 
+                this.populate_quick_picker();
                 this.populate_noun_picker();
                 this.populate_punctuation_picker();
                 this.populate_emoji_picker();
@@ -441,96 +444,85 @@ class Ameji {
     }
     
     populate_punctuation_picker() {
-        this.punctuationPickerField.innerHTML = "";
-        for (var punctuation in this.ameji_punctuation_library){
-            let full_name = "ameji-punctuation_" + punctuation;
-            let symbolElement = this.add_punctuation(this.punctuationPickerField, full_name, full_name);
-            this.add_punctuation_click_event(symbolElement);
-        }
+        this.populate_picker(this.punctuationPickerField,["ameji-punctuation"],this.searchField_punctuation,true);
     }
     
     populate_ameji_dictionary_picker(){
-        this.populate_word_picker(this.amejiDictionaryPickerField, this.searchField_dictionary );
-    }
-
-    populate_word_picker(elementToPopulate, searchField){
-        elementToPopulate.innerHTML = "";
-        let search_string = searchField.value.toLowerCase();
-        
-        for (var word_id in this.ameji_dictionary_library){
-            let all_meanings = "";
-            let word = this.ameji_dictionary_library[word_id];
-            let full_name = "ameji-word_" + word_id;
-
-            for (var i=0;i<word["meaning"].length;i++){
-                all_meanings += word["meaning"][i].toLowerCase();
-            }
-
-            if (all_meanings.includes(search_string) || searchField.value === "") {
-                
-                let wordDiv = this.ameji_word_name_to_div(full_name);
-                wordDiv.setAttribute("data-tooltip", word_id);
-                this.add_word_click_event(wordDiv);
-                elementToPopulate.appendChild(wordDiv);
-
-                // separate every word with punctuation
-                this.add_punctuation(elementToPopulate,"divider","ameji-punctuation_empty");
-            }
-        }
+        // this.populate_word_picker(this.amejiDictionaryPickerField, this.searchField_dictionary );
+        this.populate_picker(this.amejiDictionaryPickerField,["ameji-word"],this.searchField_dictionary,true);
     }
     
+    populate_quick_picker() {
+        this.populate_picker(this.quickPickField, ["openmoji", "iconji", "brands", "ameji", "ameji-word", "ameji-punctuation"], this.searchField_quickpick, false);
+    }
+
     populate_noun_picker() {
-        this.populate_basic_symbol_picker(this.nounPickerField, ["ameji"], this.searchField_nouns);
+        this.populate_picker(this.nounPickerField, ["ameji"], this.searchField_nouns, true);
     }
     
     populate_emoji_picker() {
-        this.populate_basic_symbol_picker(this.emojiPickerField, ["openmoji", "iconji", "brands"], this.searchField_emoji );
+        this.populate_picker(this.emojiPickerField, ["openmoji", "iconji", "brands"], this.searchField_emoji, true);
     }
        
-    populate_basic_symbol_picker(elementToPopulate, library_names,  searchField){
+    populate_picker(elementToPopulate, library_names, searchField, show_all_if_empty_search){
         
         elementToPopulate.innerHTML = "";
         let search_string = searchField.value.toLowerCase();
         
+        if (searchField.value === "" && !show_all_if_empty_search){
+            return;
+        }
+
         for (let library_index in library_names){
             let library_name = library_names[library_index];
-        
+            
             let library = this.libraries[library_name];
-            for (var symbol_id in library){
-                let symbol = library[symbol_id];
-                
-                let name = library_name + "_" + symbol["id"];
-                
-                let symbol_file_properties = symbol["files"][0];
-                let symbol_folder = this.symbol_folders[symbol_file_properties[0]];
-                let symbol_file_name = symbol_file_properties[1];
-                let diacritics = symbol_file_properties[2];
-                
-                let meanings = symbol["meaning"];
-                let all_meanings = symbol["id"].toLowerCase() + " " + meanings.join(" ").toLowerCase();
-                if (all_meanings.includes(search_string) || searchField.value === "") {
+            
+            for (var id in library){
+                let full_name = library_name + "_" + id;
+                let all_meanings = full_name + this.full_name_to_meaning(full_name, true).join("").toLowerCase();
 
-                    let diacritic_top = undefined;
-                    let diacritic_bottom = undefined;
+                if (all_meanings.includes(search_string) ) {
 
-                    if (diacritics !== undefined){
-                        diacritic_top = diacritics[0];
-                        diacritic_bottom = diacritics[1];
-                    }
-                    
-                    let symbolElement = this.add_noun(
-                        elementToPopulate,
-                        all_meanings,
-                        name,
-                        symbol_folder + "/" + symbol_file_name,
-                        diacritic_top,
-                        diacritic_bottom
-                        )
+                    if (["ameji","openmoji", "iconji"].includes(library_name)){
+                        this.add_noun_to_picker(elementToPopulate, full_name);
+
+                    }else if (library_name === "ameji-word"){
+                        this.add_word_to_picker(elementToPopulate, full_name);
+                        // separate every word with punctuation
+                         this.add_punctuation_independent(elementToPopulate,"divider","ameji-punctuation_empty");
                         
-                    this.add_noun_click_event(symbolElement);
+                    }else if (library_name === "ameji-punctuation"){
+                        this.add_punctuation_to_picker(elementToPopulate, full_name);
+                        console.log("eieiej");
+                    }
                 }
             }
         }
+    }
+
+    add_punctuation_to_picker(elementToAttachTo, full_name){
+        let symbolElement = this.add_punctuation_independent(elementToAttachTo, full_name, full_name, true);
+        this.add_punctuation_click_event(symbolElement);
+    }
+
+    add_word_to_picker(elementToAttachTo, full_name){
+        let wordDiv = this.ameji_word_name_to_div(full_name);
+        
+        let meaning = this.full_name_to_meaning(full_name, false);
+        wordDiv.setAttribute("data-tooltip", meaning);
+        
+        this.add_word_click_event(wordDiv);
+        elementToAttachTo.appendChild(wordDiv);
+    }
+
+    add_noun_to_picker(elementToAttachTo, full_name){
+        let symbolElement = this.add_noun_independent(
+            elementToAttachTo,
+            full_name,
+            full_name
+            )
+        this.add_noun_click_event(symbolElement);
     }
 
     // ---------------- GENERAL --------------------
@@ -558,7 +550,7 @@ class Ameji {
 
         // full_name has the library as its precursor
         // e.a. ameji_hour  =    library ameji, name hour
-
+        
         let split_name = this.split_full_name_to_library_and_name(full_name);
 
         let library_name = split_name["library_name"];
@@ -576,6 +568,107 @@ class Ameji {
         }
      
         return element_data;
+    }
+
+    full_name_to_metadata(full_name){
+        let split_name = this.split_full_name_to_library_and_name(full_name);
+        let metadata = {"full_name":full_name, "library_name":split_name["library_name"], "element_name":split_name["element_name"]}
+        
+        let library = this.libraries[metadata["library_name"]];
+        let library_metadata  = library[metadata["element_name"]];
+        
+        return {...metadata, ...library_metadata};
+    }
+
+    full_name_to_meaning(full_name, as_array){
+
+        let meanings = this.full_name_to_metadata(full_name)["meaning"];
+        if (as_array){
+            return meanings;
+        }else{
+            return meanings.join(", ");
+        }
+    }
+    
+    // -------------------- ELEMENT -------------------
+    create_element_by_element_metadata(element_metadata){
+        let element = undefined;
+        let full_name = element_metadata["full_name"];
+        let library = element_metadata["library_name"];
+
+        if (library === "ameji-word"){
+            element = this.ameji_word_name_to_div(full_name);
+
+        }else if (library === "ameji-punctuation"){
+            
+            element = this.create_punctuation(full_name, full_name);
+            
+        }else{
+            element = this.create_noun(full_name, full_name, element_metadata["diacritic_top_name"], element_metadata["diacritic_bottom_name"]);
+        }
+        return element;
+    }
+
+    minimal_info_array_to_metadata(minimal_info){
+        // accepts: [library, name, [dia_top, dia_bottom]] --> [dia_top, dia_bottom] = optional
+        let element_metadata = {};
+
+
+        element_metadata["library_name"] = minimal_info[0];
+        element_metadata["element_name"] = minimal_info[1];
+        element_metadata["full_name"] = minimal_info[0] + "_" + minimal_info[1];
+
+        if (minimal_info[2]!==undefined){
+            if (minimal_info[2][0] !== undefined){
+                element_metadata["diacritic_top_name"] = minimal_info[2][0];
+            }
+            if (minimal_info[2][1] !== undefined){
+                element_metadata["diacritic_bottom_name"] = minimal_info[2][1];
+            }
+        }
+        return element_metadata;
+    }
+
+    replace_diacritic_to_metadata(element_metadata, diacritic_name, top_else_Bottom ){
+        
+        let position_name = "diacritic_bottom_name";
+        if (top_else_Bottom){
+            position_name = "diacritic_top_name";
+        }
+        
+        element_metadata[position_name] = diacritic_name;
+    }
+
+    get_diacritcs_as_array_from_metadata(element_metadata){
+        // element_metadata = dict with all metadata
+        
+        // returns short names
+        // console.log(element_metadata);
+
+        let diacritics = [];
+        if (element_metadata["diacritic_top_name"]!== undefined ){
+            if (element_metadata["diacritic_top_name"]!== "blank" ){
+
+                let diacritic_name = this.split_full_name_to_library_and_name(element_metadata["diacritic_top_name"])["element_name"];
+                diacritics.push(diacritic_name);
+            }
+        }
+        if (element_metadata["diacritic_bottom_name"]!== undefined){
+            if (element_metadata["diacritic_bottom_name"]!== "blank" ){
+
+                if (diacritics.length === 0){
+                    diacritics.push("blank");
+                }
+                let diacritic_name = this.split_full_name_to_library_and_name(element_metadata["diacritic_bottom_name"])["element_name"];
+                console.log(diacritic_name);
+                diacritics.push(diacritic_name);
+
+            }
+        }
+        if (diacritics.length === 0){
+            diacritics = undefined;
+        }
+        return diacritics;
     }
 
     // ----------------RECENT ----------------------
@@ -685,9 +778,6 @@ class Ameji {
         }
 
         let original_diacritics_data = this.get_diacritics_from_dictionary_symbol(full_name);
-        console.log(full_name);
-        console.log(original_diacritics_data);
-        console.log(sentence_symbol_data);
 
         if (sentence_symbol_data["diacritic_top_name"] !== original_diacritics_data["diacritic_top_name"]){
             console.log("Top diff.");
@@ -782,7 +872,7 @@ class Ameji {
         }else if (library_name === "ameji-punctuation"){
             
             
-        }else if (["ameji","openmoji"].includes(library_name)){
+        }else if (["ameji","openmoji", "iconji"].includes(library_name)){
             var all_data =  this.get_noun_name_and_diacritics(sentence_element);
             // element_data = [library_name,element_name,[all_data["diacritic_top_name"],all_data["diacritic_bottom_name"]]];
             element_data["diacritic_top_name"] = all_data["diacritic_top_name"];
@@ -815,7 +905,6 @@ class Ameji {
         this.add_element_to_sentence(element, "sentence-element", insertBeforeElseAfter);
     }
 
-
     // add_to_sentence_by_element_metadata(element_metadata){
     //     // for one symbol (or word)
     //     // components: object with full_name and (if applicable diacritics)
@@ -837,13 +926,19 @@ class Ameji {
     //     this.add_element_to_sentence(element, "sentence-element");
     // }
 
+    add_element_by_full_name(elementToAttachTo, full_name){
+        let element_metadata = this.full_name_to_metadata(full_name);
+        let element = this.create_element_by_element_metadata(element_metadata);
+        elementToAttachTo.appendChild(element);
+    }
+
     add_to_sentence_by_full_name(full_name){
-        // full name (e.a. ameji-hour)
+        // full name includes libary and name separated by an underscore.  (e.a. ameji_hour)
         // will take from library.
 
         let split_name = this.split_full_name_to_library_and_name(full_name);
-       
-        this.add_to_sentence_by_element_metadata( {"full_name":full_name, "library_name":split_name["library_name"], "element_name":split_name["element_name"]});
+        let metadata = this.full_name_to_metadata(full_name);
+        this.add_to_sentence_by_element_metadata( metadata);
     }
 
     add_punctuation_to_sentence(punctuation_name) {
@@ -1085,91 +1180,11 @@ class Ameji {
     }
 
 
-    // -------------------- ELEMENT -------------------
-    create_element_by_element_metadata(element_metadata){
-        let element = undefined;
-        let full_name = element_metadata["full_name"];
-        let library = element_metadata["library_name"];
-
-        if (library === "ameji-word"){
-            element = this.ameji_word_name_to_div(full_name);
-
-        }else if (library === "ameji-punctuation"){
-            
-            element = this.create_punctuation(full_name, full_name);
-            
-        }else{
-            element = this.create_noun(full_name, full_name, element_metadata["diacritic_top_name"], element_metadata["diacritic_bottom_name"]);
-        }
-        return element;
-    }
-
-    minimal_info_array_to_metadata(minimal_info){
-        // accepts: [library, name, [dia_top, dia_bottom]] --> [dia_top, dia_bottom] = optional
-        let element_metadata = {};
     
-    
-        element_metadata["library_name"] = minimal_info[0];
-        element_metadata["element_name"] = minimal_info[1];
-        element_metadata["full_name"] = minimal_info[0] + "_" + minimal_info[1];
-
-        if (minimal_info[2]!==undefined){
-            if (minimal_info[2][0] !== undefined){
-                element_metadata["diacritic_top_name"] = minimal_info[2][0];
-            }
-            if (minimal_info[2][1] !== undefined){
-                element_metadata["diacritic_bottom_name"] = minimal_info[2][1];
-            }
-        }
-        return element_metadata;
-    }
-
-    replace_diacritic_to_metadata(element_metadata, diacritic_name, top_else_Bottom ){
-        
-        let position_name = "diacritic_bottom_name";
-        if (top_else_Bottom){
-            position_name = "diacritic_top_name";
-        }
-        
-        element_metadata[position_name] = diacritic_name;
-    }
-
-    get_diacritcs_as_array_from_metadata(element_metadata){
-        // element_metadata = dict with all metadata
-        
-        // returns short names
-        // console.log(element_metadata);
-
-        let diacritics = [];
-        if (element_metadata["diacritic_top_name"]!== undefined ){
-            if (element_metadata["diacritic_top_name"]!== "blank" ){
-
-                let diacritic_name = this.split_full_name_to_library_and_name(element_metadata["diacritic_top_name"])["element_name"];
-                diacritics.push(diacritic_name);
-            }
-        }
-        if (element_metadata["diacritic_bottom_name"]!== undefined){
-            if (element_metadata["diacritic_bottom_name"]!== "blank" ){
-
-                if (diacritics.length === 0){
-                    diacritics.push("blank");
-                }
-                let diacritic_name = this.split_full_name_to_library_and_name(element_metadata["diacritic_bottom_name"])["element_name"];
-                console.log(diacritic_name);
-                diacritics.push(diacritic_name);
-
-            }
-        }
-        if (diacritics.length === 0){
-            diacritics = undefined;
-        }
-        return diacritics;
-    }
-
     // -------------------- WORDS ----------------------
     
 
-    word_name_to_data(full_name){
+    word_name_to_metadata(full_name){
         let split_name = this.split_full_name_to_library_and_name(full_name);
         if (split_name["library_name"] != "ameji-word"){
             console.log("ASSERT ERROR. only ameji words tested.")
@@ -1195,7 +1210,7 @@ class Ameji {
 
         // let split_name = this.split_full_name_to_library_and_name(full_name);
        
-        let word_data = this.word_name_to_data(full_name);
+        let word_data = this.word_name_to_metadata(full_name);
 
         let word_start_punctuation = undefined;
         let word_divider_punctuation = undefined;
@@ -1251,13 +1266,13 @@ class Ameji {
         wordDiv.className = "word";
 
         if (start_punctuation !== undefined){
-            this.add_punctuation(wordDiv, "Start", start_punctuation);
+            this.add_punctuation_independent(wordDiv, "Start", start_punctuation);
         }
         
         let symbols = word_data["symbols_metadata"];
         for(var i=0;i<symbols.length;i++){
             if (i!==0 && divider_punctuation !== undefined){
-                this.add_punctuation(wordDiv, "divider", divider_punctuation);
+                this.add_punctuation_independent(wordDiv, "divider", divider_punctuation);
             }
             let symbol_metadata = symbols[i];
             let element = this.create_element_by_element_metadata(symbol_metadata);
@@ -1265,7 +1280,7 @@ class Ameji {
         }
 
         if (stop_punctuation !== undefined){
-            this.add_punctuation(wordDiv, "Stop", stop_punctuation);
+            this.add_punctuation_independent(wordDiv, "Stop", stop_punctuation);
         }
 
         return wordDiv;
@@ -1306,16 +1321,16 @@ class Ameji {
             }.bind(this)
             );
         }
-        
-    add_noun(divToAttachTo, id, name, image_name, diacritic_top, diacritic_bottom) {
+    
+    add_noun_independent(divToAttachTo, id, full_name) {
         // diacritic_top, diacritic_bottom : can be undefined
-        let noun = this.create_noun(id, name, diacritic_top, diacritic_bottom);
-        
-        noun.setAttribute("data-tooltip",  id + " " + image_name);
+        let noun = this.create_noun(id, full_name);
+        let meaning_info = this.full_name_to_meaning(full_name, false);
+        noun.setAttribute("data-tooltip",  id + " " + meaning_info);
         divToAttachTo.appendChild(noun);
         return noun;
     }
-    
+        
     create_noun(id, full_name, diacritic_top_override, diacritic_bottom_override){
 
         // diacritic overrides, convert to short form if needed
@@ -1399,8 +1414,16 @@ class Ameji {
         return {"full_name":element.name};
     }
 
-    add_punctuation(divToAttachTo, id, full_name) {
+    add_punctuation_independent(divToAttachTo, id, full_name, show_tooltip) {
+        show_tooltip = typeof show_tooltip !== 'undefined' ? show_tooltip : false;
+
         let punctuation = this.create_punctuation(id, full_name);
+        if (show_tooltip){
+            let symbol_data = this.full_name_to_dictionary_data(full_name);
+            let all_meanings = this.full_name_to_meaning(full_name, false);
+            punctuation.setAttribute("data-tooltip", all_meanings);
+            
+        }
         divToAttachTo.appendChild(punctuation);
         return punctuation;
     }
@@ -1546,8 +1569,12 @@ class Ameji {
         let symbol = addDiv(divToAttachTo, id, "diacritic-independent");
         symbol.name = full_name;
         let img = this.create_diacritic_image(full_name, "independent");
-
+        
+        let all_meanings = this.full_name_to_meaning(full_name, false);
+        symbol.setAttribute("data-tooltip", all_meanings);
+        
         symbol.appendChild(img);
+        
         return symbol;
     }
 }
