@@ -17,13 +17,14 @@
 	       return str.split(search).join(replacement);
 	    }
 	
-	function addButton(elementToAttachTo,caption,name, id, func){
+	function addButton(elementToAttachTo,caption,name, id, func, shortcut){
 	    var button = document.createElement("input");
 	    button.type = "button";
 	    button.value = caption;
 		button.name = name;
 		button.id = id;
 	    button.onclick = func;
+		button.setAttribute("accesskey", shortcut);
 	    elementToAttachTo.appendChild(button);
 		return button;
 	}

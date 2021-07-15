@@ -40,6 +40,11 @@
 	overflow: hidden; /*works with float: left*/
 }
 
+.sentence-builder__symbol-picker__quick-picker{
+	overflow: hidden; /*works with float: left*/
+	margin-bottom: 50px;
+}
+
 .sentence-builder__symbol-picker__noun-picker{
 	overflow: hidden; /*works with float: left*/
 	margin-bottom: 50px;
@@ -138,6 +143,34 @@
 
 .symbol-selected{
 	border: 2px solid red;	
+	/* background-color: rgb(236, 204, 204); */
+}
+
+
+.show-shortcut[data-shortcut]:after {
+    /* needed - do not touch */
+    content: attr(data-shortcut);
+    position: absolute;
+    opacity: 1;
+    
+    /* customizable */
+    /* transition: all 0.15s ease; */
+    /* padding: 10px; */
+    /* color: #333; */
+    border-radius: 2px;
+    box-shadow: 2px 2px 1px silver;  
+	border:2px solid black;
+	
+	/* customizable */
+	background: rgb(255, 255, 255);
+	margin-top: 36px;
+	margin-left: -20px;    
+}
+
+.hide-shortcut[data-shortcut]:after {
+    /* needed - do not touch */
+    opacity: 0;
+   
 }
 
 [data-tooltip]:before {
@@ -167,3 +200,4 @@
 [data-tooltip]:not([data-tooltip-persistent]):before {
     pointer-events: none;
 }
+

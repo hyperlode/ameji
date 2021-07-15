@@ -5,6 +5,9 @@
 // emojione --> git repo with emoji tools
 // openmoji -> open source emoji drawings .
 // brand logos -> https://worldvectorlogo.com/
+
+
+
 class Ameji {
     constructor() {
         console.log("Ameji loaded");
@@ -50,6 +53,8 @@ class Ameji {
         this.jsonIdTextBox = addTextBoxWithLabel(this.saveLoadDiv, "", "jsonIdTextBox", "jsonIdTextBox", 20, "Id");
         this.jsonTypeTextBox = addTextBoxWithLabel(this.saveLoadDiv, "combo", "jsonTypeTextBox", "jsonTypeTextBox", 20, "type");
         this.jsonMeaningTextBox = addTextBoxWithLabel(this.saveLoadDiv, "", "jsonMeaningTextBox", "jsonMeaningTextBox", 20, "Meaning(csv)");
+        
+        
         addButton(this.saveLoadDiv, "Selection to new Ameji", "btnVisibleToAmejiStandard", "btnVisibleToAmejiStandard", this.selected_symbols_to_ameji_standard.bind(this));
         this.checkBoxDictInsertable = addCheckBox(this.saveLoadDiv,"checkBoxInsertableInDict","checkBoxInsertableInDict",true,"for dictionary insert");
         
@@ -77,43 +82,45 @@ class Ameji {
         addButton(this.sentenceControlsButtonsDiv, "> [l]", "btnSelectNext", "btnSelectNext", this.select_next_element_in_sentence.bind(this),"l");
         addButton(this.sentenceControlsButtonsDiv, "Move > [r]", "btnMoveForward", "btnMoveForward", this.move_element_in_sentence_forward.bind(this),"r");
         
-
         addButton(this.sentenceControlsButtonsDiv, "Insert New line", "btnNewLine", "btnNewLine", this.add_new_line_symbol.bind(this));
         addButton(this.sentenceControlsButtonsDiv, "Explode Selected Words", "btnExplode", "btnExplode", this.explode_selection.bind(this));
         addButton(this.sentenceControlsButtonsDiv, "Toggle Recently Used", "btnToggleRecent", "btnToggleRecent", this.toggle_recent_visibility.bind(this));
         addButton(this.sentenceControlsButtonsDiv, "Toggle Save/Load", "btnSaveLoad", "btnSaveLoad", this.toggle_save_load_visibility.bind(this));
+        addButton(this.sentenceControlsButtonsDiv, "Toggle Detailed ", "btnDetailedPicker", "btnDetailedPicker", this.toggle_detailed_picker_visibility.bind(this));
         addButton(this.sentenceControlsButtonsDiv, "Save sentence as picture(be scrolled up to top of page).png", "btnSaveToPng", "btnSaveToPng", this.save_sentence_to_picture.bind(this));
         addButton(this.sentenceControlsButtonsDiv, "Debug", "btnDebug", "btnDebug", this.do_debug.bind(this));
         addBr(this.sentenceControlsButtonsDiv);
-
-
         
         this.diacriticsTopPickerField = addDiv(this.symbolPickerDiv, "diacriticsTopPicker", "sentence-builder__symbol-picker__diacritics-picker");
         this.diacriticsBottomPickerField = addDiv(this.symbolPickerDiv, "diacriticsBottomPicker", "sentence-builder__symbol-picker__diacritics-picker");
         addBr(this.baseDiv);
+        
         
         this.searchField_quickpick = addTextBox(this.symbolPickerDiv, "", "txtBoxSearchQuickPick", "txtBoxSearchQuickPick", 30);
         this.add_search_at_type_event(this.searchField_quickpick);
         this.quickPickField = addDiv(this.symbolPickerDiv, "quickPicker", "sentence-builder__symbol-picker__quick-picker");
         addBr(this.baseDiv);
         
-        this.searchField_punctuation = addTextBox(this.symbolPickerDiv, "", "txtBoxSearchPunctuation", "txtBoxSearchPunctuation", 30);
+        this.detailedSymbolPickerDiv = addDiv(this.baseDiv, "symbolPicker", "sentence-builder__symbol-picker");
+        this.detailedSymbolPickerDiv.style.display = "none";
+       
+        this.searchField_punctuation = addTextBox(this.detailedSymbolPickerDiv, "", "txtBoxSearchPunctuation", "txtBoxSearchPunctuation", 30);
         this.add_search_at_type_event(this.searchField_punctuation);
-        this.punctuationPickerField = addDiv(this.symbolPickerDiv, "punctuationPicker", "sentence-builder__symbol-picker__punctuation-picker");
+        this.punctuationPickerField = addDiv(this.detailedSymbolPickerDiv, "punctuationPicker", "sentence-builder__symbol-picker__punctuation-picker");
         addBr(this.baseDiv);
        
-        // this.properNounsPickerField = addDiv(this.symbolPickerDiv, "properNounsPicker", "sentence-builder__symbol-picker__proper-nouns-picker");        
-        this.searchField_nouns = addTextBox(this.symbolPickerDiv, "", "txtBoxSearchNouns", "txtBoxSearchNouns", 30);
+        // this.properNounsPickerField = addDiv(this.detailedSymbolPickerDiv, "properNounsPicker", "sentence-builder__symbol-picker__proper-nouns-picker");        
+        this.searchField_nouns = addTextBox(this.detailedSymbolPickerDiv, "", "txtBoxSearchNouns", "txtBoxSearchNouns", 30);
         this.add_search_at_type_event(this.searchField_nouns);
-        this.nounPickerField = addDiv(this.symbolPickerDiv, "nounPicker", "sentence-builder__symbol-picker__noun-picker");
+        this.nounPickerField = addDiv(this.detailedSymbolPickerDiv, "nounPicker", "sentence-builder__symbol-picker__noun-picker");
         
-        this.searchField_dictionary = addTextBox(this.symbolPickerDiv, "", "txtBoxSearchDictionary", "txtBoxSearchDictionary", 30);
+        this.searchField_dictionary = addTextBox(this.detailedSymbolPickerDiv, "", "txtBoxSearchDictionary", "txtBoxSearchDictionary", 30);
         this.add_search_at_type_event(this.searchField_dictionary);
-        this.amejiDictionaryPickerField = addDiv(this.symbolPickerDiv, "amejiDictionary", "sentence-builder__symbol-picker__word-picker");
+        this.amejiDictionaryPickerField = addDiv(this.detailedSymbolPickerDiv, "amejiDictionary", "sentence-builder__symbol-picker__word-picker");
 
-        this.searchField_emoji = addTextBox(this.symbolPickerDiv, "search", "txtBoxSearchEmoji", "txtBoxSearchEmoji", 30);
+        this.searchField_emoji = addTextBox(this.detailedSymbolPickerDiv, "search", "txtBoxSearchEmoji", "txtBoxSearchEmoji", 30);
         this.add_search_at_type_event(this.searchField_emoji);
-        this.emojiPickerField = addDiv(this.symbolPickerDiv, "emojiPicker", "sentence-builder__symbol-picker__noun-picker");
+        this.emojiPickerField = addDiv(this.detailedSymbolPickerDiv, "emojiPicker", "sentence-builder__symbol-picker__noun-picker");
         
         this.populate_punctuation_picker();
         this.populate_diacritics_top_picker();
@@ -129,6 +136,10 @@ class Ameji {
         this.sentence_symbol_sequence = [];
         this.recent_symbols_sequence_ids = [];
         this.saved_sentences_count = 0;
+        this.quick_picker_count = 0;
+
+        this.await_shortcut = false;
+        this.shortcutbuildup ="";
 
         this.load_local_file("file:///C:/temp/test.txt");
 
@@ -150,6 +161,119 @@ class Ameji {
             ]`
         this.minimal_json_to_sentence(example_sentence_json);
         this.save_sentence_to_picture();
+
+
+        document.onkeypress = function(evt) {
+            evt = evt || window.event;
+            var charCode = evt.keyCode || evt.which;
+            var charStr = String.fromCharCode(charCode);
+            // alert(charStr);
+            this.keyboard_input(charStr);
+
+        }.bind(this);
+        // document.onkeypress = function(evt) {
+        //     evt = evt || window.event;
+        //     var charCode = evt.keyCode || evt.which;
+        //     var charStr = String.fromCharCode(charCode);
+        //     alert(charStr);
+        // };
+
+    }
+
+    // --------------------- SHORTCUT ----------------------
+
+    shortcuts_toggle_active(){
+        var elements = document.querySelectorAll("[data-shortcut]");
+        if (elements.length === 0){
+            return;
+        }
+        if (elements[0].classList.contains("show-shortcut")){
+            this.shortcuts_active(false);        
+        }else{
+            this.shortcuts_active(true);        
+        }
+    }
+
+    
+    shortcuts_active(visible){
+        var elements = document.querySelectorAll("[data-shortcut]");  // select all with data-attribute
+
+        for (let i=0;i<elements.length;i++){
+            if (visible){
+                elements[i].classList.remove("hide-shortcut");
+                elements[i].classList.add("show-shortcut");
+                this.await_shortcut = true;
+                this.shortcutbuildup = "";
+
+            }else{
+                elements[i].classList.remove("show-shortcut");
+                elements[i].classList.add("hide-shortcut");
+                this.await_shortcut = false;
+                this.shortcutbuildup = "";
+            }
+        }
+
+        // var messages = document.querySelectorAll(".message");  // select all from a class
+    }
+
+    handle_shortcut(){
+        let selector = '[data-shortcut="' + this.shortcutbuildup + '"]';
+        let chosen_element = document.querySelector(selector);
+        this.shortcutbuildup = "";
+        
+        if (chosen_element === null){
+            alert("invalid shortcut");
+            return;
+        }
+        let element_name = chosen_element.name;
+        this.add_to_sentence_by_full_name(element_name);
+
+
+    }
+    
+
+
+    keyboard_input(charStr){
+        // easy input without mouse. 
+        // 1. get focus to quick pick search text box (press enter)
+        // 2. input query finish with enter
+        // 3. input shortcut finish with enter
+        
+
+        console.log(charStr);
+        if (charStr === "\r"){
+            
+
+            // enter toggles focus quick pick text box 
+            if (this.await_shortcut){
+                this.handle_shortcut();
+              
+            }else if (this.searchField_quickpick === document.activeElement){
+                this.searchField_quickpick.blur();
+
+            }else{
+                this.searchField_quickpick.focus();
+            }
+
+
+        }
+        if (charStr === "/"){
+            // enter toggles focus quick pick text box 
+            console.log("very interesting");
+            this.shortcuts_toggle_active();
+        }
+        if (/^[0-9]$/.test(charStr)){
+            if (this.await_shortcut){
+                this.shortcutbuildup += charStr;
+            }
+            
+        };  
+
+        // if (charStr === "\n"){
+        //     console.log("nelwy interesting");
+
+        // }
+        
     }
 
     selected_symbols_to_ameji_standard(){
@@ -274,11 +398,17 @@ class Ameji {
     }
 
     toggle_save_load_visibility(){
-        console.log("jief");
         if (this.saveLoadDiv.style.display === "none") {
             this.saveLoadDiv.style.display = "block";
         } else {
             this.saveLoadDiv.style.display = "none";
+        }
+    }
+    toggle_detailed_picker_visibility(){
+        if (this.detailedSymbolPickerDiv.style.display === "none") {
+            this.detailedSymbolPickerDiv.style.display = "block";
+        } else {
+            this.detailedSymbolPickerDiv.style.display = "none";
         }
     }
 
@@ -286,38 +416,14 @@ class Ameji {
         // this.move_element_in_sentence();
     }
 
-    move_element_in_sentence_backward(){
-        this.move_element_in_sentence(false);
+
+    load_local_file(file_path){
+        async function loadFile(file_path) {
+            let text = await file.text();
+            console.log(text);
+            }
     }
 
-    move_element_in_sentence_forward(){
-        this.move_element_in_sentence(true);
-    }
-
-    move_element_in_sentence(forwardElseBackward){
-        // record
-        
-        this.sentence_select_last_if_none_selected();
-
-        let selected_id = this.sentence_selected_ids[this.sentence_selected_ids.length-1];
-        
-        let element_metadata = this.get_sentence_element_metadata(selected_id);
-
-        let insert_before_else_after = undefined;
-        // move selection
-        if (forwardElseBackward){
-            insert_before_else_after = false;
-            this.select_next_element_in_sentence();
-        }else{
-            insert_before_else_after = true;
-            this.select_previous_element_in_sentence();
-        }
-        // delete
-        this.sentence_delete_element(selected_id);
-
-        // add after selected
-        this.add_to_sentence_by_element_metadata(element_metadata, insert_before_else_after);
-    }
 
 
     // ------------------------------- CAPTURE ----------------------------
@@ -400,15 +506,9 @@ class Ameji {
 
         this.minimal_json_to_sentence(minimal_json);
     }
-
+    
+    
     // ---------------- SYMBOL PICKER ------------------------------
-
-    load_local_file(file_path){
-        async function loadFile(file_path) {
-            let text = await file.text();
-            console.log(text);
-          }
-    }
 
     add_search_at_type_event(elementToAttachTo) {
         elementToAttachTo.addEventListener("change",
@@ -464,15 +564,16 @@ class Ameji {
         this.populate_picker(this.emojiPickerField, ["openmoji", "iconji", "brands"], this.searchField_emoji, true);
     }
        
-    populate_picker(elementToPopulate, library_names, searchField, show_all_if_empty_search){
+    populate_picker(elementToPopulate, library_names, searchTextbox, show_all_if_empty_search){
         
         elementToPopulate.innerHTML = "";
-        let search_string = searchField.value.toLowerCase();
+        let search_string = searchTextbox.value.toLowerCase();
         
-        if (searchField.value === "" && !show_all_if_empty_search){
+        if (searchTextbox.value === "" && !show_all_if_empty_search){
             return;
         }
 
+        this.quick_picker_count = 0;
         for (let library_index in library_names){
             let library_name = library_names[library_index];
             
@@ -483,37 +584,37 @@ class Ameji {
                 let all_meanings = full_name + this.full_name_to_meaning(full_name, true).join("").toLowerCase();
 
                 if (all_meanings.includes(search_string) ) {
-
+                    let element = null;
                     if (["ameji","openmoji", "iconji"].includes(library_name)){
-                        this.add_noun_to_picker(elementToPopulate, full_name);
+                        element = this.add_noun_to_picker(elementToPopulate, full_name);
 
                     }else if (library_name === "ameji-word"){
-                        this.add_word_to_picker(elementToPopulate, full_name);
+                        element = this.add_word_to_picker(elementToPopulate, full_name);
                         // separate every word with punctuation
-                         this.add_punctuation_independent(elementToPopulate,"divider","ameji-punctuation_empty");
+                        this.add_punctuation_independent(elementToPopulate,"divider","ameji-punctuation_empty");
                         
                     }else if (library_name === "ameji-punctuation"){
-                        this.add_punctuation_to_picker(elementToPopulate, full_name);
-                        console.log("eieiej");
+                        element = this.add_punctuation_to_picker(elementToPopulate, full_name);
                     }
+                    element.setAttribute("data-shortcut", this.quick_picker_count);
+                    this.quick_picker_count+=1;
                 }
             }
         }
+
+        this.shortcuts_active(true);
     }
 
     add_punctuation_to_picker(elementToAttachTo, full_name){
         let symbolElement = this.add_punctuation_independent(elementToAttachTo, full_name, full_name, true);
         this.add_punctuation_click_event(symbolElement);
+        return symbolElement;
     }
 
     add_word_to_picker(elementToAttachTo, full_name){
-        let wordDiv = this.ameji_word_name_to_div(full_name);
-        
-        let meaning = this.full_name_to_meaning(full_name, false);
-        wordDiv.setAttribute("data-tooltip", meaning);
-        
-        this.add_word_click_event(wordDiv);
-        elementToAttachTo.appendChild(wordDiv);
+        let wordElement = this.add_word_independent(elementToAttachTo, full_name,true);
+        this.add_word_click_event(wordElement);
+        return wordElement;
     }
 
     add_noun_to_picker(elementToAttachTo, full_name){
@@ -523,6 +624,7 @@ class Ameji {
             full_name
             )
         this.add_noun_click_event(symbolElement);
+        return symbolElement;
     }
 
     // ---------------- GENERAL --------------------
@@ -589,7 +691,7 @@ class Ameji {
             return meanings.join(", ");
         }
     }
-    
+
     // -------------------- ELEMENT -------------------
     create_element_by_element_metadata(element_metadata){
         let element = undefined;
@@ -721,32 +823,6 @@ class Ameji {
         return sentence_components;
     }
     
-    explode_selection(){
-        if (this.sentence_selected_ids.length == 0){
-            alert("Please select words to explode.");
-        };
-
-        let selection_memory = [...this.sentence_selected_ids];
-
-        for (let i=0; i < selection_memory.length;i++){
-            let element_in_sentence_id = selection_memory[i];
-            let element = document.getElementById(element_in_sentence_id);
-            let full_name = element.name;
-            let name_data = this.split_full_name_to_library_and_name(full_name);
-            
-            if (name_data["library_name"] === "ameji-word"){
-                let element_data = this.get_sentence_element_metadata(element_in_sentence_id);
-                let word_data = element_data["word_data"];
-                let word_components = word_data["word_components"];
-                for (let i=0; i<word_components.length; i++){
-                    let symbol_components = word_components[i];
-                    this.add_to_sentence_by_element_metadata(symbol_components);
-                }
-                this.sentence_delete_element(element_in_sentence_id);
-            }
-        }
-    }
-
     is_sentence_altered(){
         for (let id in this.sentence_symbol_sequence){
             let is_altered = this.is_sentence_element_altered(this.sentence_symbol_sequence[id]);
@@ -1035,10 +1111,37 @@ class Ameji {
             this.sentence_element_count += 1;
         }
     }
+    
+    explode_selection(){
+        if (this.sentence_selected_ids.length == 0){
+            alert("Please select words to explode.");
+        };
+
+        let selection_memory = [...this.sentence_selected_ids];
+
+        for (let i=0; i < selection_memory.length;i++){
+            let element_in_sentence_id = selection_memory[i];
+            let element = document.getElementById(element_in_sentence_id);
+            let full_name = element.name;
+            let name_data = this.split_full_name_to_library_and_name(full_name);
+            
+            if (name_data["library_name"] === "ameji-word"){
+                let element_data = this.get_sentence_element_metadata(element_in_sentence_id);
+                let word_data = element_data["word_data"];
+                let word_components = word_data["word_components"];
+                for (let i=0; i<word_components.length; i++){
+                    let symbol_components = word_components[i];
+                    this.add_to_sentence_by_element_metadata(symbol_components);
+                }
+                this.sentence_delete_element(element_in_sentence_id);
+            }
+        }
+    }
 
     add_sentence_element_click_event(elementToAttachTo) {
+        
         elementToAttachTo.addEventListener(
-            "click",
+            "mouseenter",  // click
             function (event) {
                 // current target = element where the eventtrigger was attached to
                 let id = event.currentTarget.id;
@@ -1050,6 +1153,39 @@ class Ameji {
                 }
             }.bind(this)
         );
+    }
+
+    move_element_in_sentence_backward(){
+        this.move_element_in_sentence(false);
+    }
+
+    move_element_in_sentence_forward(){
+        this.move_element_in_sentence(true);
+    }
+
+    move_element_in_sentence(forwardElseBackward){
+        // record
+        
+        this.sentence_select_last_if_none_selected();
+
+        let selected_id = this.sentence_selected_ids[this.sentence_selected_ids.length-1];
+        
+        let element_metadata = this.get_sentence_element_metadata(selected_id);
+
+        let insert_before_else_after = undefined;
+        // move selection
+        if (forwardElseBackward){
+            insert_before_else_after = false;
+            this.select_next_element_in_sentence();
+        }else{
+            insert_before_else_after = true;
+            this.select_previous_element_in_sentence();
+        }
+        // delete
+        this.sentence_delete_element(selected_id);
+
+        // add after selected
+        this.add_to_sentence_by_element_metadata(element_metadata, insert_before_else_after);
     }
     
     select_all(){
@@ -1120,8 +1256,6 @@ class Ameji {
         selected_element.classList.add('symbol-selected');
         
         this.sentence_selected_ids.push(element_id);
-        
-       
     }
 
     add_new_line_symbol() {
@@ -1140,7 +1274,6 @@ class Ameji {
             }else{
                 return false;
             }
-
         }
         return true
     }
@@ -1255,6 +1388,18 @@ class Ameji {
             }.bind(this)
         );
     }
+
+    add_word_independent(divToAttachTo, full_name, show_tooltip) {
+        let wordDiv = this.ameji_word_name_to_div(full_name);
+            
+            let meaning = this.full_name_to_meaning(full_name, false);
+            if (show_tooltip){
+                wordDiv.setAttribute("data-tooltip", meaning);
+            }
+            divToAttachTo.appendChild(wordDiv);
+            return wordDiv;
+    }
+
 
     create_word(word_data , start_punctuation, divider_punctuation, stop_punctuation){
         
@@ -1429,7 +1574,6 @@ class Ameji {
     }
     
     create_punctuation(id, full_name){
-      
 
         let symbol_data = this.full_name_to_dictionary_data(full_name);
         let symbol_file_properties = symbol_data["files"][0];
