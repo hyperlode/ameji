@@ -43,7 +43,7 @@ class Ameji {
         this.baseDiv = document.getElementById("base");
         addDiv(this.baseDiv, "saved_sentences", "captured-sentences__base");
         this.saveLoadDiv = addDiv(this.baseDiv, "saveLoad", "sentence-builder__sentence");
-        // this.saveLoadDiv.style.display = "none";
+        this.saveLoadDiv.style.display = "none";
         
         this.jsonTextArea = addTextArea(this.saveLoadDiv, "ameji-json", "ameji-json", 5, 100, "json here");
         addBr(this.saveLoadDiv);
@@ -76,19 +76,20 @@ class Ameji {
         addButton(this.sentenceControlsButtonsDiv, "Select all [x]", "btnSelectAll", "btnSelectAll", this.select_all.bind(this),"x");
         addButton(this.sentenceControlsButtonsDiv, "Delete selected [z]", "btnDelete", "btnDelete", this.sentence_delete_selected.bind(this),"z");
         addButton(this.sentenceControlsButtonsDiv, "Unselect all [c]", "btnDeselectAll", "btnDeselectAll", this.deselect_all.bind(this),"c");
+        addButton(this.sentenceControlsButtonsDiv, "Explode Selected Words", "btnExplode", "btnExplode", this.explode_selection.bind(this));
+        addButton(this.sentenceControlsButtonsDiv, "Debug", "btnDebug", "btnDebug", this.do_debug.bind(this));
         
         addButton(this.sentenceControlsButtonsDiv, "Move < [a]", "btnMoveBackward", "btnMoveBackward", this.move_element_in_sentence_backward.bind(this),"a");
         addButton(this.sentenceControlsButtonsDiv, "< [h]", "btnSelectPrevious", "btnSelectPrevious", this.select_previous_element_in_sentence.bind(this),"h");
         addButton(this.sentenceControlsButtonsDiv, "> [l]", "btnSelectNext", "btnSelectNext", this.select_next_element_in_sentence.bind(this),"l");
         addButton(this.sentenceControlsButtonsDiv, "Move > [r]", "btnMoveForward", "btnMoveForward", this.move_element_in_sentence_forward.bind(this),"r");
         
-        addButton(this.sentenceControlsButtonsDiv, "Insert New line", "btnNewLine", "btnNewLine", this.add_new_line_symbol.bind(this));
-        addButton(this.sentenceControlsButtonsDiv, "Explode Selected Words", "btnExplode", "btnExplode", this.explode_selection.bind(this));
+        // addButton(this.sentenceControlsButtonsDiv, "Insert New line", "btnNewLine", "btnNewLine", this.add_new_line_symbol.bind(this));
+        addBr(this.sentenceControlsButtonsDiv);
         addButton(this.sentenceControlsButtonsDiv, "Toggle Recently Used", "btnToggleRecent", "btnToggleRecent", this.toggle_recent_visibility.bind(this));
-        addButton(this.sentenceControlsButtonsDiv, "Toggle Save/Load", "btnSaveLoad", "btnSaveLoad", this.toggle_save_load_visibility.bind(this));
+        addButton(this.sentenceControlsButtonsDiv, "Toggle Import/Export", "btnSaveLoad", "btnSaveLoad", this.toggle_save_load_visibility.bind(this));
         addButton(this.sentenceControlsButtonsDiv, "Toggle Detailed ", "btnDetailedPicker", "btnDetailedPicker", this.toggle_detailed_picker_visibility.bind(this));
         addButton(this.sentenceControlsButtonsDiv, "Save sentence as picture(be scrolled up to top of page).png", "btnSaveToPng", "btnSaveToPng", this.save_sentence_to_picture.bind(this));
-        addButton(this.sentenceControlsButtonsDiv, "Debug", "btnDebug", "btnDebug", this.do_debug.bind(this));
         addBr(this.sentenceControlsButtonsDiv);
         
         this.diacriticsTopPickerField = addDiv(this.symbolPickerDiv, "diacriticsTopPicker", "sentence-builder__symbol-picker__diacritics-picker");
@@ -98,6 +99,7 @@ class Ameji {
         
         this.searchField_quickpick = addTextBox(this.symbolPickerDiv, "", "txtBoxSearchQuickPick", "txtBoxSearchQuickPick", 30);
         this.add_search_at_type_event(this.searchField_quickpick);
+        this.searchField_quickpick.addEventListener("focus", function() { this.select(); });
         this.quickPickField = addDiv(this.symbolPickerDiv, "quickPicker", "sentence-builder__symbol-picker__quick-picker");
         addBr(this.baseDiv);
         
@@ -122,24 +124,20 @@ class Ameji {
         this.add_search_at_type_event(this.searchField_emoji);
         this.emojiPickerField = addDiv(this.detailedSymbolPickerDiv, "emojiPicker", "sentence-builder__symbol-picker__noun-picker");
         
-        this.populate_punctuation_picker();
-        this.populate_diacritics_top_picker();
-        this.populate_diacritics_bottom_picker();
-
-        this.populate_quick_picker()
-        this.populate_noun_picker();
-        this.populate_emoji_picker();
-        this.populate_ameji_dictionary_picker();
+        this.populate_diacritics_picker();
+        this.populate_symbol_pickers();
 
         this.sentence_element_count = 0;
         this.sentence_selected_ids = [];
         this.sentence_symbol_sequence = [];
         this.recent_symbols_sequence_ids = [];
         this.saved_sentences_count = 0;
-        this.quick_picker_count = 0;
-
+        
+        this.diacritics_count = 0;
+        this.picker_count_for_shortcut_code = 0;
         this.await_shortcut = false;
         this.shortcutbuildup ="";
+        
 
         this.load_local_file("file:///C:/temp/test.txt");
 
@@ -159,8 +157,7 @@ class Ameji {
             ["ameji-punctuation","value-relative-0"],
             ["ameji-punctuation","bracket-right"]
             ]`
-        this.minimal_json_to_sentence(example_sentence_json);
-        this.save_sentence_to_picture();
+      
 
 
         document.onkeypress = function(evt) {
@@ -222,57 +219,56 @@ class Ameji {
         this.shortcutbuildup = "";
         
         if (chosen_element === null){
-            alert("invalid shortcut");
+            alert("invalid shortcut. Press / to (de)activate, or its code followed by enter to add a symbol to the sentence.");
             return;
         }
-        let element_name = chosen_element.name;
-        this.add_to_sentence_by_full_name(element_name);
+        let full_name = chosen_element.name;
 
-
+        if (this.is_diacritic(full_name)){
+            let topElseBottom = this.independent_diacritic_top_else_bottom(chosen_element.id);
+            this.add_diacritic_to_selection_in_sentence(full_name, topElseBottom);
+        }else{
+            this.add_to_sentence_by_full_name(full_name);
+        }
+        this.shortcuts_active(false);
     }
     
-
-
     keyboard_input(charStr){
         // easy input without mouse. 
         // 1. get focus to quick pick search text box (press enter)
         // 2. input query finish with enter
         // 3. input shortcut finish with enter
         
+        if (charStr === "/"){
+            this.shortcuts_toggle_active();
+            return;
+        }
+        if (this.await_shortcut){
+            if (charStr === "\r"){
+                    this.handle_shortcut();
+                  
+            }else{
+                if (/^[a-z0-9]$/i.test(charStr)){
+                        this.shortcutbuildup += charStr;
+                }; 
+            } 
 
-        console.log(charStr);
+            return 
+        }
+
         if (charStr === "\r"){
-            
 
             // enter toggles focus quick pick text box 
-            if (this.await_shortcut){
-                this.handle_shortcut();
-              
-            }else if (this.searchField_quickpick === document.activeElement){
+            if (this.searchField_quickpick === document.activeElement){
                 this.searchField_quickpick.blur();
 
             }else{
                 this.searchField_quickpick.focus();
+                
             }
 
-
         }
-        if (charStr === "/"){
-            // enter toggles focus quick pick text box 
-            console.log("very interesting");
-            this.shortcuts_toggle_active();
-        }
-        if (/^[0-9]$/.test(charStr)){
-            if (this.await_shortcut){
-                this.shortcutbuildup += charStr;
-            }
-            
-        };  
-
-        // if (charStr === "\n"){
-        //     console.log("nelwy interesting");
-
-        // }
+        
         
     }
 
@@ -407,6 +403,7 @@ class Ameji {
     toggle_detailed_picker_visibility(){
         if (this.detailedSymbolPickerDiv.style.display === "none") {
             this.detailedSymbolPickerDiv.style.display = "block";
+            this.populate_symbol_pickers();
         } else {
             this.detailedSymbolPickerDiv.style.display = "none";
         }
@@ -414,6 +411,8 @@ class Ameji {
 
     do_debug(){
         // this.move_element_in_sentence();
+        this.minimal_json_to_sentence(example_sentence_json);
+        this.save_sentence_to_picture();
     }
 
 
@@ -513,57 +512,56 @@ class Ameji {
     add_search_at_type_event(elementToAttachTo) {
         elementToAttachTo.addEventListener("change",
             function (event) {
+                this.populate_symbol_pickers();
                 
-                this.populate_quick_picker();
-                this.populate_noun_picker();
-                this.populate_punctuation_picker();
-                this.populate_emoji_picker();
-                this.populate_ameji_dictionary_picker();
-
+                this.shortcuts_active(true);
+                
             }.bind(this)
-        );
-    }
-  
-    populate_diacritics_top_picker() {
-   
-        this.populate_diacritics_picker(this.diacriticsTopPickerField, "diacritic_top_");
-    }
-    
-    populate_diacritics_bottom_picker() {
-   
-        this.populate_diacritics_picker(this.diacriticsBottomPickerField, "diacritic_bottom_");
-    }
-
-    populate_diacritics_picker(elementToPopulate, diacriticsPosition){
-        for (let diacritic_name in this.ameji_diacritics_library){
-            let diacritic = this.ameji_diacritics_library[diacritic_name];
-            let symbolElement = this.add_diacritic_independent(elementToPopulate, diacriticsPosition + "_" + diacritic_name, "ameji-diacritics_" + diacritic_name);
+            );
+        }
+        
+        populate_diacritics_picker(){
+            this.populate_diacritics_picker_by_position(this.diacriticsTopPickerField, "diacritic_top_", );
+            this.populate_diacritics_picker_by_position(this.diacriticsBottomPickerField, "diacritic_bottom_");
+        }
+        
+        populate_diacritics_picker_by_position(elementToPopulate, diacriticsPosition){
+            this.diacritics_count = 0;
+            for (let diacritic_name in this.ameji_diacritics_library){
+                
+                // let diacritic = this.ameji_diacritics_library[diacritic_name];
+                let symbolElement = this.add_diacritic_independent(elementToPopulate, diacriticsPosition + "_" + diacritic_name, "ameji-diacritics_" + diacritic_name);
+                
+                let shortcut_code = String.fromCharCode(97 + this.diacritics_count);
+                
+            if (diacriticsPosition === "diacritic_top_"){
+                shortcut_code = shortcut_code;
+            }else{
+                shortcut_code = shortcut_code + shortcut_code;
+            }
             
+            symbolElement.setAttribute("data-shortcut", shortcut_code);
+            // symbolElement.classList.add("hide-shortcut");
+            this.diacritics_count += 1;
             this.add_diacritic_click_event(symbolElement);
         }
+        this.shortcuts_active(false);
     }
     
-    populate_punctuation_picker() {
-        this.populate_picker(this.punctuationPickerField,["ameji-punctuation"],this.searchField_punctuation,true);
-    }
-    
-    populate_ameji_dictionary_picker(){
-        // this.populate_word_picker(this.amejiDictionaryPickerField, this.searchField_dictionary );
-        this.populate_picker(this.amejiDictionaryPickerField,["ameji-word"],this.searchField_dictionary,true);
-    }
-    
-    populate_quick_picker() {
+    populate_symbol_pickers(){
+        
+        this.picker_count_for_shortcut_code = 0;
         this.populate_picker(this.quickPickField, ["openmoji", "iconji", "brands", "ameji", "ameji-word", "ameji-punctuation"], this.searchField_quickpick, false);
+
+        // only populate fields if they are visible.
+        if (this.detailedSymbolPickerDiv.style.display !== "none"){
+            this.populate_picker(this.punctuationPickerField,["ameji-punctuation"],this.searchField_punctuation,true);
+            this.populate_picker(this.amejiDictionaryPickerField,["ameji-word"],this.searchField_dictionary,true);
+            this.populate_picker(this.nounPickerField, ["ameji"], this.searchField_nouns, true);
+            this.populate_picker(this.emojiPickerField, ["openmoji", "iconji", "brands"], this.searchField_emoji, true);
+        }
     }
 
-    populate_noun_picker() {
-        this.populate_picker(this.nounPickerField, ["ameji"], this.searchField_nouns, true);
-    }
-    
-    populate_emoji_picker() {
-        this.populate_picker(this.emojiPickerField, ["openmoji", "iconji", "brands"], this.searchField_emoji, true);
-    }
-       
     populate_picker(elementToPopulate, library_names, searchTextbox, show_all_if_empty_search){
         
         elementToPopulate.innerHTML = "";
@@ -573,7 +571,6 @@ class Ameji {
             return;
         }
 
-        this.quick_picker_count = 0;
         for (let library_index in library_names){
             let library_name = library_names[library_index];
             
@@ -596,13 +593,14 @@ class Ameji {
                     }else if (library_name === "ameji-punctuation"){
                         element = this.add_punctuation_to_picker(elementToPopulate, full_name);
                     }
-                    element.setAttribute("data-shortcut", this.quick_picker_count);
-                    this.quick_picker_count+=1;
+                    element.setAttribute("data-shortcut", this.picker_count_for_shortcut_code);
+                    // element.classList.add("hide-shortcut");
+                    this.picker_count_for_shortcut_code+=1;
                 }
             }
         }
 
-        this.shortcuts_active(true);
+        this.shortcuts_active(false);
     }
 
     add_punctuation_to_picker(elementToAttachTo, full_name){
@@ -690,6 +688,11 @@ class Ameji {
         }else{
             return meanings.join(", ");
         }
+    }
+
+    is_diacritic(full_name){
+        let split_name = this.split_full_name_to_library_and_name(full_name);
+        return split_name["library_name"] === "ameji-diacritics";
     }
 
     // -------------------- ELEMENT -------------------
@@ -1639,50 +1642,67 @@ class Ameji {
         elementToAttachTo.addEventListener(
             "click",
             function (event) {
-                if (!this.sentence_select_last_if_none_selected()){
-                    return;
-                }
+                let diacritic_full_name = event.currentTarget.name;
+                let topElseBottom = this.independent_diacritic_top_else_bottom(event.currentTarget.id);
+                this.add_diacritic_to_selection_in_sentence(diacritic_full_name, topElseBottom);
                 
-                for (let i=0; i<this.sentence_selected_ids.length; i++){
-                    // if multiple symbols are selected, add to each selected symbol
-
-                    let selected_id = this.sentence_selected_ids[i];
-                    
-                    let selected_sentence_symbol = document.getElementById(selected_id);
-                    
-                    let selected_class_names = selected_sentence_symbol.classList;
-                    let symbol_is_noun = false;
-                    for (let i = 0; i < selected_class_names.length; i++) {
-                        if (selected_class_names[i] == "noun") {
-                            symbol_is_noun = true;
-                        }
-                    }
-                    if (symbol_is_noun) {
-                        // check if top or bottom diacritic
-                        let diacritic_field_id = event.currentTarget.id;
-                        let position = "top";
-                        let offset = 1;
-                        if (diacritic_field_id.includes("bottom")) {
-                            position = "bottom";
-                            offset = 2;
-                            
-                        } else if (!diacritic_field_id.includes("top")) {
-                            console.log("ASSERT ERROR: diacritic in field id should contain bottom or top to determine position in symbol.");
-                        }
-
-                        // create diacritic
-                        let diacritic_full_name = event.currentTarget.name;
-                        let new_diacritic = this.create_diacritic_image(diacritic_full_name, position);
-                        
-                        // replace diacritic in sentence
-                        let children_of_selected_sentence_element = selected_sentence_symbol.children;
-                        selected_sentence_symbol.insertBefore(new_diacritic, children_of_selected_sentence_element[offset]);
-                        children_of_selected_sentence_element[offset+1].remove();
-
-                    }
-                }
+               
             }.bind(this)
         );
+    }
+
+    independent_diacritic_top_else_bottom(id){
+        let topElseBottom = true;
+        if (id.includes("bottom")) {
+            topElseBottom = false;
+            
+        } else if (!id.includes("top")) {
+            console.log("ASSERT ERROR: diacritic in field id should contain bottom or top to determine position in symbol.");
+        }
+        return topElseBottom;
+    }
+
+    add_diacritic_to_selection_in_sentence(full_name, topElseBottom){
+        if (!this.sentence_select_last_if_none_selected()){
+            return;
+        }
+        
+        for (let i=0; i<this.sentence_selected_ids.length; i++){
+            // if multiple symbols are selected, add to each selected symbol
+
+            let selected_id = this.sentence_selected_ids[i];
+            
+            let selected_sentence_symbol = document.getElementById(selected_id);
+            
+            let selected_class_names = selected_sentence_symbol.classList;
+            let symbol_is_noun = false;
+            for (let i = 0; i < selected_class_names.length; i++) {
+                if (selected_class_names[i] == "noun") {
+                    symbol_is_noun = true;
+                }
+            }
+            if (symbol_is_noun) {
+                // check if top or bottom diacritic
+                let position = null;
+                let offset = null;
+                if (topElseBottom){
+                    position = "top";
+                    offset = 1;
+                }else{
+                    position = "bottom";
+                    offset = 2;
+                    
+                } 
+
+                // create diacritic
+                let new_diacritic = this.create_diacritic_image(full_name, position);
+                
+                // replace diacritic in sentence
+                let children_of_selected_sentence_element = selected_sentence_symbol.children;
+                selected_sentence_symbol.insertBefore(new_diacritic, children_of_selected_sentence_element[offset]);
+                children_of_selected_sentence_element[offset+1].remove();
+            }         
+        }
     }
 
     create_diacritic_image(full_name, position){

@@ -142,11 +142,10 @@
 }
 
 .symbol-selected{
-	border: 2px solid red;	
-	/* background-color: rgb(236, 204, 204); */
+	/* border: 2px solid red;	 */
+	background-color: rgb(236, 204, 204);
 }
-
-
+ 
 .show-shortcut[data-shortcut]:after {
     /* needed - do not touch */
     content: attr(data-shortcut);
@@ -165,6 +164,10 @@
 	background: rgb(255, 255, 255);
 	margin-top: 36px;
 	margin-left: -20px;    
+}
+
+.sentence-builder__symbol-picker__diacritics-picker .show-shortcut[data-shortcut]:after {
+	margin-top: 0px;
 }
 
 .hide-shortcut[data-shortcut]:after {
@@ -190,6 +193,7 @@
 [data-tooltip]:hover:before {
     /* needed - do not touch */
     opacity: 1;
+	z-index:666;  /* highest is on top*/
     
     /* customizable */
     background: yellow;
