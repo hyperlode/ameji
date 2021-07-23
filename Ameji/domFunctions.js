@@ -223,6 +223,7 @@
 
 	function addCheckBox(elementToAttachTo,id, name, checked, caption){
 		// document.getElementById("myCheck").checked = false; --> to test for value.
+		// tick,radio (tags)
 
 		var checkbox = document.createElement('input');
 		checkbox.type = "checkbox";
