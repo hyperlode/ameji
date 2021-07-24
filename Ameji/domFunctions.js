@@ -88,6 +88,16 @@
 		elementToAttachTo.appendChild(div);
 		return div;
 	}
+
+	function addH1(elementToAttachTo, text, name, id){
+		var paraElement = document.createElement("H1");
+		var p = document.createTextNode(text);
+		paraElement.name = name;
+		paraElement.id = id;
+		paraElement.appendChild(p);  
+		elementToAttachTo.appendChild(paraElement);  
+		return paraElement;
+	}
 	
 	function addParagraph(elementToAttachTo, text, name, id ){
 		var paraElement = document.createElement("P");

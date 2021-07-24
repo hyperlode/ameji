@@ -12,7 +12,7 @@ class Ameji {
     constructor() {
         console.log("Ameji loaded");
         this.nouns_library = JSON.parse(nouns_JSON);
-        this.emoji_library = JSON.parse(emoji_JSON);
+        this.openmoji_library = JSON.parse(openmoji_JSON);
         this.iconji_library = JSON.parse(iconji_JSON);
         this.ameji_punctuation_library = JSON.parse(ameji_punctuation);
         this.ameji_dictionary_library = JSON.parse(ameji_dictionary_JSON);
@@ -23,7 +23,7 @@ class Ameji {
         
         this.symbol_folders = {
             "ameji":"ameji_basic_618x618",
-            "openmoji":"emoji_blackwhite_72x72", 
+            "openmoji":"openmoji_blackwhite_72x72", 
             "ameji-punctuation":"ameji_punctuation_309x618", 
             "ameji-diacritics":"ameji_diacritics_618x102",
             "iconji":"iconji_32x32",
@@ -33,7 +33,7 @@ class Ameji {
         this.libraries = {
             "ameji":this.nouns_library,
             "ameji-word":this.ameji_dictionary_library,
-            "openmoji":this.emoji_library,
+            "openmoji":this.openmoji_library,
             "ameji-punctuation":this.ameji_punctuation_library,
             "ameji-diacritics": this.ameji_diacritics_library,
             "iconji":this.iconji_library,
@@ -59,6 +59,9 @@ class Ameji {
         this.checkBoxDictInsertable = addCheckBox(this.saveLoadDiv,"checkBoxInsertableInDict","checkBoxInsertableInDict",true,"for dictionary insert");
         
         this.sentenceDiv = addDiv(this.baseDiv, "sentence", "sentence-builder__sentence");
+        addH1(this.sentenceDiv, "Search for a symbol and build your sentence here...","empty_sentence","empty_sentence");
+
+        
         this.sentenceControlsButtonsDiv = addDiv(this.baseDiv, "sentenceControls", "sentence-builder__controls");
         addBr(this.baseDiv);
         
@@ -97,8 +100,9 @@ class Ameji {
         addBr(this.baseDiv);
         
         
-        this.searchField_quickpick = addTextBox(this.symbolPickerDiv, "", "txtBoxSearchQuickPick", "txtBoxSearchQuickPick", 30);
+        this.searchField_quickpick = addTextBox(this.symbolPickerDiv, "search", "txtBoxSearchQuickPick", "txtBoxSearchQuickPick", 30);
         this.searchField_quickpick_matchword = addCheckBox(this.symbolPickerDiv, "chkSearchQuickPickMatchWord", "chkSearchQuickPickMatchWord", false, "Full word match");
+        this.add_matchword_click_event(this.searchField_quickpick_matchword);
         this.add_search_at_type_event(this.searchField_quickpick);
         this.searchField_quickpick.addEventListener("focus", function() { this.select(); });
         this.quickPickField = addDiv(this.symbolPickerDiv, "quickPicker", "sentence-builder__symbol-picker__quick-picker");
@@ -529,6 +533,17 @@ class Ameji {
     
     // ---------------- SYMBOL PICKER ------------------------------
 
+
+    add_matchword_click_event(elementToAttachTo) {
+        elementToAttachTo.addEventListener("change",
+            function (event) {
+                this.populate_symbol_pickers();
+               
+            }.bind(this)
+        );
+    }
+
+
     add_search_at_type_event(elementToAttachTo) {
         elementToAttachTo.addEventListener("change",
             function (event) {
@@ -538,30 +553,30 @@ class Ameji {
             );
         }
         
-        populate_diacritics_picker(){
-            this.populate_diacritics_picker_by_position(this.diacriticsTopPickerField, "diacritic_top_", );
-            this.populate_diacritics_picker_by_position(this.diacriticsBottomPickerField, "diacritic_bottom_");
+    populate_diacritics_picker(){
+        this.populate_diacritics_picker_by_position(this.diacriticsTopPickerField, "diacritic_top_", );
+        this.populate_diacritics_picker_by_position(this.diacriticsBottomPickerField, "diacritic_bottom_");
+    }
+    
+    populate_diacritics_picker_by_position(elementToPopulate, diacriticsPosition){
+        this.diacritics_count = 0;
+        for (let diacritic_name in this.ameji_diacritics_library){
+            
+            // let diacritic = this.ameji_diacritics_library[diacritic_name];
+            let symbolElement = this.add_diacritic_independent(elementToPopulate, diacriticsPosition + "_" + diacritic_name, "ameji-diacritics_" + diacritic_name);
+            
+            let shortcut_code = String.fromCharCode(97 + this.diacritics_count);
+            
+        if (diacriticsPosition === "diacritic_top_"){
+            shortcut_code = shortcut_code;
+        }else{
+            shortcut_code = shortcut_code + shortcut_code;
         }
         
-        populate_diacritics_picker_by_position(elementToPopulate, diacriticsPosition){
-            this.diacritics_count = 0;
-            for (let diacritic_name in this.ameji_diacritics_library){
-                
-                // let diacritic = this.ameji_diacritics_library[diacritic_name];
-                let symbolElement = this.add_diacritic_independent(elementToPopulate, diacriticsPosition + "_" + diacritic_name, "ameji-diacritics_" + diacritic_name);
-                
-                let shortcut_code = String.fromCharCode(97 + this.diacritics_count);
-                
-            if (diacriticsPosition === "diacritic_top_"){
-                shortcut_code = shortcut_code;
-            }else{
-                shortcut_code = shortcut_code + shortcut_code;
-            }
-            
-            symbolElement.setAttribute("data-shortcut", shortcut_code);
-            // symbolElement.classList.add("hide-shortcut");
-            this.diacritics_count += 1;
-            this.add_diacritic_click_event(symbolElement);
+        symbolElement.setAttribute("data-shortcut", shortcut_code);
+        // symbolElement.classList.add("hide-shortcut");
+        this.diacritics_count += 1;
+        this.add_diacritic_click_event(symbolElement);
         }
         //this.shortcuts_set_enable(false);
     }
@@ -1109,6 +1124,11 @@ class Ameji {
         element_to_add.id = "sentence_element_" + this.sentence_element_count;
         let id = element_to_add.id;
 
+        // delete all non divs from sentence element (at start there might be some instruction in this area)
+        let intro_element = document.getElementById("empty_sentence");
+        if (intro_element !== null){
+            intro_element.remove();
+        }
 
         if (this.sentence_selected_ids.length === 0){
             // No selection --> append to sentence
