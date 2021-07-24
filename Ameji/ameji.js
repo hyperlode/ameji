@@ -628,11 +628,8 @@ class Ameji {
                 let all_meanings = full_name + join_character + this.full_name_to_meaning(full_name, true).join(join_character).toLowerCase() + join_character;
                                 
                 if (all_meanings.includes(search_string) ) {
-                    // console.log(all_meanings);
-                
-                
                     let element = null;
-                    if (["ameji","openmoji", "iconji"].includes(library_name)){
+                    if (["ameji","openmoji", "iconji", "brands"].includes(library_name)){
                         element = this.add_noun_to_picker(elementToPopulate, full_name);
 
                     }else if (library_name === "ameji-word"){
