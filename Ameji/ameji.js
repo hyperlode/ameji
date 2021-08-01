@@ -586,8 +586,7 @@ class Ameji {
         this.picker_count_for_shortcut_code = 0;
          
         this.populate_picker(this.quickPickField, ["ameji-punctuation", "ameji", "ameji-word", "openmoji", "iconji", "brands" ], this.searchField_quickpick, false, this.searchField_quickpick_matchword.checked );
-        
-        
+                
         // only populate fields if they are visible.
         if (this.detailedSymbolPickerDiv.style.display !== "none"){
             this.populate_picker(this.punctuationPickerField,["ameji-punctuation"],this.searchField_punctuation,true, false);
@@ -607,8 +606,6 @@ class Ameji {
         }
 
         // console.log("===" + search_string + "===");
-
-        
         if (searchTextbox.value === "" && !show_all_if_empty_search){
             return;
         }
@@ -646,7 +643,6 @@ class Ameji {
                 }
             }
         }
-
         // this.shortcuts_set_enable(false);
     }
 
@@ -1705,8 +1701,6 @@ class Ameji {
                 let diacritic_full_name = event.currentTarget.name;
                 let topElseBottom = this.independent_diacritic_top_else_bottom(event.currentTarget.id);
                 this.add_diacritic_to_selection_in_sentence(diacritic_full_name, topElseBottom);
-                
-               
             }.bind(this)
         );
     }
@@ -1741,6 +1735,7 @@ class Ameji {
                     symbol_is_noun = true;
                 }
             }
+            
             if (symbol_is_noun) {
                 // check if top or bottom diacritic
                 let position = null;
@@ -1748,10 +1743,10 @@ class Ameji {
                 if (topElseBottom){
                     position = "top";
                     offset = 1;
+
                 }else{
                     position = "bottom";
                     offset = 2;
-                    
                 } 
 
                 // create diacritic
