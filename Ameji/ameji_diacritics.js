@@ -7,6 +7,7 @@ var ameji_diacritics_JSON = `{
     "verb2":{"id":"verb2","type":"diacritic","files":[["ameji-diacritics","arrow-double.png"]],"meaning":["verb", "intransitive verb"]},
     "gen":{"id":"gen","type":"diacritic","files":[["ameji-diacritics","squiggle.png"]],"meaning":["vaguely relevant", "related to", "has something to do with"]},
     "lit":{"id":"lit","type":"diacritic","files":[["ameji-diacritics","line.png"]],"meaning":["literal meaning"]},
+    "example":{"id":"example","type":"diacritic","files":[["ameji-diacritics","line-interrupted.png"]],"meaning":["example of", "same category"]},
     "blank":{"id":"blank","type":"diacritic","files":[["ameji-diacritics","empty.png"]],"meaning":["no diacritic"]},
     "name":{"id":"name","type":"diacritic","files":[["ameji-diacritics","line-full-width.png"]],"meaning":["proper noun"]},
     "combo":{"id":"combo","type":"diacritic","files":[["ameji-diacritics","line-dashed-full-width.png"]],"meaning":["combines different symbols to form one meaning", "part of a word"]},

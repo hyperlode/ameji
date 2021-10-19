@@ -59,7 +59,7 @@ class Ameji {
         this.checkBoxDictInsertable = addCheckBox(this.saveLoadDiv,"checkBoxInsertableInDict","checkBoxInsertableInDict",true,"for dictionary insert");
         
         this.sentenceDiv = addDiv(this.baseDiv, "sentence", "sentence-builder__sentence");
-        addH1(this.sentenceDiv, "Search for a symbol and build your sentence here...","empty_sentence","empty_sentence");
+        addH1(this.sentenceDiv, "Search for symbols with the textbox below. Your sentence will appear here.","empty_sentence","empty_sentence");
 
         
         this.sentenceControlsButtonsDiv = addDiv(this.baseDiv, "sentenceControls", "sentence-builder__controls");
