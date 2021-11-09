@@ -1,5 +1,6 @@
 
-var ameji_punctuation = `{"period": {"id": "period", "type": "punctuation", "files": [["ameji-punctuation", "period.png"]], "meaning": ["period"]}, 
+var ameji_punctuation = `{
+    "period": {"id": "period", "unicode": ["002E"],"type": "punctuation", "files": [["ameji-punctuation", "period.png"]], "meaning": ["period"]}, 
 "comma": {"id": "comma", "type": "punctuation", "files": [["ameji-punctuation", "comma.png"]], "meaning": ["comma"]}, "colon": {"id": "colon", "type": "punctuation", "files": [["ameji-punctuation", "colon.png"]], "meaning": ["colon"]}, "semicolon": {"id": "semicolon", "type": "punctuation", "files": [["ameji-punctuation", "semicolon.png"]], "meaning": ["semicolon"]}, 
 "empty": {"id": "empty", "type": "punctuation", "files": [["ameji-punctuation", "empty.png"]], "meaning": ["empty"]},
 "space": {"id": "space", "type": "punctuation", "files": [["ameji-punctuation", "space_placeholder.png"]], "meaning": ["empty","space"]},

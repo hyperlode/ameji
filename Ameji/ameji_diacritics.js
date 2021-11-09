@@ -1,24 +1,24 @@
 
 
 var ameji_diacritics_JSON = `{
-    "sym":{"id":"gen","type":"diacritic","files":[["ameji-diacritics","dot.png"]],"meaning":["symbolic meaning"]},
-    "sym2":{"id":"sym2","type":"diacritic","files":[["ameji-diacritics","dot-double.png"]],"meaning":["super symbolic"]},
-    "verb":{"id":"verb","type":"diacritic","files":[["ameji-diacritics","arrow-right.png"]],"meaning":["verb", "transitive verb"]},
-    "verb2":{"id":"verb2","type":"diacritic","files":[["ameji-diacritics","arrow-double.png"]],"meaning":["verb", "intransitive verb"]},
-    "gen":{"id":"gen","type":"diacritic","files":[["ameji-diacritics","squiggle.png"]],"meaning":["vaguely relevant", "related to", "has something to do with"]},
-    "lit":{"id":"lit","type":"diacritic","files":[["ameji-diacritics","line.png"]],"meaning":["literal meaning"]},
-    "example":{"id":"example","type":"diacritic","files":[["ameji-diacritics","line-interrupted.png"]],"meaning":["example of", "same category"]},
-    "blank":{"id":"blank","type":"diacritic","files":[["ameji-diacritics","empty.png"]],"meaning":["no diacritic"]},
-    "name":{"id":"name","type":"diacritic","files":[["ameji-diacritics","line-full-width.png"]],"meaning":["proper noun"]},
-    "combo":{"id":"combo","type":"diacritic","files":[["ameji-diacritics","line-dashed-full-width.png"]],"meaning":["combines different symbols to form one meaning", "part of a word"]},
-    "has":{"id":"has","type":"diacritic","files":[["ameji-diacritics","arrow-down.png"]],"meaning":["has as part", "has as property", "has in its set of properties"]},
-    "is":{"id":"is","type":"diacritic","files":[["ameji-diacritics","arrow-up.png"]],"meaning":["is part of", "is a property of", "is in the properties set of"]},
-    "sibling":{"id":"sibling","type":"diacritic","files":[["ameji-diacritics","arrow-up-down.png"]],"meaning":["is at same level", "same category", "has same parent", "siblings"]},
-    "sibling2":{"id":"sibling2","type":"diacritic","files":[["ameji-diacritics","arrow-up-noline.png"]],"meaning":["is at same level", "same category", "has same parent", "siblings"]},
-    "no meaning":{"id":"no meaning","type":"diacritic","files":[["ameji-diacritics","line-buckled-down.png"]],"meaning":["NO MEANING"]},
-    "no meaning2":{"id":"no meaning2","type":"diacritic","files":[["ameji-diacritics","line-buckled-up.png"]],"meaning":["NO MEANING"]},
-    "yes":{"id":"yes","type":"diacritic","files":[["ameji-diacritics","checkmark.png"]],"meaning":["yes", "affirmitive", "positive", "right", "relevant"]},
-    "no":{"id":"no","type":"diacritic","files":[["ameji-diacritics","cross-diagonal.png"]],"meaning":["no", "negative", "wrong", "irrelevant", "has nothing to do with"]}
+    "sym":{"id":"gen", "unicode":["002E"] , "type":"diacritic","files":[["ameji-diacritics","dot.png"]],"meaning":["symbolic meaning"]},
+    "sym2":{"id":"sym2","unicode":["002E","002E"],"type":"diacritic","files":[["ameji-diacritics","dot-double.png"]],"meaning":["super symbolic"]},
+    "verb":{"id":"verb","unicode":["003C"],"type":"diacritic","files":[["ameji-diacritics","arrow-right.png"]],"meaning":["verb", "transitive verb"]},
+    "verb2":{"id":"verb2","unicode":["003C","003E"],"type":"diacritic","files":[["ameji-diacritics","arrow-double.png"]],"meaning":["verb", "intransitive verb"]},
+    "gen":{"id":"gen","unicode":["007E"],"type":"diacritic","files":[["ameji-diacritics","squiggle.png"]],"meaning":["vaguely relevant", "related to", "has something to do with"]},
+    "lit":{"id":"lit","unicode":["002D"],"type":"diacritic","files":[["ameji-diacritics","line.png"]],"meaning":["literal meaning"]},
+    "example":{"id":"example","unicode":["2026"],"type":"diacritic","files":[["ameji-diacritics","line-interrupted.png"]],"meaning":["example of", "same category"]},
+    "blank":{"id":"blank","unicode":[""],"type":"diacritic","files":[["ameji-diacritics","empty.png"]],"meaning":["no diacritic"]},
+    "name":{"id":"name","unicode":["005F"],"type":"diacritic","files":[["ameji-diacritics","line-full-width.png"]],"meaning":["proper noun"]},
+    "combo":{"id":"combo","unicode":[""],"type":"diacritic","files":[["ameji-diacritics","line-dashed-full-width.png"]],"meaning":["combines different symbols to form one meaning", "part of a word"]},
+    "has":{"id":"has","unicode":["0077"],"type":"diacritic","files":[["ameji-diacritics","arrow-down.png"]],"meaning":["has as part", "has as property", "has in its set of properties"]},
+    "is":{"id":"is","unicode":["005E"],"type":"diacritic","files":[["ameji-diacritics","arrow-up.png"]],"meaning":["is part of", "is a property of", "is in the properties set of"]},
+    "sibling":{"id":"sibling","unicode":["25B3"],"type":"diacritic","files":[["ameji-diacritics","arrow-up-down.png"]],"meaning":["is at same level", "same category", "has same parent", "siblings"]},
+    "sibling2":{"id":"sibling2","unicode":["25B3"],"type":"diacritic","files":[["ameji-diacritics","arrow-up-noline.png"]],"meaning":["is at same level", "same category", "has same parent", "siblings"]},
+    "no meaning":{"id":"no meaning","unicode":[""],"type":"diacritic","files":[["ameji-diacritics","line-buckled-down.png"]],"meaning":["NO MEANING"]},
+    "no meaning2":{"id":"no meaning2","unicode":[""],"type":"diacritic","files":[["ameji-diacritics","line-buckled-up.png"]],"meaning":["NO MEANING"]},
+    "yes":{"id":"yes","unicode":[""],"type":"diacritic","files":[["ameji-diacritics","checkmark.png"]],"meaning":["yes", "affirmitive", "positive", "right", "relevant"]},
+    "no":{"id":"no","unicode":[""],"type":"diacritic","files":[["ameji-diacritics","cross-diagonal.png"]],"meaning":["no", "negative", "wrong", "irrelevant", "has nothing to do with"]}
 }`;
 
 // "is2":{"id":"is","type":"diacritic","files":[["ameji-diacritics","arrow-compact-up.png"]],"meaning":["is part of"]},
