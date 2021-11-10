@@ -450,5 +450,753 @@ var nouns_JSON = `{
         "files":[["ameji","head_profile_mouth_open.png"]],
         "meaning": ["I", "narrator", "me", "mine", "speaker"], 
         "contains": ["head open mouth", "head profile person"]
+		}
+,
+		
+"hyper-bracket-left-00001": {
+    "id": "hyper-bracket-left-00001", 
+    "type": "punctuation", 
+    "files": [["ameji-punctuation", "hyper-bracket-left-00001.png"]], 
+    "meaning": ["hyper bracket hyper-bracket-left-00001", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-right-00001": {
+    "id": "hyper-bracket-right-00001", 
+    "type": "punctuation", 
+    "files": [["ameji-punctuation", "hyper-bracket-right-00001.png"]], 
+    "meaning": ["hyper bracket hyper-bracket-right-00001", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-left-00010": {
+    "id": "hyper-bracket-left-00010", 
+    "type": "punctuation", 
+    "files": [["ameji-punctuation", "hyper-bracket-left-00010.png"]], 
+    "meaning": ["hyper bracket hyper-bracket-left-00010", "parenthesis", "curly braces", "brackets"] 
+    },
+"hyper-bracket-right-00010": {
+    "id": "hyper-bracket-right-00010", 
+    "type": "punctuation", 
+    "files": [["ameji-punctuation", "hyper-bracket-right-00010.png"]], 
+    "meaning": ["hyper bracket hyper-bracket-right-00010", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-left-00011": {
+    "id": "hyper-bracket-left-00011", 
+    "type": "punctuation", 
+    "files": [["ameji-punctuation", "hyper-bracket-left-00011.png"]],
+    "meaning": ["hyper bracket hyper-bracket-left-00011", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-right-00011": {
+    "id": "hyper-bracket-right-00011",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-right-00011.png"]],
+    "meaning": ["hyper bracket hyper-bracket-right-00011", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-left-00100": {
+    "id": "hyper-bracket-left-00100",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-left-00100.png"]],
+    "meaning": ["hyper bracket hyper-bracket-left-00100", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-right-00100": {
+    "id": "hyper-bracket-right-00100",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-right-00100.png"]],
+    "meaning": ["hyper bracket hyper-bracket-right-00100", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-left-00101": {
+    "id": "hyper-bracket-left-00101",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-left-00101.png"]],
+    "meaning": ["hyper bracket hyper-bracket-left-00101", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-right-00101": {
+    "id": "hyper-bracket-right-00101",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-right-00101.png"]],
+    "meaning": ["hyper bracket hyper-bracket-right-00101", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-left-00110": {
+    "id": "hyper-bracket-left-00110",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-left-00110.png"]],
+    "meaning": ["hyper bracket hyper-bracket-left-00110", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-right-00110": {
+    "id": "hyper-bracket-right-00110",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-right-00110.png"]],
+    "meaning": ["hyper bracket hyper-bracket-right-00110", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-left-00111": {
+    "id": "hyper-bracket-left-00111",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-left-00111.png"]],
+    "meaning": ["hyper bracket hyper-bracket-left-00111", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-right-00111": {
+    "id": "hyper-bracket-right-00111",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-right-00111.png"]],
+    "meaning": ["hyper bracket hyper-bracket-right-00111", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-left-01000": {
+    "id": "hyper-bracket-left-01000",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-left-01000.png"]],
+    "meaning": ["hyper bracket hyper-bracket-left-01000", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-right-01000": {
+    "id": "hyper-bracket-right-01000",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-right-01000.png"]],
+    "meaning": ["hyper bracket hyper-bracket-right-01000", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-left-01001": {
+    "id": "hyper-bracket-left-01001",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-left-01001.png"]],
+    "meaning": ["hyper bracket hyper-bracket-left-01001", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-right-01001": {
+    "id": "hyper-bracket-right-01001",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-right-01001.png"]],
+    "meaning": ["hyper bracket hyper-bracket-right-01001", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-left-01010": {
+    "id": "hyper-bracket-left-01010",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-left-01010.png"]],
+    "meaning": ["hyper bracket hyper-bracket-left-01010", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-right-01010": {
+    "id": "hyper-bracket-right-01010",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-right-01010.png"]],
+    "meaning": ["hyper bracket hyper-bracket-right-01010", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-left-01011": {
+    "id": "hyper-bracket-left-01011",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-left-01011.png"]],
+    "meaning": ["hyper bracket hyper-bracket-left-01011", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-right-01011": {
+    "id": "hyper-bracket-right-01011",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-right-01011.png"]],
+    "meaning": ["hyper bracket hyper-bracket-right-01011", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-left-01100": {
+    "id": "hyper-bracket-left-01100",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-left-01100.png"]],
+    "meaning": ["hyper bracket hyper-bracket-left-01100", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-right-01100": {
+    "id": "hyper-bracket-right-01100",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-right-01100.png"]],
+    "meaning": ["hyper bracket hyper-bracket-right-01100", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-left-01101": {
+    "id": "hyper-bracket-left-01101",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-left-01101.png"]],
+    "meaning": ["hyper bracket hyper-bracket-left-01101", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-right-01101": {
+    "id": "hyper-bracket-right-01101",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-right-01101.png"]],
+    "meaning": ["hyper bracket hyper-bracket-right-01101", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-left-01110": {
+    "id": "hyper-bracket-left-01110",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-left-01110.png"]],
+    "meaning": ["hyper bracket hyper-bracket-left-01110", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-right-01110": {
+    "id": "hyper-bracket-right-01110",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-right-01110.png"]],
+    "meaning": ["hyper bracket hyper-bracket-right-01110", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-left-01111": {
+    "id": "hyper-bracket-left-01111",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-left-01111.png"]],
+    "meaning": ["hyper bracket hyper-bracket-left-01111", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-right-01111": {
+    "id": "hyper-bracket-right-01111",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-right-01111.png"]],
+    "meaning": ["hyper bracket hyper-bracket-right-01111", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-left-10000": {
+    "id": "hyper-bracket-left-10000",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-left-10000.png"]],
+    "meaning": ["hyper bracket hyper-bracket-left-10000", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-right-10000": {
+    "id": "hyper-bracket-right-10000",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-right-10000.png"]],
+    "meaning": ["hyper bracket hyper-bracket-right-10000", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-left-10001": {
+    "id": "hyper-bracket-left-10001",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-left-10001.png"]],
+    "meaning": ["hyper bracket hyper-bracket-left-10001", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-right-10001": {
+    "id": "hyper-bracket-right-10001",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-right-10001.png"]],
+    "meaning": ["hyper bracket hyper-bracket-right-10001", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-left-10010": {
+    "id": "hyper-bracket-left-10010",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-left-10010.png"]],
+    "meaning": ["hyper bracket hyper-bracket-left-10010", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-right-10010": {
+    "id": "hyper-bracket-right-10010",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-right-10010.png"]],
+    "meaning": ["hyper bracket hyper-bracket-right-10010", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-left-10011": {
+    "id": "hyper-bracket-left-10011",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-left-10011.png"]],
+    "meaning": ["hyper bracket hyper-bracket-left-10011", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-right-10011": {
+    "id": "hyper-bracket-right-10011",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-right-10011.png"]],
+    "meaning": ["hyper bracket hyper-bracket-right-10011", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-left-10100": {
+    "id": "hyper-bracket-left-10100",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-left-10100.png"]],
+    "meaning": ["hyper bracket hyper-bracket-left-10100", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-right-10100": {
+    "id": "hyper-bracket-right-10100",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-right-10100.png"]],
+    "meaning": ["hyper bracket hyper-bracket-right-10100", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-left-10101": {
+    "id": "hyper-bracket-left-10101",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-left-10101.png"]],
+    "meaning": ["hyper bracket hyper-bracket-left-10101", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-right-10101": {
+    "id": "hyper-bracket-right-10101",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-right-10101.png"]],
+    "meaning": ["hyper bracket hyper-bracket-right-10101", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-left-10110": {
+    "id": "hyper-bracket-left-10110",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-left-10110.png"]],
+    "meaning": ["hyper bracket hyper-bracket-left-10110", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-right-10110": {
+    "id": "hyper-bracket-right-10110",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-right-10110.png"]],
+    "meaning": ["hyper bracket hyper-bracket-right-10110", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-left-10111": {
+    "id": "hyper-bracket-left-10111",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-left-10111.png"]],
+    "meaning": ["hyper bracket hyper-bracket-left-10111", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-right-10111": {
+    "id": "hyper-bracket-right-10111",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-right-10111.png"]],
+    "meaning": ["hyper bracket hyper-bracket-right-10111", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-left-11000": {
+    "id": "hyper-bracket-left-11000",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-left-11000.png"]],
+    "meaning": ["hyper bracket hyper-bracket-left-11000", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-right-11000": {
+    "id": "hyper-bracket-right-11000",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-right-11000.png"]],
+    "meaning": ["hyper bracket hyper-bracket-right-11000", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-left-11001": {
+    "id": "hyper-bracket-left-11001",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-left-11001.png"]],
+    "meaning": ["hyper bracket hyper-bracket-left-11001", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-right-11001": {
+    "id": "hyper-bracket-right-11001",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-right-11001.png"]],
+    "meaning": ["hyper bracket hyper-bracket-right-11001", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-left-11010": {
+    "id": "hyper-bracket-left-11010",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-left-11010.png"]],
+    "meaning": ["hyper bracket hyper-bracket-left-11010", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-right-11010": {
+    "id": "hyper-bracket-right-11010",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-right-11010.png"]],
+    "meaning": ["hyper bracket hyper-bracket-right-11010", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-left-11011": {
+    "id": "hyper-bracket-left-11011",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-left-11011.png"]],
+    "meaning": ["hyper bracket hyper-bracket-left-11011", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-right-11011": {
+    "id": "hyper-bracket-right-11011",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-right-11011.png"]],
+    "meaning": ["hyper bracket hyper-bracket-right-11011", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-left-11100": {
+    "id": "hyper-bracket-left-11100",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-left-11100.png"]],
+    "meaning": ["hyper bracket hyper-bracket-left-11100", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-right-11100": {
+    "id": "hyper-bracket-right-11100",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-right-11100.png"]],
+    "meaning": ["hyper bracket hyper-bracket-right-11100", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-left-11101": {
+    "id": "hyper-bracket-left-11101",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-left-11101.png"]],
+    "meaning": ["hyper bracket hyper-bracket-left-11101", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-right-11101": {
+    "id": "hyper-bracket-right-11101",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-right-11101.png"]],
+    "meaning": ["hyper bracket hyper-bracket-right-11101", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-left-11110": {
+    "id": "hyper-bracket-left-11110",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-left-11110.png"]],
+    "meaning": ["hyper bracket hyper-bracket-left-11110", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-right-11110": {
+    "id": "hyper-bracket-right-11110",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-right-11110.png"]],
+    "meaning": ["hyper bracket hyper-bracket-right-11110", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-left-11111": {
+    "id": "hyper-bracket-left-11111",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-left-11111.png"]],
+    "meaning": ["hyper bracket hyper-bracket-left-11111", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-right-11111": {
+    "id": "hyper-bracket-right-11111",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-right-11111.png"]],
+    "meaning": ["hyper bracket hyper-bracket-right-11111", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-left-00001": {
+    "id": "hyper-bracket-aidingpoints-left-00001",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-left-00001.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-left-00001", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-right-00001": {
+    "id": "hyper-bracket-aidingpoints-right-00001",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-right-00001.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-right-00001", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-left-00010": {
+    "id": "hyper-bracket-aidingpoints-left-00010",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-left-00010.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-left-00010", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-right-00010": {
+    "id": "hyper-bracket-aidingpoints-right-00010",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-right-00010.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-right-00010", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-left-00011": {
+    "id": "hyper-bracket-aidingpoints-left-00011",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-left-00011.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-left-00011", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-right-00011": {
+    "id": "hyper-bracket-aidingpoints-right-00011",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-right-00011.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-right-00011", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-left-00100": {
+    "id": "hyper-bracket-aidingpoints-left-00100",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-left-00100.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-left-00100", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-right-00100": {
+    "id": "hyper-bracket-aidingpoints-right-00100",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-right-00100.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-right-00100", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-left-00101": {
+    "id": "hyper-bracket-aidingpoints-left-00101",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-left-00101.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-left-00101", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-right-00101": {
+    "id": "hyper-bracket-aidingpoints-right-00101",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-right-00101.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-right-00101", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-left-00110": {
+    "id": "hyper-bracket-aidingpoints-left-00110",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-left-00110.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-left-00110", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-right-00110": {
+    "id": "hyper-bracket-aidingpoints-right-00110",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-right-00110.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-right-00110", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-left-00111": {
+    "id": "hyper-bracket-aidingpoints-left-00111",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-left-00111.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-left-00111", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-right-00111": {
+    "id": "hyper-bracket-aidingpoints-right-00111",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-right-00111.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-right-00111", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-left-01000": {
+    "id": "hyper-bracket-aidingpoints-left-01000",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-left-01000.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-left-01000", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-right-01000": {
+    "id": "hyper-bracket-aidingpoints-right-01000",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-right-01000.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-right-01000", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-left-01001": {
+    "id": "hyper-bracket-aidingpoints-left-01001",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-left-01001.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-left-01001", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-right-01001": {
+    "id": "hyper-bracket-aidingpoints-right-01001",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-right-01001.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-right-01001", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-left-01010": {
+    "id": "hyper-bracket-aidingpoints-left-01010",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-left-01010.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-left-01010", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-right-01010": {
+    "id": "hyper-bracket-aidingpoints-right-01010",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-right-01010.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-right-01010", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-left-01011": {
+    "id": "hyper-bracket-aidingpoints-left-01011",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-left-01011.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-left-01011", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-right-01011": {
+    "id": "hyper-bracket-aidingpoints-right-01011",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-right-01011.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-right-01011", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-left-01100": {
+    "id": "hyper-bracket-aidingpoints-left-01100",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-left-01100.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-left-01100", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-right-01100": {
+    "id": "hyper-bracket-aidingpoints-right-01100",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-right-01100.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-right-01100", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-left-01101": {
+    "id": "hyper-bracket-aidingpoints-left-01101",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-left-01101.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-left-01101", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-right-01101": {
+    "id": "hyper-bracket-aidingpoints-right-01101",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-right-01101.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-right-01101", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-left-01110": {
+    "id": "hyper-bracket-aidingpoints-left-01110",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-left-01110.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-left-01110", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-right-01110": {
+    "id": "hyper-bracket-aidingpoints-right-01110",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-right-01110.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-right-01110", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-left-01111": {
+    "id": "hyper-bracket-aidingpoints-left-01111",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-left-01111.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-left-01111", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-right-01111": {
+    "id": "hyper-bracket-aidingpoints-right-01111",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-right-01111.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-right-01111", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-left-10000": {
+    "id": "hyper-bracket-aidingpoints-left-10000",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-left-10000.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-left-10000", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-right-10000": {
+    "id": "hyper-bracket-aidingpoints-right-10000",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-right-10000.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-right-10000", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-left-10001": {
+    "id": "hyper-bracket-aidingpoints-left-10001",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-left-10001.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-left-10001", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-right-10001": {
+    "id": "hyper-bracket-aidingpoints-right-10001",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-right-10001.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-right-10001", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-left-10010": {
+    "id": "hyper-bracket-aidingpoints-left-10010",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-left-10010.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-left-10010", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-right-10010": {
+    "id": "hyper-bracket-aidingpoints-right-10010",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-right-10010.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-right-10010", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-left-10011": {
+    "id": "hyper-bracket-aidingpoints-left-10011",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-left-10011.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-left-10011", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-right-10011": {
+    "id": "hyper-bracket-aidingpoints-right-10011",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-right-10011.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-right-10011", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-left-10100": {
+    "id": "hyper-bracket-aidingpoints-left-10100",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-left-10100.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-left-10100", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-right-10100": {
+    "id": "hyper-bracket-aidingpoints-right-10100",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-right-10100.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-right-10100", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-left-10101": {
+    "id": "hyper-bracket-aidingpoints-left-10101",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-left-10101.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-left-10101", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-right-10101": {
+    "id": "hyper-bracket-aidingpoints-right-10101",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-right-10101.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-right-10101", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-left-10110": {
+    "id": "hyper-bracket-aidingpoints-left-10110",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-left-10110.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-left-10110", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-right-10110": {
+    "id": "hyper-bracket-aidingpoints-right-10110",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-right-10110.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-right-10110", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-left-10111": {
+    "id": "hyper-bracket-aidingpoints-left-10111",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-left-10111.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-left-10111", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-right-10111": {
+    "id": "hyper-bracket-aidingpoints-right-10111",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-right-10111.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-right-10111", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-left-11000": {
+    "id": "hyper-bracket-aidingpoints-left-11000",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-left-11000.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-left-11000", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-right-11000": {
+    "id": "hyper-bracket-aidingpoints-right-11000",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-right-11000.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-right-11000", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-left-11001": {
+    "id": "hyper-bracket-aidingpoints-left-11001",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-left-11001.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-left-11001", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-right-11001": {
+    "id": "hyper-bracket-aidingpoints-right-11001",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-right-11001.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-right-11001", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-left-11010": {
+    "id": "hyper-bracket-aidingpoints-left-11010",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-left-11010.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-left-11010", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-right-11010": {
+    "id": "hyper-bracket-aidingpoints-right-11010",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-right-11010.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-right-11010", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-left-11011": {
+    "id": "hyper-bracket-aidingpoints-left-11011",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-left-11011.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-left-11011", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-right-11011": {
+    "id": "hyper-bracket-aidingpoints-right-11011",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-right-11011.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-right-11011", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-left-11100": {
+    "id": "hyper-bracket-aidingpoints-left-11100",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-left-11100.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-left-11100", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-right-11100": {
+    "id": "hyper-bracket-aidingpoints-right-11100",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-right-11100.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-right-11100", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-left-11101": {
+    "id": "hyper-bracket-aidingpoints-left-11101",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-left-11101.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-left-11101", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-right-11101": {
+    "id": "hyper-bracket-aidingpoints-right-11101",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-right-11101.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-right-11101", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-left-11110": {
+    "id": "hyper-bracket-aidingpoints-left-11110",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-left-11110.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-left-11110", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-right-11110": {
+    "id": "hyper-bracket-aidingpoints-right-11110",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-right-11110.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-right-11110", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-left-11111": {
+    "id": "hyper-bracket-aidingpoints-left-11111",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-left-11111.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-left-11111", "parenthesis", "curly braces", "brackets"]
+    },
+"hyper-bracket-aidingpoints-right-11111": {
+    "id": "hyper-bracket-aidingpoints-right-11111",
+    "type": "punctuation",
+    "files": [["ameji-punctuation", "hyper-bracket-aidingpoints-right-11111.png"]],
+    "meaning": ["hyper bracket hyper-bracket-aidingpoints-right-11111", "parenthesis", "curly braces", "brackets"]
     }
+    
+
 }`;

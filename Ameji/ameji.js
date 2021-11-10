@@ -12,7 +12,7 @@ class Ameji {
     constructor() {
 
 
-        this.unicode_default_not_found= "25A1"; // typical undetected character square as default
+        this.unicode_default_not_found= "FFFD"; // typical undetected character https://en.wikipedia.org/wiki/Specials_(Unicode_block)
 
         console.log("Ameji loaded");
         this.nouns_library = JSON.parse(nouns_JSON);
@@ -22,6 +22,7 @@ class Ameji {
         this.ameji_dictionary_library = JSON.parse(ameji_dictionary_JSON);
         this.ameji_diacritics_library = JSON.parse(ameji_diacritics_JSON);
         this.brands_library = JSON.parse(brands_JSON);
+        this.unicode_library = JSON.parse(unicode_symbols_JSON);
 
         this.allowed_ameji_dictionary_types = ["combo", "proper noun", "name", "compare", "single", "sentence", "expression"];
         
@@ -41,7 +42,8 @@ class Ameji {
             "ameji-punctuation":this.ameji_punctuation_library,
             "ameji-diacritics": this.ameji_diacritics_library,
             "iconji":this.iconji_library,
-            "brands":this.brands_library  
+            "brands":this.brands_library,
+            "unicode":this.unicode_library
         };
         
         this.baseDiv = document.getElementById("base");
@@ -125,7 +127,8 @@ class Ameji {
         addBr(this.baseDiv);
         
         this.detailedSymbolPickerDiv = addDiv(this.baseDiv, "symbolPicker", "sentence-builder__symbol-picker");
-        this.detailedSymbolPickerDiv.style.display = "none";
+        // this.detailedSymbolPickerDiv.style.display = "none";
+        this.detailedSymbolPickerDiv.style.display = "block";
        
         this.searchField_punctuation = addTextBox(this.detailedSymbolPickerDiv, "", "txtBoxSearchPunctuation", "txtBoxSearchPunctuation", 30);
         this.add_search_at_type_event(this.searchField_punctuation);
@@ -145,6 +148,13 @@ class Ameji {
         this.add_search_at_type_event(this.searchField_emoji);
         this.emojiPickerField = addDiv(this.detailedSymbolPickerDiv, "emojiPicker", "sentence-builder__symbol-picker__noun-picker");
         
+        this.searchField_unicode_character = addTextBox(this.detailedSymbolPickerDiv, "", "txtBoxSearchUnicodeCharacter", "txtBoxSearchUnicodeCharacter", 30);
+        this.add_search_at_type_event(this.searchField_unicode_character);
+        this.unicodeCharacterPickerField = addDiv(this.detailedSymbolPickerDiv, "unicodeCharacterPicker", "sentence-builder__symbol-picker__character-picker");
+        this.unicode_characters_paragraph = addParagraph(this.unicodeCharacterPickerField,"","pUnicodeCharacters","pUnicodeCharacters");
+
+
+
         this.populate_diacritics_picker();
         this.populate_symbol_pickers();
 
@@ -609,6 +619,8 @@ class Ameji {
             this.populate_picker(this.amejiDictionaryPickerField,["ameji-word"],this.searchField_dictionary,true, false);
             this.populate_picker(this.nounPickerField, ["ameji"], this.searchField_nouns, true, false);
             this.populate_picker(this.emojiPickerField, ["openmoji", "iconji", "brands"], this.searchField_emoji, true, false);
+            this.populate_picker(this.unicodeCharacterPickerField, ["unicode"], this.searchField_unicode_character, true, false);
+            //this.populate_unicode_characters();
         }
     }
 
@@ -629,6 +641,7 @@ class Ameji {
         for (let library_index in library_names){
             let library_name = library_names[library_index];
             
+            
             let library = this.libraries[library_name];
             
             for (var id in library){
@@ -639,8 +652,9 @@ class Ameji {
                     join_character = " ";
                 }
                 let all_meanings = full_name + join_character + this.full_name_to_meaning(full_name, true).join(join_character).toLowerCase() + join_character;
-                                
+                
                 if (all_meanings.includes(search_string) ) {
+
                     let element = null;
                     if (["ameji","openmoji", "iconji", "brands"].includes(library_name)){
                         element = this.add_noun_to_picker(elementToPopulate, full_name);
@@ -652,7 +666,12 @@ class Ameji {
                         
                     }else if (library_name === "ameji-punctuation"){
                         element = this.add_punctuation_to_picker(elementToPopulate, full_name);
+
+                    }else if (library_name === "unicode"){
+                        element = this.add_unicode_to_picker(elementToPopulate, full_name);
+                                  
                     }
+
                     element.setAttribute("data-shortcut", this.picker_count_for_shortcut_code);
                     // element.classList.add("hide-shortcut");
                     this.picker_count_for_shortcut_code+=1;
@@ -673,6 +692,12 @@ class Ameji {
         this.add_word_click_event(wordElement);
         return wordElement;
     }
+    add_unicode_to_picker(elementToAttachTo, full_name){
+        let unicodeElement = this.add_unicode_independent(elementToAttachTo, full_name,true);
+        
+        this.add_noun_click_event(unicodeElement);
+        return unicodeElement;
+    }
 
     add_noun_to_picker(elementToAttachTo, full_name){
         let symbolElement = this.add_noun_independent(
@@ -685,7 +710,7 @@ class Ameji {
     }
 
 
-    // ---------------- UNICODE TEXT REPRESENTATION -------
+    // ---------------- SYMBOL UNICODE TEXT REPRESENTATION -------
     
 
 
@@ -696,14 +721,28 @@ class Ameji {
         let sentence_elements = this.get_components_for_all_sentence_elements();
         let sentence_unicodes = [];
         for (const element of sentence_elements){
-            
             let unicodes = element["unicodes"];
-            sentence_unicodes.push(...unicodes);
+
+            console.log(element);
+
+            if (["ameji","openmoji", "iconji", "brands"].includes(element.library_name)){
+                if (element["unicodes"].length > 1){
+                    unicodes = ["005B",...element["unicodes"],"005D"];
+                }
+            }
+            // for (let i=0;i<unicodes.length;i++){
+            //     sentence_unicodes.push(unicodes[i]);
+            // }
+            if(unicodes !== undefined){
+                sentence_unicodes.push(...unicodes);
+            }else{
+                sentence_unicodes.push(this.unicode_default_not_found);
+            }
             sentence_unicodes.push("0020"); // add space between sentence elements
             
         }
         
-        this.add_symbol_to_textfield_by_unicode_point(sentence_unicodes);
+        this.add_symbol_to_textfield_by_unicode_point(sentence_unicodes); 
     }
 
     add_symbol_to_textfield_by_unicode_point(symbol_unicode_points){
@@ -718,14 +757,17 @@ class Ameji {
         if (typeof symbol_unicode_points === 'string'){
             symbol_unicode_points = symbol_unicode_points.split(",");
         }
-        
+        console.log(symbol_unicode_points);
 
+        let unicodes_string = "";
         for (let i=0;i<symbol_unicode_points.length;i++){
             
             let code_point = parseInt(symbol_unicode_points[i], 16)
             let code_point_string = String.fromCodePoint(code_point);
-            this.txtSentenceAsInlineText.value += code_point_string;
+            unicodes_string += code_point_string;
         }
+
+        this.txtSentenceAsInlineText.value = unicodes_string;
     }
 
     // add_symbol_to_text_representation(symbol_sentence_element){
@@ -735,7 +777,18 @@ class Ameji {
     //     this.add_symbol_to_textfield_by_unicode_point(unicodes);
     // }
 
+    populate_unicode_characters(){
+        //this.unicodeCharacterPickerField;
 
+        
+        let all_chars = "";
+        for(let i=0;i<0xFFFF;i++){
+            all_chars += String.fromCodePoint(i);
+
+        }
+        this.unicode_characters_paragraph.innerText = all_chars;
+
+    }
 
     // ---------------- GENERAL --------------------
 
@@ -1068,6 +1121,9 @@ class Ameji {
 
 
         }else if (library_name === "ameji-punctuation"){
+            let all_data = this.get_punctuation_components(sentence_element);
+            
+            element_data["unicodes"] = all_data["unicodes"];
             
             
         }else if (["ameji","openmoji", "iconji"].includes(library_name)){
@@ -1472,10 +1528,7 @@ class Ameji {
     }
 
     ameji_word_name_to_div(full_name){
-        // word_id --> only the word itself. 
-
-        // let split_name = this.split_full_name_to_library_and_name(full_name);
-       
+              
         let word_data = this.word_name_to_metadata(full_name);
 
         let word_start_punctuation = undefined;
@@ -1575,6 +1628,27 @@ class Ameji {
         return wordDiv;
     }
 
+    
+
+    // -------------------- UNICODE ---------------------
+    
+    add_unicode_independent(divToAttachTo, full_name, show_tooltip) {
+        let wordDiv = this.ameji_unicode_to_div(full_name);
+            
+        let meaning = this.full_name_to_meaning(full_name, false);
+        if (show_tooltip){
+             wordDiv.setAttribute("data-tooltip", meaning);
+        }
+        divToAttachTo.appendChild(wordDiv);
+        return wordDiv;
+    }
+    
+    ameji_unicode_to_div(full_name){
+        
+        return this.create_noun(full_name, full_name);
+       
+    }
+
     // -------------------- NOUNS --------------------
     
     get_noun_name_and_diacritics(symbol){
@@ -1583,7 +1657,7 @@ class Ameji {
                
         let components = {"full_name": symbol.name};
         
-        components["unicodes"] = [symbol.getAttribute("data-ameji-unicode")];
+        components["unicodes"] = symbol.getAttribute("data-ameji-unicode").split(",");
         
         
         let diacritic_top_element = symbol.getElementsByClassName("noun_diacritic_top")[0];
@@ -1645,6 +1719,8 @@ class Ameji {
         let diacritic_bottom = undefined;
         
         let symbol_data = this.full_name_to_dictionary_data(full_name);
+        console.log(symbol_data);
+
         let image_path = undefined;
         let unicodes = [this.unicode_default_not_found]; 
         
@@ -1664,7 +1740,7 @@ class Ameji {
 
         }else{
             // image_path = name;
-            console.log("ASSERT ERROR: symbol data needs to be present. All the rest is not available anymre..");
+            console.log("ASSERT ERROR: symbol data needs to be present. All the rest is not available anymore..");
         }
         
         var noun = document.createElement("div");
@@ -1693,39 +1769,66 @@ class Ameji {
         // let diacritic_top_name = diacritics_to_file[diacritic_top];
         // let diacritic_bottom_name = diacritics_to_file[diacritic_bottom];
         
-        let img = document.createElement("Img");
-        
-        img.src = "symbols/" + image_path;
-        img.id = image_path;
-        img.classList.add("noun_image");
-        // img.crossOrigin  = "Anonymous"; // local files will not work with CORS policy.
+        let symbol_picture;
+
+        if (symbol_data.type === "unicode"){
+            // unicode does not need an image. We take the character.
+            console.log(symbol_data.id);
+            let code_point = parseInt(symbol_data.id, 16)
+            let unicode_char = String.fromCodePoint(code_point);
+
+            //this.unicode_characters_paragraph.innerText = all_chars;
+
+            symbol_picture = document.createElement("P");
+            let p = document.createTextNode(unicode_char);
+            symbol_picture.id = id;
+            symbol_picture.appendChild(p);  
+           
+            
+        }else{
+
+            symbol_picture = document.createElement("Img");
+            
+            symbol_picture.src = "symbols/" + image_path;
+            symbol_picture.id = image_path;
+            symbol_picture.classList.add("noun_image");
+            // symbol_picture.crossOrigin  = "Anonymous"; // local files will not work with CORS policy.
+        }
         
         let diacritic_1 = this.create_diacritic_image(diacritic_top_name,"top");
         
-        // Do not add diacritics unicodes. Because the user can always change it. 
+        // Do not add diacritics unicodes here. It would be fixed in the noun image while the user can change it... 
         // if (diacritic_1.getAttribute("data-ameji-unicode") !== null){
         //     unicodes.push(diacritic_1.getAttribute("data-ameji-unicode").split(","));
         // }
 
         let diacritic_2 = this.create_diacritic_image(diacritic_bottom_name,"bottom");
 
-        // Do not add diacritics unicodes. Because the user can always change it. 
+        // Do not add diacritics unicodes here. It would be fixed in the noun image while the user can change it...
         // if (diacritic_2.getAttribute("data-ameji-unicode") !== null){
         //     unicodes.push(diacritic_2.getAttribute("data-ameji-unicode").split(","));
         // }
         
         noun.setAttribute("data-ameji-unicode", unicodes.join(','));
 
-        noun.appendChild(img);
+        noun.appendChild(symbol_picture);
         noun.appendChild(diacritic_1);
         noun.appendChild(diacritic_2);
+        // if (symbol_data.type === "unicode"){
+        //     console.log(noun);
+        // }
         return noun;
     }
 
     // -------------------- PUNCTUATION --------------------
 
-    get_punctuation_components(element){
-        return {"full_name":element.name};
+    get_punctuation_components(symbol){
+       // read from an actual symbol component in the DOM
+
+        let components = {"full_name": symbol.name};
+        components["unicodes"] = symbol.getAttribute("data-ameji-unicode").split(",");
+        
+        return components;
     }
 
     add_punctuation_independent(divToAttachTo, id, full_name, show_tooltip) {
@@ -1756,12 +1859,11 @@ class Ameji {
         var symbol = document.createElement("div");
 		symbol.id = id;
 
-        let symbol_unicode = this.unicode_default_not_found; 
-        
+        let unicodes = [this.unicode_default_not_found]; 
         if (symbol_data["unicode"] !== undefined){
-            symbol_unicode = symbol_data["unicode"].join(',');
+            unicodes = symbol_data["unicode"];
         }
-        symbol.setAttribute("data-ameji-unicode",symbol_unicode);
+        symbol.setAttribute("data-ameji-unicode", unicodes.join(','));
 
         symbol.name =  full_name;
 		symbol.className = "punctuation";
