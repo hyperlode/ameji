@@ -1,4 +1,6 @@
 /* css naming conventions https://www.freecodecamp.org/news/css-naming-conventions-that-will-save-you-hours-of-debugging-35cea737d849/ */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Anatolian+Hieroglyphs&family=Noto+Sans+Duployan&family=Noto+Sans+Pahawh+Hmong&display=swap');
+
 .sentence-builder{
 	display: block;
 	margin:50px;
@@ -132,6 +134,25 @@
 	height: 60px;
 	width: 60px;
 	float:left;
+}
+
+.noun_character{
+    font-size: 250%;
+    text-align:center;
+	height: 60px;
+	width: 60px;
+	float:left;
+	border: 0px solid black;	
+    margin:0px;
+    padding:0px;
+    cursor: pointer;
+    /* font-family: 'Noto Sans Anatolian Hieroglyphs', sans-serif; */
+    /* font-family: 'OpenMoji Black', sans-serif; */
+}
+
+.unusual_fonts{
+    font-family: 'Noto Sans Anatolian Hieroglyphs','Noto Sans Duployan','OpenMoji Black','Noto Sans Pahawh Hmong', sans-serif;
+
 }
 
 .noun_diacritic_top, .noun_diacritic_bottom{
