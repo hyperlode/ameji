@@ -1,9 +1,9 @@
-*.png
-*.svg
-*.jpg
-*.jpeg
+# *.png
+# *.svg
+# *.jpg
+# *.jpeg
 *.zip
-*.ttf
+# *.ttf
 # /Resources
 
 # !Resources/

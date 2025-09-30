@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="emoji"
+   viewBox="0 0 36 72"
+   version="1.1"
+   sodipodi:docname="value_empty.svg"
+   width="36"
+   height="72"
+   inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)"
+   inkscape:export-filename="E:\GIT\ameji\Ameji\symbols\ameji_basic_618x618\bar-zero-bottom-empty.png"
+   inkscape:export-xdpi="824"
+   inkscape:export-ydpi="824">
+  <metadata
+     id="metadata23">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs21" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="2560"
+     inkscape:window-height="1361"
+     id="namedview19"
+     showgrid="false"
+     inkscape:zoom="16"
+     inkscape:cx="22.562323"
+     inkscape:cy="36.815428"
+     inkscape:window-x="-9"
+     inkscape:window-y="623"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="emoji"
+     units="in"
+     inkscape:snap-bbox="false"
+     inkscape:snap-bbox-edge-midpoints="false"
+     inkscape:object-paths="false"
+     inkscape:snap-intersection-paths="true" />
+  <g
+     id="color" />
+  <g
+     id="hair" />
+  <g
+     id="skin" />
+  <g
+     id="skin-shadow" />
+  <g
+     id="line" />
+  <g
+     id="color-6"
+     transform="translate(-12)" />
+  <g
+     id="hair-9"
+     transform="translate(-12)" />
+  <g
+     id="skin-4"
+     transform="translate(-12)" />
+  <g
+     id="skin-shadow-2"
+     transform="translate(-12)" />
+  <g
+     id="line-3"
+     transform="translate(-12)" />
+  <rect
+     style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:none"
+     id="rect1031"
+     width="7.2352233"
+     height="50.00948"
+     x="14.382388"
+     y="10.956448"
+     rx="0" />
+  <ellipse
+     style="fill:none;stroke:#000000;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:none"
+     id="path1035"
+     cx="6.9053326"
+     cy="61.019192"
+     rx="2.8340271"
+     ry="4.8027749" />
+  <path
+     style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 28.980767,56.060178 -4.948942,4.948942 4.948942,4.948943 z"
+     id="path1039"
+     sodipodi:nodetypes="cccc" />
+  <g
+     id="color-8"
+     transform="translate(64.599467,5.0514149)" />
+  <g
+     id="hair-7"
+     transform="translate(64.599467,5.0514149)" />
+  <g
+     id="skin-47"
+     transform="translate(64.599467,5.0514149)" />
+  <g
+     id="skin-shadow-24"
+     transform="translate(64.599467,5.0514149)" />
+  <g
+     id="line-35"
+     transform="translate(64.599467,5.0514149)" />
+  <g
+     id="color-6-0"
+     transform="translate(52.599467,5.0514149)" />
+  <g
+     id="hair-9-1"
+     transform="translate(52.599467,5.0514149)" />
+  <g
+     id="skin-4-8"
+     transform="translate(52.599467,5.0514149)" />
+  <g
+     id="skin-shadow-2-4"
+     transform="translate(52.599467,5.0514149)" />
+  <g
+     id="line-3-1"
+     transform="translate(52.599467,5.0514149)" />
+  <g
+     id="color-5"
+     transform="translate(-17.669282,-43.637913)" />
+  <g
+     id="hair-95"
+     transform="translate(-17.669282,-43.637913)" />
+  <g
+     id="skin-1"
+     transform="translate(-17.669282,-43.637913)" />
+  <g
+     id="skin-shadow-8"
+     transform="translate(-17.669282,-43.637913)" />
+  <g
+     id="line-4"
+     transform="translate(-17.669282,-43.637913)" />
+</svg>
