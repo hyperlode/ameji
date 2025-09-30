@@ -1,0 +1,49 @@
+symbol vs meaning relationship
+									DIACRITIC		SYMBOL	MEANING			HIERARCY				
+-default meaning
+										
+-explicit meaning
+-- literal							_		horse -> horse 			exact element (=)
+-- property of the symbol (has a)	v		horse -> hoof			detailing (down)
+
+-implicit meaning
+-- is (an example of)				--		horse -> animal 		generalization (up)
+-- same category as 				*		horse -> elephant		equal level (=)
+-- (is part of, is property of) 	^		horse -> stable 		generalization (up)
+
+-symbolic meaning 
+-- represents						.		horse -> strong			jump (up?)
+-- related to						~		horse -> middle ages 	jump (up?)
+-- antonym?!!		(now as a double symbol, divided by a vertical.  This can be improved.  )			
+-- synonym?!!
+
+lovehand riseelevator-inclusivity
+--inclusive							V		horse -> includes horse
+--exclusive							x		horse -> nothing to do with horse
+
+
+
+😃😐😐😐
+
+_🗾-🌷~🚲~_
+
+_🗾-🌷~🚲~_
+
+[🗾-🌷~🚲~]
+
+[-🗾~🌷~🚲]
+
+I DESIRE LOCATION ( -> [-🗾~🌷~🚲])
+
+I DESIRE LOCATION ( -> [-🗾~🌷~🚲])
+
+.🙋 [.💭.🧡] ^🗺️‍( -> [-🗾~🌷~🚲])
+
+
+🙋 [💭🧡] 🗺️ (> [-🗾~🌷~🚲])
+
+🙋 [💭🧡] 🗺️ > [-🗾~🌷~🚲]
+
+🙋 -💭🧡- 🗺️ > -🗾~🌷~🚲-
+
+🂷hourglasstrainpointing

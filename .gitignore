@@ -6,9 +6,9 @@
 *.ttf
 # /Resources
 
-!Resources/
-Resources/*
-!Resources/ameji metadata/
-Resources/ameji metadata/*
-!Resources/ameji metadata/unicode_to_ameji_standard.py
+# !Resources/
+# Resources/*
+# !Resources/ameji metadata/
+# Resources/ameji metadata/*
+# !Resources/ameji metadata/unicode_to_ameji_standard.py
 
